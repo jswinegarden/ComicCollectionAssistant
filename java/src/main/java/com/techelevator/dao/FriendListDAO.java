@@ -1,5 +1,13 @@
 package com.techelevator.dao;
 
-public interface FriendListDAO {
+import java.util.List;
 
+import com.techelevator.model.FriendsList;
+
+public interface FriendListDAO {
+	FriendsList newRequest(FriendsList someRequest);
+	void updateRequestStatus(FriendsList someRequest);
+	String getRequestType(int requestTypeId);
+	String getRequestStatus(int requestStatusId);
+	List<FriendsList> getPendingRequestsForuser(int userId);
 }
