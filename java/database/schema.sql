@@ -1,7 +1,5 @@
 BEGIN TRANSACTION;
 
-
-
 DROP TABLE IF EXISTS comics;
 DROP TABLE IF EXISTS trades;
 DROP TABLE IF EXISTS trade_types;
@@ -134,6 +132,7 @@ CREATE TABLE trades (
 	trade_status_id int NOT NULL,
 	user_from int NOT NULL,
 	user_to int NOT NULL,
+	comic_id int NOT NULL,
 	CONSTRAINT PK_trades PRIMARY KEY (trade_id),
 	CONSTRAINT FK_trades_user_from FOREIGN KEY (user_from) REFERENCES accounts (account_id),
 	CONSTRAINT FK_trades_user_to FOREIGN KEY (user_to) REFERENCES accounts (account_id),
