@@ -8,6 +8,17 @@ public class Trade {
 	private int userTo;
 	private int comicId;
 	
+	public Trade(int tradeId, int tradeTypeId, int tradeStatusId, int userFrom, int userTo, int comicId) {
+		this.tradeId = tradeId;
+		this.tradeTypeId = tradeTypeId;
+		this.tradeStatusId = tradeStatusId;
+		this.userFrom = userFrom;
+		this.userTo = userTo;
+		this.comicId = comicId;
+	}
+	public Trade () {
+		
+	}
 	public int getTradeId() {
 		return tradeId;
 	}

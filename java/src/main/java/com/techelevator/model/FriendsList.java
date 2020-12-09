@@ -7,6 +7,14 @@ public class FriendsList {
 	private int requestStatusId;
 	private int requestTypeId;
 	
+	public FriendsList(int requestId, int requestStatusId, int requestTypeId, int userFrom, int userTo) {
+		this.requestId = requestId;
+		this.requestStatusId = requestStatusId;
+		this.requestTypeId = requestTypeId;
+		this.userFrom = userFrom;
+		this.userTo = userTo;
+	}
+	public FriendsList() {}
 	public int getRequestId() {
 		return requestId;
 	}

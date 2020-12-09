@@ -8,4 +8,5 @@ public interface TradeDAO {
 	Trade newTrade(Trade someTrade);
 	void updateTradeStatus(Trade someTrade);
 	List<Trade> getPendingTradesForUser(int userId);
+	
 }
