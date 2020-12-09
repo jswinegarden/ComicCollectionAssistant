@@ -1,5 +1,8 @@
 package com.techelevator.dao;
 
-public class AccountSQLDAO {
+import org.springframework.stereotype.Service;
+
+@Service
+public class AccountSQLDAO implements AccountDAO{
 
 }

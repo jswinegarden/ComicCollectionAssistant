@@ -7,6 +7,12 @@ public class Collection {
 	private String collectionName;
 	private String collectionDescription;
 	
+	public Collection(int collectionId, int userId, String collectionName, String collectionDesc) {
+		this.collectionId = collectionId;
+		this.userId = userId;
+		this.collectionName = collectionName;
+		this.collectionDescription = collectionDesc;
+	}
 	public Collection() {}
 	
 	public int getCollectionId() {

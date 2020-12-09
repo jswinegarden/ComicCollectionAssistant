@@ -6,6 +6,6 @@ import com.techelevator.model.Collection;
 
 public interface CollectionDAO {
 	Collection getCollectionById(int collectionId);
-	List<Collection> getAllCollectionsByUserId();
-	void updateCollection(int accountId);
+	List<Collection> getAllCollectionsByUserId(int userId);
+	void updateCollection(int userId);
 }

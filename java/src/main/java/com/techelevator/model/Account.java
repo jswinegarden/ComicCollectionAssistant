@@ -5,6 +5,12 @@ public class Account {
 	private int userId;
 	private String accountType;
 	
+	public Account (int accountId, int userId, String accountType) {
+		this.accountId = accountId;
+		this.userId = userId;
+		this.accountType = accountType;
+	}
+	public Account () {}
 	public int getAccountId() {
 		return accountId;
 	}
