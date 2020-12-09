@@ -4,8 +4,8 @@ public class FriendsList {
 	private int requestId;
 	private int userFrom;
 	private int userTo;
-	private String requestStatus;
-	private String requestType;
+	private int requestStatusId;
+	private int requestTypeId;
 	
 	public int getRequestId() {
 		return requestId;
@@ -25,17 +25,17 @@ public class FriendsList {
 	public void setUserTo(int userTo) {
 		this.userTo = userTo;
 	}
-	public String getRequestStatus() {
-		return requestStatus;
+	public int getRequestStatus() {
+		return requestStatusId;
 	}
-	public void setRequestStatus(String requestStatus) {
-		this.requestStatus = requestStatus;
+	public void setRequestStatus(int requestStatusId) {
+		this.requestStatusId = requestStatusId;
 	}
-	public String getRequestType() {
-		return requestType;
+	public int getRequestType() {
+		return requestTypeId;
 	}
-	public void setRequestType(String requestType) {
-		this.requestType = requestType;
+	public void setRequestType(int requestTypeId) {
+		this.requestTypeId = requestTypeId;
 	}
 	
 	

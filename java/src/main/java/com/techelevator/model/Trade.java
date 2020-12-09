@@ -2,8 +2,8 @@ package com.techelevator.model;
 
 public class Trade {
 	private int tradeId;
-	private String tradeTypeId;
-	private String tradeStatusId;
+	private int tradeTypeId;
+	private int tradeStatusId;
 	private int userFrom;
 	private int userTo;
 	private int comicId;
@@ -14,16 +14,16 @@ public class Trade {
 	public void setTradeId(int tradeId) {
 		this.tradeId = tradeId;
 	}
-	public String getTradeTypeId() {
+	public int getTradeTypeId() {
 		return tradeTypeId;
 	}
-	public void setTradeTypeId(String tradeTypeId) {
+	public void setTradeTypeId(int tradeTypeId) {
 		this.tradeTypeId = tradeTypeId;
 	}
-	public String getTradeStatusId() {
+	public int getTradeStatusId() {
 		return tradeStatusId;
 	}
-	public void setTradeStatusId(String tradeStatusId) {
+	public void setTradeStatusId(int tradeStatusId) {
 		this.tradeStatusId = tradeStatusId;
 	}
 	public int getUserFrom() {
