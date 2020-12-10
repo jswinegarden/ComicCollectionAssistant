@@ -7,5 +7,5 @@ import com.techelevator.model.Collection;
 public interface CollectionDAO {
 	Collection getCollectionById(Long collectionId);
 	List<Collection> getAllCollectionsByUserId(Long userId);
-	void updateCollection(Long userId);
+	void updateCollection(Collection collection);
 }

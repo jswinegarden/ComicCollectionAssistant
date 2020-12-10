@@ -34,7 +34,10 @@
 
 <style scoped>
   #app{
-    background-color: cornflowerblue; /* change color to image later */
+    background-image: url("../img/HERO COLLAGE.png");
+    background-repeat: repeat;
+    background-size: cover;
+   
   }
   .nav-item {
     background-color:darkgrey;

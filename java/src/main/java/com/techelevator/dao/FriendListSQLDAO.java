@@ -13,7 +13,7 @@ public class FriendListSQLDAO implements FriendListDAO{
 	private JdbcTemplate jdbcTemplate;
 	private UserDAO userDAO;
 	
-	private static final String SQL_SELECT_FRIENDS_LIST = "";
+	private static final String SQL_SELECT_FRIENDS_LIST = "SELECT friend_list_id,";
 	
 	private FriendListSQLDAO(JdbcTemplate jdbcTemplate, UserDAO userDAO) {
 		this.jdbcTemplate = jdbcTemplate;

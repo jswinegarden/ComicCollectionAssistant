@@ -45,8 +45,8 @@ public class CollectionSQLDAO implements CollectionDAO {
 	}
 
 	@Override
-	public void updateCollection(Long userId) {
-		//String sql = "UPDATE collections SET  "
+	public void updateCollection(Collection collection) {
+		String sql = "";
 		
 	}
 	
