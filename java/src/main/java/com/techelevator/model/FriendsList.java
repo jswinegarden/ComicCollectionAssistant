@@ -15,7 +15,11 @@ public class FriendsList {
     public static final String FRIEND_LIST_REQUEST_STATUS_APPROVED = "Approved";
     public static final String FRIEND_LIST_REQUEST_STATUS_REJECTED = "Rejected";
 	
-	public FriendsList(Long requestId, String friendListRequestStatus, String friendListRequestType, User userFrom, User userTo) {
+    public FriendsList(String friendListRequestType, User userFrom, User userTo) {
+    	this(null, friendListRequestType, getInitialStatusForFriendsListRequestType(friendListRequestType), userFrom, userTo);
+    }
+    	
+    public FriendsList(Long requestId, String friendListRequestStatus, String friendListRequestType, User userFrom, User userTo) {
 		this.requestId = requestId;
 		this.friendListRequestType = friendListRequestType;
 		this.friendListRequestStatus = friendListRequestStatus;

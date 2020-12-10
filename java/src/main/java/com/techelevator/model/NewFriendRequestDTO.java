@@ -4,23 +4,23 @@ import javax.validation.constraints.AssertTrue;
 
 public class NewFriendRequestDTO {
 
-	private User userFrom;
-	private User userTo;
+	private Long userFrom;
+	private Long userTo;
 	private String friendListRequestType;
 	
-	public User getUserFrom() {
+	public Long getUserFrom() {
 		return userFrom;
 	}
 	
-	public void setUserFrom(User userFrom) {
+	public void setUserFrom(Long userFrom) {
 		this.userFrom = userFrom;
 	}
 	
-	public User getUserTo() {
+	public Long getUserTo() {
 		return userTo;
 	}
 	
-	public void setUserTo(User userTo) {
+	public void setUserTo(Long userTo) {
 		this.userTo = userTo;
 	}
 	
