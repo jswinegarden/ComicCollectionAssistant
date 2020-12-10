@@ -24,8 +24,6 @@ import com.techelevator.model.TradeAuthorization;
 import com.techelevator.model.User;
 
 
-
-
 @RestController
 @CrossOrigin
 @RequestMapping("/trades")
