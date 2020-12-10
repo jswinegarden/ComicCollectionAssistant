@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +22,11 @@ import com.techelevator.model.AuthorizationException;
 import com.techelevator.model.NewTradeDTO;
 import com.techelevator.model.Trade;
 import com.techelevator.model.TradeAuthorization;
+import com.techelevator.model.TradeStatusUpdateDTO;
 import com.techelevator.model.User;
+
+
+
 
 
 @RestController
@@ -39,6 +44,13 @@ public class TradeController {
         this.userDAO = userDAO;
     }
 	
+	@RequestMapping(value="/{id}", method = RequestMethod.GET)
+    public Trade getTrade(@PathVariable Long id, Principal principal) {
+        Trade trade = tradeDAO.getTradeById(id);
+        validateAuthorizationToView(principal, trade);
+        return trade;
+    }
+	
 	@ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Trade createTransfer(@Valid @RequestBody NewTradeDTO tradeDTO, Principal principal) {
@@ -50,6 +62,22 @@ public class TradeController {
     	}
     	return trade;
     }
+	
+	 @RequestMapping(value = "/{tradeId}", method = RequestMethod.PUT)
+		public Trade updateTradeStatus(@PathVariable Long tradeId, @Valid @RequestBody TradeStatusUpdateDTO dto, Principal principal) {
+	    	String newStatus = dto.getTradeStatus();
+	    	Trade trade = tradeDAO.getTradeById(tradeId);
+	    	validateAuthorizationToUpdateStatus(principal, trade);
+	    	if(Trade.TRADE_STATUS_APPROVED.equals(newStatus)) {
+	    		trade.approve();
+	    		transferComicsBetweenAccounts(trade);
+	    	} else if(Trade.TRADE_STATUS_REJECTED.equals(newStatus)) {
+	    		trade.reject();
+	    	} 
+	    	tradeDAO.updateTradeStatus(trade);
+			return trade;
+	    }
+
 	
 	private Trade buildTradeFromTradeDTO(NewTradeDTO tradeDTO) {
 		User userFrom = userDAO.getUserById(tradeDTO.getUserFrom());

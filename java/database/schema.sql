@@ -96,11 +96,9 @@ CREATE TABLE users (
 
 CREATE TABLE collections (
         collection_id int DEFAULT nextval('seq_collection_id'::regclass) NOT NULL,
-        user_id int NOT NULL,
         collection_name varchar (500) NOT NULL,
         collection_desc varchar (500),
-        CONSTRAINT PK_collection_id PRIMARY KEY (collection_id),
-        CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
+        CONSTRAINT PK_collection_id PRIMARY KEY (collection_id)
 );
 
 CREATE TABLE comics (
@@ -200,8 +198,12 @@ INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
 --DUMMY DATA--
-INSERT INTO collections (collection_id, user_id, collection_name, collection_desc) VALUES (DEFAULT, '2', 'DUMMY', 'SOME DESCRIPTION');
+INSERT INTO collections (collection_id, collection_name, collection_desc) VALUES (DEFAULT, 'DUMMY', 'SOME DESCRIPTION');
+INSERT INTO collections (collection_id, collection_name, collection_desc) VALUES (DEFAULT, 'MY COLLECTION', 'SOME DESCRIPTION');
 INSERT INTO comics (comic_id, comic_name, publisher_name, author_name, comic_type, date_published) VALUES (DEFAULT, 'DUMMY MAN', 'SPARVEL', 'DUM DUM', 'ACTION', '12-10-2020');
+INSERT INTO comics (comic_id, comic_name, publisher_name, author_name, comic_type, date_published) VALUES (DEFAULT, 'RONA MAN', 'CDC COMICS', 'RORO', 'MYSTERY', '12-10-2020');
 INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (DEFAULT, '2', '1', '1', 'STANDARD');
+INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (DEFAULT, '2', '2', '2', 'PREMIUM');
+INSERT INTO trades (trade_id, trade_type_id, trade_status_id, account_from, account_to, comic_id) VALUES (DEFAULT, '1', '2', '1', '2', '1');
 -----------------
 COMMIT TRANSACTION;
