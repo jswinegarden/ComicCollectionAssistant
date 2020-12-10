@@ -26,8 +26,8 @@ import com.techelevator.model.User;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/friendsList")
-@PreAuthorize("isAuthenticated")
+@RequestMapping("/friendslist")
+@PreAuthorize("isAuthenticated()")
 public class FriendsListController {
 	private FriendListDAO friendListDAO;
 	private AccountDAO accountDAO;
@@ -48,6 +48,7 @@ public class FriendsListController {
 		if(friendsList.isApproved()) {
 			
 		}
+		return friendsList;
 	}
 	
 	private FriendsList buildRequestFromRequestDTO(NewFriendRequestDTO friendRequestDTO) {
@@ -57,10 +58,6 @@ public class FriendsListController {
 		return new FriendsList(friendRequestDTO.getFriendListRequestType(),
 									userFrom,
 									userTo);
-	}
-	
-	private void sendRequestBetweenAccounts() {
-		
 	}
 	
 	private void validateAuthorizationToView(Principal principal, FriendsList friendsList) {
