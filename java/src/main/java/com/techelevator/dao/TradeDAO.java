@@ -7,6 +7,6 @@ import com.techelevator.model.Trade;
 public interface TradeDAO {
 	Trade newTrade(Trade someTrade);
 	void updateTradeStatus(Trade someTrade);
-	List<Trade> getPendingTradesForUser(int userId);
-	
+	List<Trade> getPendingTradesForUser(Long userId);
+	Trade getTradeById(Long tradeId);
 }

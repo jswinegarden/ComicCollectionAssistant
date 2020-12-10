@@ -2,12 +2,21 @@ package com.techelevator.dao;
 
 import java.util.List;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Service;
 
 import com.techelevator.model.FriendsList;
 
+@Service
 public class FriendListSQLDAO implements FriendListDAO{
-
+	private JdbcTemplate jdbcTemplate;
+	private UserDAO userDAO;
+	
+	private FriendListSQLDAO(JdbcTemplate jdbcTemplate, UserDAO userDAO) {
+		this.jdbcTemplate = jdbcTemplate;
+		this.userDAO = userDAO;
+	}
 	@Override
 	public FriendsList newRequest(FriendsList someRequest) {
 		// TODO Auto-generated method stub
@@ -39,10 +48,10 @@ public class FriendListSQLDAO implements FriendListDAO{
 	}
 	
 	private FriendsList mapRowToFriendsList(SqlRowSet rs) {
-		return new FriendsList(rs.getInt("order_added_id"),
-				rs.getInt("friend_request_type_id"),
-				rs.getInt("friend_request_status_id"),
-				rs.getInt("user_from"),
-				rs.getInt("user_to"));
+		return new FriendsList(rs.getLong("friend_list_id"),
+				rs.getString("friend_request_type_desc"),
+				rs.getString("friend_request_status_desc"),
+				userDAO.getUserById(rs.getLong("fromUser")),
+				userDAO.getUserById(rs.getLong("toUser")));
 	}
 }
