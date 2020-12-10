@@ -22,8 +22,8 @@ public class TradeSQLDAO implements TradeDAO{
 	            "FROM trades t " +
 	            "INNER JOIN trade_types tt ON t.trade_type_id = tt.trade_type_id "+
 	            "INNER JOIN trade_statuses ts ON t.trade_status_id = ts.trade_status_id "+
-	            "INNER JOIN accounts aFrom on user_from = aFrom.account_id " +
-	            "INNER JOIN accounts aTo on user_to = aTo.account_id ";
+	            "INNER JOIN accounts aFrom on account_from = aFrom.account_id " +
+	            "INNER JOIN accounts aTo on account_to = aTo.account_id ";
 	
 	private TradeSQLDAO(JdbcTemplate jdbcTemplate, AccountDAO accountDAO, UserDAO userDAO) {
 		this.jdbcTemplate = jdbcTemplate;
