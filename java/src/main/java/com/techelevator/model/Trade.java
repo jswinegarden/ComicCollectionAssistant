@@ -124,10 +124,10 @@ public class Trade {
 
     @Override
     public String toString() {
-        return "Transfer{" +
-                "transferId=" + tradeId +
-                ", transferType=" + tradeType +
-                ", transferStatus=" + tradeStatus +
+        return "Trade{" +
+                "tradeId=" + tradeId +
+                ", tradeType=" + tradeType +
+                ", tradeStatus=" + tradeStatus +
                 ", userFrom=" + userFrom +
                 ", userTo=" + userTo +
                 ", comicId=" + comicId +
