@@ -1,5 +1,8 @@
 package com.techelevator.model;
 
+import java.util.Objects;
+
+
 public class Account {
 	private Long accountId;
 	private Long userId;
@@ -18,15 +21,11 @@ public class Account {
 	public Long getAccountId() {
 		return accountId;
 	}
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
-	}
+	
 	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+	
 	public String getAccountType() {
 		return accountType;
 	}
@@ -42,10 +41,47 @@ public class Account {
 	public Long getCollectionId() {
 		return collectionId;
 	}
-	public void setCollectionId(Long collectionId) {
-		this.collectionId = collectionId;
+	
+	
+	public void trade(Account accountTo, Long comicToTrade) {
+		if(this.comicId.compareTo(comicToTrade) == 0) {
+			this.comicId = 0L;
+    		accountTo.comicId = comicToTrade;
+    	} else {
+    		throw new InvalidComicException(comicToTrade+" could not be found!");
+    	}
+		
 	}
 	
+	
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return accountId == account.accountId &&
+                userId == account.userId &&
+                comicId.equals(account.comicId)&&
+                collectionId.equals(account.collectionId)&&
+                accountType.equals(account.accountType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountId, userId, comicId, collectionId, accountType);
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountId=" + accountId +
+                ", userId=" + userId +
+                ", comicId=" + comicId +
+                ", collectionId=" + collectionId +
+                ", accountType=" + accountType +
+                '}';
+    }
 	
 	
 	
