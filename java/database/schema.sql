@@ -1,6 +1,5 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS comics;
 DROP TABLE IF EXISTS trades;
 DROP TABLE IF EXISTS trade_types;
 DROP TABLE IF EXISTS trade_statuses;
@@ -8,6 +7,7 @@ DROP TABLE IF EXISTS friends_list;
 DROP TABLE IF EXISTS friend_request_statuses;
 DROP TABLE IF EXISTS friend_request_types;
 DROP TABLE IF EXISTS accounts;
+DROP TABLE IF EXISTS comics;
 DROP TABLE IF EXISTS collections;
 DROP TABLE IF EXISTS users;
 
@@ -103,13 +103,26 @@ CREATE TABLE collections (
         CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
+CREATE TABLE comics (
+        comic_id int DEFAULT nextval('seq_comic_id'::regclass) NOT NULL,
+        comic_name varchar(500) NOT NULL,
+        publisher_name varchar(500) NOT NULL,
+        author_name varchar(500) NOT NULL,
+        comic_type varchar(500) NOT NULL,
+        date_published date NOT NULL,
+        CONSTRAINT PK_comic_id PRIMARY KEY (comic_id)
+       
+);
+
 CREATE TABLE accounts (
         account_id int DEFAULT nextval('seq_account_id'::regclass) NOT NULL,
         user_id int NOT NULL,
+        comic_id int NOT NULL,
         collection_id int NOT NULL,
         account_type varchar(40) NOT NULL,
 	CONSTRAINT PK_accounts PRIMARY KEY (account_id),
 	CONSTRAINT FK_accounts_user FOREIGN KEY (user_id) REFERENCES users (user_id),
+	CONSTRAINT FK_comic_id FOREIGN KEY (comic_id) REFERENCES comics (comic_id),
 	CONSTRAINT FK_collection_id FOREIGN KEY (collection_id) REFERENCES collections (collection_id)
 );
 
@@ -130,15 +143,15 @@ CREATE TABLE trades (
         trade_id int DEFAULT nextval('seq_trade_id'::regclass) NOT NULL,
 	trade_type_id int NOT NULL,
 	trade_status_id int NOT NULL,
-	user_from int NOT NULL,
-	user_to int NOT NULL,
+	account_from int NOT NULL,
+	account_to int NOT NULL,
 	comic_id int NOT NULL,
 	CONSTRAINT PK_trades PRIMARY KEY (trade_id),
-	CONSTRAINT FK_trades_user_from FOREIGN KEY (user_from) REFERENCES accounts (account_id),
-	CONSTRAINT FK_trades_user_to FOREIGN KEY (user_to) REFERENCES accounts (account_id),
+	CONSTRAINT FK_trades_account_from FOREIGN KEY (account_from) REFERENCES accounts (account_id),
+	CONSTRAINT FK_trades_account_to FOREIGN KEY (account_to) REFERENCES accounts (account_id),
 	CONSTRAINT FK_trades_trade_statuses FOREIGN KEY (trade_status_id) REFERENCES trade_statuses (trade_status_id),
 	CONSTRAINT FK_trades_trade_types FOREIGN KEY (trade_type_id) REFERENCES trade_types (trade_type_id),
-	CONSTRAINT CK_trades_not_same_account CHECK  ((user_from<>user_to))
+	CONSTRAINT CK_trades_not_same_account CHECK  ((account_from<>account_to))
 );
 
 CREATE TABLE friend_request_statuses (
@@ -155,12 +168,12 @@ CREATE TABLE friend_request_types (
 
 
 CREATE TABLE friends_list (
-        order_added_id int DEFAULT nextval('seq_friends_list_id'::regclass) NOT NULL,
+        friend_list_id int DEFAULT nextval('seq_friends_list_id'::regclass) NOT NULL,
 	friend_request_type_id int NOT NULL,
 	friend_request_status_id int NOT NULL,
 	user_from int NOT NULL,
 	user_to int NOT NULL,
-	CONSTRAINT PK_friends_list_id PRIMARY KEY (order_added_id),
+	CONSTRAINT PK_friends_list_id PRIMARY KEY (friend_list_id),
 	CONSTRAINT FK_friends_list_user_from FOREIGN KEY (user_from) REFERENCES users (user_id),
 	CONSTRAINT FK_friends_list_user_to FOREIGN KEY (user_to) REFERENCES users (user_id),
 	CONSTRAINT FK_friends_request_statuses FOREIGN KEY (friend_request_status_id) REFERENCES friend_request_statuses (friend_request_status_id),
@@ -168,17 +181,12 @@ CREATE TABLE friends_list (
 	CONSTRAINT CK_trades_not_same_account CHECK  ((user_from<>user_to))
 );
         
-CREATE TABLE comics (
-        comic_id int DEFAULT nextval('seq_comic_id'::regclass) NOT NULL,
-        collection_id int NOT NULL,
-        comic_name varchar(500) NOT NULL,
-        publisher_name varchar(500) NOT NULL,
-        author_name varchar(500) NOT NULL,
-        comic_type varchar(500) NOT NULL,
-        date_published date NOT NULL,
-        CONSTRAINT PK_comic_id PRIMARY KEY (comic_id),
-        CONSTRAINT FK_collection_id FOREIGN KEY (collection_id) REFERENCES collections (collection_id)
-);
+INSERT INTO trade_statuses (trade_status_desc) VALUES ('Pending');
+INSERT INTO trade_statuses (trade_status_desc) VALUES ('Approved');
+INSERT INTO trade_statuses (trade_status_desc) VALUES ('Rejected');
+
+INSERT INTO trade_types (trade_type_desc) VALUES ('Request');
+INSERT INTO trade_types (trade_type_desc) VALUES ('Send');
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');

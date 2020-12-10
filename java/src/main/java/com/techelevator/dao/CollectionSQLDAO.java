@@ -51,8 +51,8 @@ public class CollectionSQLDAO implements CollectionDAO {
 	}
 	
 	private Collection mapRowToCollection (SqlRowSet rs) {
-		return new Collection(rs.getInt("collection_id"),
-				rs.getInt("user_id"), 
+		return new Collection(rs.getLong("collection_id"),
+				rs.getLong("user_id"), 
 				rs.getString("collection_name"), 
 				rs.getString("collection_desc")); 
 		

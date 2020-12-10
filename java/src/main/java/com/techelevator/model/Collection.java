@@ -2,12 +2,12 @@ package com.techelevator.model;
 
 public class Collection {
 	
-	private int collectionId;
-	private int userId;
+	private Long collectionId;
+	private Long userId;
 	private String collectionName;
 	private String collectionDescription;
 	
-	public Collection(int collectionId, int userId, String collectionName, String collectionDesc) {
+	public Collection(Long collectionId, Long userId, String collectionName, String collectionDesc) {
 		this.collectionId = collectionId;
 		this.userId = userId;
 		this.collectionName = collectionName;
@@ -15,16 +15,16 @@ public class Collection {
 	}
 	public Collection() {}
 	
-	public int getCollectionId() {
+	public Long getCollectionId() {
 		return collectionId;
 	}
-	public void setCollectionId(int collectionId) {
+	public void setCollectionId(Long collectionId) {
 		this.collectionId = collectionId;
 	}
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 	public String getCollectionName() {
