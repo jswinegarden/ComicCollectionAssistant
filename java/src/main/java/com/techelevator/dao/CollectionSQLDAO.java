@@ -21,9 +21,9 @@ public class CollectionSQLDAO implements CollectionDAO {
 	}
 	
 	@Override
-	public Collection getCollectionById(int collectionId) {
+	public Collection getCollectionById(Long collectionId) {
 		Collection collection = null;
-		String sql = "SELECT collection_id, user_id, collection_name, collection_desc FROM collections WHERE collection_id = ?";
+		String sql = "SELECT user_id, collection_name, collection_desc FROM collections WHERE collection_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, collectionId);
 		while(results.next()) {
 			collection = mapRowToCollection(results);
@@ -32,7 +32,7 @@ public class CollectionSQLDAO implements CollectionDAO {
 	}
 
 	@Override
-	public List<Collection> getAllCollectionsByUserId(int userId) {
+	public List<Collection> getAllCollectionsByUserId(Long userId) {
 		List<Collection> collection = new ArrayList<>();
 		String sql = "SELECT collection_id, collection_name, collection_desc FROM collections WHERE user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
@@ -45,7 +45,7 @@ public class CollectionSQLDAO implements CollectionDAO {
 	}
 
 	@Override
-	public void updateCollection(int userId) {
+	public void updateCollection(Long userId) {
 		//String sql = "UPDATE collections SET  "
 		
 	}

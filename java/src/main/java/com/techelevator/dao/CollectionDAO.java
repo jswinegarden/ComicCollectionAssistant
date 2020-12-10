@@ -5,7 +5,7 @@ import java.util.List;
 import com.techelevator.model.Collection;
 
 public interface CollectionDAO {
-	Collection getCollectionById(int collectionId);
-	List<Collection> getAllCollectionsByUserId(int userId);
-	void updateCollection(int userId);
+	Collection getCollectionById(Long collectionId);
+	List<Collection> getAllCollectionsByUserId(Long userId);
+	void updateCollection(Long userId);
 }
