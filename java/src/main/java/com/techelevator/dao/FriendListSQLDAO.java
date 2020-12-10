@@ -13,10 +13,14 @@ public class FriendListSQLDAO implements FriendListDAO{
 	private JdbcTemplate jdbcTemplate;
 	private UserDAO userDAO;
 	
+	private static final String SQL_SELECT_FRIENDS_LIST = "";
+	
 	private FriendListSQLDAO(JdbcTemplate jdbcTemplate, UserDAO userDAO) {
 		this.jdbcTemplate = jdbcTemplate;
 		this.userDAO = userDAO;
 	}
+	
+	
 	@Override
 	public FriendsList newRequest(FriendsList someRequest) {
 		// TODO Auto-generated method stub
