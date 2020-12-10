@@ -1,6 +1,9 @@
 package com.techelevator.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
+
+
 
 
 
@@ -18,6 +21,10 @@ public class Trade {
     public static final String TRADE_STATUS_APPROVED = "Approved";
     public static final String TRADE_STATUS_REJECTED = "Rejected";
 	
+    public Trade(String tradeType, User userFrom, User userTo, Long comicId) {
+    	this(null, tradeType, getInitialStatusForTransferType(tradeType), userFrom, userTo, comicId);
+    }
+    
 	public Trade(Long tradeId, String tradeType, String tradeStatus, User userFrom, User userTo, Long comicId) {
 		this.tradeId = tradeId;
 		this.tradeType= tradeType;

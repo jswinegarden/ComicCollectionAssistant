@@ -3,32 +3,32 @@ package com.techelevator.model;
 import javax.validation.constraints.AssertTrue;
 
 public class NewTradeDTO {
-	private int userFrom;
-	private int userTo;
-	private int comicId;
+	private Long userFrom;
+	private Long userTo;
+	private Long comicId;
 	private String tradeType;
 	
-	public int getUserFrom() {
+	public Long getUserFrom() {
 		return userFrom;
 	}
 	
-	public void setUserFrom(int userFrom) {
+	public void setUserFrom(Long userFrom) {
 		this.userFrom = userFrom;
 	}
 	
-	public int getUserTo() {
+	public Long getUserTo() {
 		return userTo;
 	}
 	
-	public void setUserTo(int userTo) {
+	public void setUserTo(Long userTo) {
 		this.userTo = userTo;
 	}
 	
-	public int getComicId() {
+	public Long getComicId() {
 		return comicId;
 	}
 	
-	public void setComicId(int comicId) {
+	public void setComicId(Long comicId) {
 		this.comicId = comicId;
 	}
 	

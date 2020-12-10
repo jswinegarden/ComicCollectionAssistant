@@ -44,6 +44,7 @@ public class CollectionSQLDAO implements CollectionDAO {
 		return collection;
 	}
 
+
 	
 	private Collection mapRowToCollection (SqlRowSet rs) {
 		return new Collection(rs.getLong("collection_id"),

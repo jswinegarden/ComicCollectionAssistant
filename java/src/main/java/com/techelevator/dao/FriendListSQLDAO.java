@@ -24,10 +24,14 @@ public class FriendListSQLDAO implements FriendListDAO{
 										"INNER JOIN accounts aFrom on user_from = aFrom.account_id " +
 										"INNER JOIN accounts aTo on user_to = aTo.account_id ";
 	
+	private static final String SQL_SELECT_FRIENDS_LIST = "SELECT friend_list_id,";
+	
 	private FriendListSQLDAO(JdbcTemplate jdbcTemplate, UserDAO userDAO) {
 		this.jdbcTemplate = jdbcTemplate;
 		this.userDAO = userDAO;
 	}
+	
+	
 	@Override
 	public FriendsList newRequest(FriendsList someRequest) {
 		String sql = "INSERT INTO friends_list(friend_list_id, friend_request_type_id, friend_request_status_id, user_from, user_to) VALUES (?, ?, ?, ?, ?, ?)";
