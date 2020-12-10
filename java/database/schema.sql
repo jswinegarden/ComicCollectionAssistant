@@ -201,7 +201,11 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 
 --DUMMY DATA--
 INSERT INTO collections (collection_id, user_id, collection_name, collection_desc) VALUES (DEFAULT, '2', 'DUMMY', 'SOME DESCRIPTION');
+INSERT INTO collections (collection_id, user_id, collection_name, collection_desc) VALUES (DEFAULT, '1', 'MY COLLECTION', 'SOME DESCRIPTION');
 INSERT INTO comics (comic_id, comic_name, publisher_name, author_name, comic_type, date_published) VALUES (DEFAULT, 'DUMMY MAN', 'SPARVEL', 'DUM DUM', 'ACTION', '12-10-2020');
+INSERT INTO comics (comic_id, comic_name, publisher_name, author_name, comic_type, date_published) VALUES (DEFAULT, 'RONA MAN', 'CDC COMICS', 'RORO', 'MYSTERY', '12-10-2020');
 INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (DEFAULT, '2', '1', '1', 'STANDARD');
+INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (DEFAULT, '2', '2', '2', 'PREMIUM');
+INSERT INTO trades (trade_id, trade_type_id, trade_status_id, account_from, account_to, comic_id) VALUES (DEFAULT, '1', '2', '1', '2', '1');
 -----------------
 COMMIT TRANSACTION;
