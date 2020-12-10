@@ -1,13 +1,13 @@
 package com.techelevator.model;
 
 public class FriendsList {
-	private int requestId;
-	private int userFrom;
-	private int userTo;
-	private int requestStatusId;
-	private int requestTypeId;
+	private Long requestId;
+	private Long userFrom;
+	private Long userTo;
+	private Long requestStatusId;
+	private Long requestTypeId;
 	
-	public FriendsList(int requestId, int requestStatusId, int requestTypeId, int userFrom, int userTo) {
+	public FriendsList(Long requestId, Long requestStatusId, Long requestTypeId, Long userFrom, Long userTo) {
 		this.requestId = requestId;
 		this.requestStatusId = requestStatusId;
 		this.requestTypeId = requestTypeId;
@@ -15,34 +15,34 @@ public class FriendsList {
 		this.userTo = userTo;
 	}
 	public FriendsList() {}
-	public int getRequestId() {
+	public Long getRequestId() {
 		return requestId;
 	}
-	public void setRequestId(int requestId) {
+	public void setRequestId(Long requestId) {
 		this.requestId = requestId;
 	}
-	public int getUserFrom() {
+	public Long getUserFrom() {
 		return userFrom;
 	}
-	public void setUserFrom(int userFrom) {
+	public void setUserFrom(Long userFrom) {
 		this.userFrom = userFrom;
 	}
-	public int getUserTo() {
+	public Long getUserTo() {
 		return userTo;
 	}
-	public void setUserTo(int userTo) {
+	public void setUserTo(Long userTo) {
 		this.userTo = userTo;
 	}
-	public int getRequestStatus() {
+	public Long getRequestStatus() {
 		return requestStatusId;
 	}
-	public void setRequestStatus(int requestStatusId) {
+	public void setRequestStatus(Long requestStatusId) {
 		this.requestStatusId = requestStatusId;
 	}
-	public int getRequestType() {
+	public Long getRequestType() {
 		return requestTypeId;
 	}
-	public void setRequestType(int requestTypeId) {
+	public void setRequestType(Long requestTypeId) {
 		this.requestTypeId = requestTypeId;
 	}
 	

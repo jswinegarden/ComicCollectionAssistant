@@ -39,10 +39,10 @@ public class FriendListSQLDAO implements FriendListDAO{
 	}
 	
 	private FriendsList mapRowToFriendsList(SqlRowSet rs) {
-		return new FriendsList(rs.getInt("order_added_id"),
-				rs.getInt("friend_request_type_id"),
-				rs.getInt("friend_request_status_id"),
-				rs.getInt("user_from"),
-				rs.getInt("user_to"));
+		return new FriendsList(rs.getLong("friend_list_id"),
+				rs.getLong("friend_request_type_id"),
+				rs.getLong("friend_request_status_id"),
+				rs.getLong("user_from"),
+				rs.getLong("user_to"));
 	}
 }

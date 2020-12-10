@@ -3,25 +3,18 @@ package com.techelevator.model;
 import java.util.Date;
 
 public class Comic {
-	private int comicId;
-	private int collectionId;
+	private Long comicId;
 	private String comicName;
 	private String publisherName;
 	private String authorName;
 	private String comicType;
 	private Date datePublished;
 	
-	public int getComicId() {
+	public Long getComicId() {
 		return comicId;
 	}
-	public void setComicId(int comicId) {
+	public void setComicId(Long comicId) {
 		this.comicId = comicId;
-	}
-	public int getCollectionId() {
-		return collectionId;
-	}
-	public void setCollectionId(int collectionId) {
-		this.collectionId = collectionId;
 	}
 	public String getComicName() {
 		return comicName;
