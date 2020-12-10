@@ -188,8 +188,20 @@ INSERT INTO trade_statuses (trade_status_desc) VALUES ('Rejected');
 INSERT INTO trade_types (trade_type_desc) VALUES ('Request');
 INSERT INTO trade_types (trade_type_desc) VALUES ('Send');
 
+        
+INSERT INTO friend_request_statuses (friend_request_status_desc) VALUES ('Pending');
+INSERT INTO friend_request_statuses (friend_request_status_desc) VALUES ('Approved');
+INSERT INTO friend_request_statuses (friend_request_status_desc) VALUES ('Rejected');
+
+INSERT INTO friend_request_types (friend_request_type_desc) VALUES ('Request');
+INSERT INTO friend_request_types (friend_request_type_desc) VALUES ('Send');
+
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
-
+--DUMMY DATA--
+INSERT INTO collections (collection_id, user_id, collection_name, collection_desc) VALUES (DEFAULT, '2', 'DUMMY', 'SOME DESCRIPTION');
+INSERT INTO comics (comic_id, comic_name, publisher_name, author_name, comic_type, date_published) VALUES (DEFAULT, 'DUMMY MAN', 'SPARVEL', 'DUM DUM', 'ACTION', '12-10-2020');
+INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (DEFAULT, '2', '1', '1', 'STANDARD');
+-----------------
 COMMIT TRANSACTION;
