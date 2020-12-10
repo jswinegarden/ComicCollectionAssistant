@@ -44,11 +44,6 @@ public class CollectionSQLDAO implements CollectionDAO {
 		return collection;
 	}
 
-	@Override
-	public void updateCollection(Long userId) {
-		//String sql = "UPDATE collections SET  "
-		
-	}
 	
 	private Collection mapRowToCollection (SqlRowSet rs) {
 		return new Collection(rs.getLong("collection_id"),

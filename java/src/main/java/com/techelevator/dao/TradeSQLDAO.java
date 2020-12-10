@@ -46,7 +46,7 @@ public class TradeSQLDAO implements TradeDAO{
 
 	@Override
 	public void updateTradeStatus(Trade someTrade) {
-		String sql = "UPDATE transfers SET trade_status_id = ? WHERE trade_id = ?";
+		String sql = "UPDATE trades SET trade_status_id = ? WHERE trade_id = ?";
 		Long tradeStatusId = getTradeStatusId(someTrade.getTradeStatus());
 		jdbcTemplate.update(sql, tradeStatusId, someTrade.getTradeId());
 		
@@ -90,7 +90,7 @@ public class TradeSQLDAO implements TradeDAO{
     	if(results.next()) {
     		return results.getLong(1);
     	} else {
-    		throw new RuntimeException("Unable to lookup transferType "+tradeType);
+    		throw new RuntimeException("Unable to lookup trade type "+tradeType);
     	}
     }
     
@@ -100,7 +100,7 @@ public class TradeSQLDAO implements TradeDAO{
     	if(results.next()) {
     		return results.getLong(1);
     	} else {
-    		throw new RuntimeException("Unable to lookup transferStatus "+tradeStatus);
+    		throw new RuntimeException("Unable to lookup trade status "+tradeStatus);
     	}
     }
 	
