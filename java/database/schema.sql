@@ -206,4 +206,12 @@ INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type
 INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (DEFAULT, '2', '2', '2', 'PREMIUM');
 INSERT INTO trades (trade_id, trade_type_id, trade_status_id, account_from, account_to, comic_id) VALUES (DEFAULT, '1', '2', '1', '2', '1');
 -----------------
+---Testing Query Searches---
+        --getAllCollectionsByUserId--
+        --SELECT collection_id, collection_name, collection_desc
+        --FROM collections
+        --INNER JOIN accounts USING (collection_id)
+        --INNER JOIN users USING (user_id)
+        --WHERE user_id = 1;
+-------------------
 COMMIT TRANSACTION;

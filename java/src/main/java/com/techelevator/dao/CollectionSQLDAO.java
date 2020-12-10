@@ -34,7 +34,10 @@ public class CollectionSQLDAO implements CollectionDAO {
 	@Override
 	public List<Collection> getAllCollectionsByUserId(Long userId) {
 		List<Collection> collection = new ArrayList<>();
-		String sql = "SELECT collection_id, collection_name, collection_desc FROM collections WHERE user_id = ?";
+		String sql = "SELECT collection_id, collection_name, collection_desc FROM collections "
+				+ "INNER JOIN accounts USING (collection_id)"
+				+ " INNER JOIN users USING (user_id) "
+				+ "WHERE user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 		while(results.next()) {
 			Collection collections = mapRowToCollection(results);
