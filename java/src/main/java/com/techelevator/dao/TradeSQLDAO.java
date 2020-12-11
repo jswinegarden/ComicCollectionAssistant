@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.techelevator.model.Account;
 import com.techelevator.model.Trade;
 
+
 @Service
 public class TradeSQLDAO implements TradeDAO{
 	private JdbcTemplate jdbcTemplate;
@@ -75,6 +76,21 @@ public class TradeSQLDAO implements TradeDAO{
 		return trade;
 	}
 	
+	@Override
+	public List<Trade> getTradesForUser(Long userId) {
+		 List<Trade> transfers = new ArrayList<>();
+	        String sql = SQL_SELECT_TRADE + "" +
+	                "where (account_from IN (SELECT account_id FROM accounts WHERE user_id = ?) " +
+	                "OR account_to IN (SELECT account_id FROM accounts WHERE user_id = ?))";
+
+	        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, userId);
+	        while(results.next()) {
+	            Trade transfer = mapRowToTrade(results);
+	            transfers.add(transfer); 
+	        }
+	        return transfers;
+	}
+	
 	private Long getnextTradeId() {
 		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_trade_id')");
 		if(nextIdResult.next()) {
@@ -112,5 +128,6 @@ public class TradeSQLDAO implements TradeDAO{
 				userDAO.getUserById(rs.getLong("toUser")),
 				rs.getLong("comic_id"));
 	}
+
 
 }

@@ -47,6 +47,25 @@ public class CollectionSQLDAO implements CollectionDAO {
 		return collection;
 	}
 
+	@Override
+	public Collection newCollection(Collection collection) {
+		String sql = "INSERT INTO collections(collection_id, collection_name, collection_desc) "
+				+ "VALUES (?, ?, ?)";
+		Long newCollectionId = getnextCollectionId();
+		String collectionName = collection.getCollectionName();
+		String collectionDesc = collection.getCollectionDescription();
+		jdbcTemplate.update(sql, newCollectionId, collectionName, collectionDesc);
+		return getCollectionById(newCollectionId);
+	}
+	
+	private Long getnextCollectionId() {
+		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_collection_id')");
+		if(nextIdResult.next()) {
+			return nextIdResult.getLong(1);
+		} else {
+			throw new RuntimeException("Something went wrong while getting an id for the new collection");
+		}
+	}
 
 	
 	private Collection mapRowToCollection (SqlRowSet rs) {
@@ -56,4 +75,5 @@ public class CollectionSQLDAO implements CollectionDAO {
 		
 	}
 
+	
 }

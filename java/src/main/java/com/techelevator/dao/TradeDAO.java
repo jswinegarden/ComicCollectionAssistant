@@ -8,5 +8,6 @@ public interface TradeDAO {
 	Trade newTrade(Trade someTrade);
 	void updateTradeStatus(Trade someTrade);
 	List<Trade> getPendingTradesForUser(Long userId);
+	List<Trade> getTradesForUser(Long userId);
 	Trade getTradeById(Long tradeId);
 }
