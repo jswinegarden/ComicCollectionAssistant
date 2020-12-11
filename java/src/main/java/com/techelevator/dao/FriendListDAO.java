@@ -9,5 +9,6 @@ public interface FriendListDAO {
 	void updateRequestStatus(FriendsList someRequest);
 	String getRequestType(int requestTypeId);
 	String getRequestStatus(int requestStatusId);
-	List<FriendsList> getPendingRequestsForuser(int userId);
+	List<FriendsList> getPendingRequestsForUser(Long userId);
+	FriendsList getRequestById(Long requestId);
 }

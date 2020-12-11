@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.techelevator.model.Account;
 import com.techelevator.model.Trade;
 
+
 @Service
 public class TradeSQLDAO implements TradeDAO{
 	private JdbcTemplate jdbcTemplate;
@@ -22,8 +23,8 @@ public class TradeSQLDAO implements TradeDAO{
 	            "FROM trades t " +
 	            "INNER JOIN trade_types tt ON t.trade_type_id = tt.trade_type_id "+
 	            "INNER JOIN trade_statuses ts ON t.trade_status_id = ts.trade_status_id "+
-	            "INNER JOIN accounts aFrom on user_from = aFrom.account_id " +
-	            "INNER JOIN accounts aTo on user_to = aTo.account_id ";
+	            "INNER JOIN accounts aFrom on account_from = aFrom.account_id " +
+	            "INNER JOIN accounts aTo on account_to = aTo.account_id ";
 	
 	private TradeSQLDAO(JdbcTemplate jdbcTemplate, AccountDAO accountDAO, UserDAO userDAO) {
 		this.jdbcTemplate = jdbcTemplate;
@@ -46,7 +47,7 @@ public class TradeSQLDAO implements TradeDAO{
 
 	@Override
 	public void updateTradeStatus(Trade someTrade) {
-		String sql = "UPDATE transfers SET trade_status_id = ? WHERE trade_id = ?";
+		String sql = "UPDATE trades SET trade_status_id = ? WHERE trade_id = ?";
 		Long tradeStatusId = getTradeStatusId(someTrade.getTradeStatus());
 		jdbcTemplate.update(sql, tradeStatusId, someTrade.getTradeId());
 		
@@ -75,6 +76,21 @@ public class TradeSQLDAO implements TradeDAO{
 		return trade;
 	}
 	
+	@Override
+	public List<Trade> getTradesForUser(Long userId) {
+		 List<Trade> transfers = new ArrayList<>();
+	        String sql = SQL_SELECT_TRADE + "" +
+	                "where (account_from IN (SELECT account_id FROM accounts WHERE user_id = ?) " +
+	                "OR account_to IN (SELECT account_id FROM accounts WHERE user_id = ?))";
+
+	        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, userId);
+	        while(results.next()) {
+	            Trade transfer = mapRowToTrade(results);
+	            transfers.add(transfer); 
+	        }
+	        return transfers;
+	}
+	
 	private Long getnextTradeId() {
 		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_trade_id')");
 		if(nextIdResult.next()) {
@@ -90,7 +106,7 @@ public class TradeSQLDAO implements TradeDAO{
     	if(results.next()) {
     		return results.getLong(1);
     	} else {
-    		throw new RuntimeException("Unable to lookup transferType "+tradeType);
+    		throw new RuntimeException("Unable to lookup trade type "+tradeType);
     	}
     }
     
@@ -100,7 +116,7 @@ public class TradeSQLDAO implements TradeDAO{
     	if(results.next()) {
     		return results.getLong(1);
     	} else {
-    		throw new RuntimeException("Unable to lookup transferStatus "+tradeStatus);
+    		throw new RuntimeException("Unable to lookup trade status "+tradeStatus);
     	}
     }
 	
@@ -112,5 +128,6 @@ public class TradeSQLDAO implements TradeDAO{
 				userDAO.getUserById(rs.getLong("toUser")),
 				rs.getLong("comic_id"));
 	}
+
 
 }

@@ -15,7 +15,11 @@ public class FriendsList {
     public static final String FRIEND_LIST_REQUEST_STATUS_APPROVED = "Approved";
     public static final String FRIEND_LIST_REQUEST_STATUS_REJECTED = "Rejected";
 	
-	public FriendsList(Long requestId, String friendListRequestStatus, String friendListRequestType, User userFrom, User userTo) {
+    public FriendsList(String friendListRequestType, User userFrom, User userTo) {
+    	this(null, friendListRequestType, getInitialStatusForFriendsListRequestType(friendListRequestType), userFrom, userTo);
+    }
+    	
+    public FriendsList(Long requestId, String friendListRequestStatus, String friendListRequestType, User userFrom, User userTo) {
 		this.requestId = requestId;
 		this.friendListRequestType = friendListRequestType;
 		this.friendListRequestStatus = friendListRequestStatus;
@@ -81,13 +85,13 @@ public class FriendsList {
 		}
 	}
 
-    private void validateTransferType() {
+    private void validateFriendsListRequestType() {
     	if(!(FRIEND_LIST_REQUEST_TYPE_REQUEST.equals(friendListRequestType) || FRIEND_LIST_REQUEST_TYPE_SEND.equals(friendListRequestType))) {
     		throw new IllegalArgumentException(friendListRequestType + " is not a valid transferType");
     	}
     }
 
-    private void validateTransferStatus() {
+    private void validateFriendsListRequestStatus() {
     	if(!(FRIEND_LIST_REQUEST_STATUS_APPROVED.equals(friendListRequestStatus) || FRIEND_LIST_REQUEST_STATUS_PENDING.equals(friendListRequestStatus) || FRIEND_LIST_REQUEST_STATUS_REJECTED.equals(friendListRequestStatus))) {
     		throw new IllegalArgumentException(friendListRequestStatus + " is not a valid transferStatus");
     	}
@@ -121,7 +125,7 @@ public class FriendsList {
                 '}';
     }
     
-	private static String getInitialStatusForTransferType(String friendListRequestType) {
+	private static String getInitialStatusForFriendsListRequestType(String friendListRequestType) {
 		String friendListRequestStatus = null;
     	if(FriendsList.FRIEND_LIST_REQUEST_TYPE_REQUEST.equals(friendListRequestType)) {
     		friendListRequestStatus = FriendsList.FRIEND_LIST_REQUEST_STATUS_PENDING;
