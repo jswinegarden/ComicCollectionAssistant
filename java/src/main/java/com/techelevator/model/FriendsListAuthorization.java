@@ -27,6 +27,11 @@ public class FriendsListAuthorization {
 		return isAllowed;
 	}
 	
+//	public boolean isAllowedToDelete() {
+//		boolean
+//		
+//	}
+	
 	public boolean isAllowedToApproveOrReject() {
 		return principalUsername().equals(fromUsername());
 	}
