@@ -7,8 +7,13 @@ DROP TABLE IF EXISTS friends_list;
 DROP TABLE IF EXISTS friend_request_statuses;
 DROP TABLE IF EXISTS friend_request_types;
 DROP TABLE IF EXISTS accounts;
-DROP TABLE IF EXISTS comics;
 DROP TABLE IF EXISTS collections;
+DROP TABLE IF EXISTS favorite_statuses;
+DROP TABLE IF EXISTS collection_visibilities;
+DROP TABLE IF EXISTS comic_conditions;
+DROP TABLE IF EXISTS comic_tradable_statues;
+DROP TABLE IF EXISTS account_types;
+DROP TABLE IF EXISTS comics;
 DROP TABLE IF EXISTS users;
 
 
@@ -22,10 +27,34 @@ DROP SEQUENCE IF EXISTS seq_friend_request_status_id CASCADE;
 DROP SEQUENCE IF EXISTS seq_friend_request_type_id CASCADE;
 DROP SEQUENCE IF EXISTS seq_trade_type_id CASCADE;
 DROP SEQUENCE IF EXISTS seq_trade_status_id CASCADE;
+DROP SEQUENCE IF EXISTS seq_comic_tradable_status_id CASCADE;
+DROP SEQUENCE IF EXISTS seq_account_type_id CASCADE;
+DROP SEQUENCE IF EXISTS seq_comic_condition_id CASCADE;
+DROP SEQUENCE IF EXISTS seq_collection_visibility_id CASCADE;
+DROP SEQUENCE IF EXISTS seq_favorite_status_id CASCADE;
 
 
   
 CREATE SEQUENCE seq_user_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+
+
+CREATE SEQUENCE seq_comic_condition_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+  
+CREATE SEQUENCE seq_comic_tradable_status_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+  
+CREATE SEQUENCE seq_account_type_id
   INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
@@ -73,6 +102,18 @@ CREATE SEQUENCE seq_friend_request_type_id
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
+
+CREATE SEQUENCE seq_favorite_status_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+
+CREATE SEQUENCE seq_collection_visibility_id
+  INCREMENT BY 1
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
  
 CREATE SEQUENCE seq_collection_id
   INCREMENT BY 1
@@ -94,11 +135,30 @@ CREATE TABLE users (
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
 
+CREATE TABLE favorite_statuses (
+        favorite_status_id int DEFAULT nextval('seq_favorite_status_id'::regclass) NOT NULL,
+        favorite_status_desc varchar(50) NOT NULL,
+        CONSTRAINT PK_favorite_status_id PRIMARY KEY (favorite_status_id)
+        
+);
+
+CREATE TABLE collection_visibilities (
+        collection_visibility_id int DEFAULT nextval('seq_collection_visibility_id'::regclass) NOT NULL,
+        collection_visibility_desc varchar(50) NOT NULL,
+        CONSTRAINT PK_collection_visibility_id PRIMARY KEY (collection_visibility_id)
+        
+);
+
 CREATE TABLE collections (
         collection_id int DEFAULT nextval('seq_collection_id'::regclass) NOT NULL,
         collection_name varchar (500) NOT NULL,
         collection_desc varchar (500),
-        CONSTRAINT PK_collection_id PRIMARY KEY (collection_id)
+        favorite_status_id int NOT NULL,
+        collection_visibility_id int NOT NULL, 
+        CONSTRAINT PK_collection_id PRIMARY KEY (collection_id),
+        CONSTRAINT FK_favorite_status_id FOREIGN KEY (favorite_status_id) REFERENCES favorite_statuses (favorite_status_id),
+        CONSTRAINT FK_collection_visibility_id FOREIGN KEY (collection_visibility_id) REFERENCES collection_visibilities (collection_visibility_id)
+        
 );
 
 CREATE TABLE comics (
@@ -112,16 +172,41 @@ CREATE TABLE comics (
        
 );
 
+CREATE TABLE comic_conditions (
+        comic_condition_id int DEFAULT nextval('seq_comic_condition_id'::regclass) NOT NULL,
+        comic_condition_desc varchar(50) NOT NULL,
+        CONSTRAINT PK_comic_condition_id PRIMARY KEY (comic_condition_id)
+);
+
+CREATE TABLE comic_tradable_statuses (
+        comic_tradable_status_id int DEFAULT nextval('seq_comic_tradable_status_id'::regclass) NOT NULL,
+        comic_tradable_status_desc varchar(50) NOT NULL,
+        CONSTRAINT PK_comic_tradable_status_id PRIMARY KEY (comic_tradable_status_id)
+
+);
+
+CREATE TABLE account_types (
+        account_type_id int DEFAULT nextval('seq_account_type_id'::regclass) NOT NULL,
+        account_type_desc varchar(40) NOT NULL,
+        CONSTRAINT PK_account_type_id PRIMARY KEY (account_type_id)
+);
+
 CREATE TABLE accounts (
         account_id int DEFAULT nextval('seq_account_id'::regclass) NOT NULL,
         user_id int NOT NULL,
         comic_id int NOT NULL,
+        comic_condition_id int NOT NULL,
+        comic_tradable_status_id int NOT NULL,
         collection_id int NOT NULL,
-        account_type varchar(40) NOT NULL,
+        account_type_id int NOT NULL,
 	CONSTRAINT PK_accounts PRIMARY KEY (account_id),
 	CONSTRAINT FK_accounts_user FOREIGN KEY (user_id) REFERENCES users (user_id),
 	CONSTRAINT FK_comic_id FOREIGN KEY (comic_id) REFERENCES comics (comic_id),
-	CONSTRAINT FK_collection_id FOREIGN KEY (collection_id) REFERENCES collections (collection_id)
+	CONSTRAINT FK_comic_condition_id FOREIGN KEY (comic_condition_id) REFERENCES comic_conditions (comic_condition_id),
+	CONSTRAINT FK_comic_tradable_status_id FOREIGN KEY (comic_tradable_status_id) REFERENCES comic_tradable_statuses (comic_tradable_status_id),
+	CONSTRAINT FK_collection_id FOREIGN KEY (collection_id) REFERENCES collections (collection_id),
+	CONSTRAINT FK_account_type_id FOREIGN KEY (account_type_id) REFERENCES account_types (account_type_id)
+	
 );
 
 CREATE TABLE trade_statuses (
@@ -178,6 +263,25 @@ CREATE TABLE friends_list (
 	CONSTRAINT FK_friends_request_types FOREIGN KEY (friend_request_type_id) REFERENCES friend_request_types (friend_request_type_id),
 	CONSTRAINT CK_trades_not_same_account CHECK  ((user_from<>user_to))
 );
+
+INSERT INTO favorite_statuses (favorite_status_desc) VALUES ('Yes');
+INSERT INTO favorite_statuses (favorite_status_desc) VALUES ('No');
+
+INSERT INTO collection_visibilities (collection_visibility_desc) VALUES ('Private');
+INSERT INTO collection_visibilities (collection_visibility_desc) VALUES ('Public');
+
+INSERT INTO comic_conditions (comic_condition_desc) VALUES ('Mint');
+INSERT INTO comic_conditions (comic_condition_desc) VALUES ('Fair');
+INSERT INTO comic_conditions (comic_condition_desc) VALUES ('Poor');
+
+
+INSERT INTO comic_tradable_statuses (comic_tradable_status_desc) VALUES ('Yes');
+INSERT INTO comic_tradable_statuses (comic_tradable_status_desc) VALUES ('No');
+
+
+INSERT INTO account_types (account_type_desc) VALUES ('Standard');
+INSERT INTO account_types (account_type_desc) VALUES ('Premium');
+
         
 INSERT INTO trade_statuses (trade_status_desc) VALUES ('Pending');
 INSERT INTO trade_statuses (trade_status_desc) VALUES ('Approved');
@@ -198,12 +302,12 @@ INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 
 --DUMMY DATA--
-INSERT INTO collections (collection_id, collection_name, collection_desc) VALUES (DEFAULT, 'DUMMY', 'SOME DESCRIPTION');
-INSERT INTO collections (collection_id, collection_name, collection_desc) VALUES (DEFAULT, 'MY COLLECTION', 'SOME DESCRIPTION');
+INSERT INTO collections (collection_id, collection_name, collection_desc, favorite_status_id, collection_visibility_id) VALUES (DEFAULT, 'DUMMY', 'SOME DESCRIPTION', '1', '1');
+INSERT INTO collections (collection_id, collection_name, collection_desc, favorite_status_id, collection_visibility_id) VALUES (DEFAULT, 'MY COLLECTION', 'SOME DESCRIPTION', '2', '2');
 INSERT INTO comics (comic_id, comic_name, publisher_name, author_name, comic_type, date_published) VALUES (DEFAULT, 'DUMMY MAN', 'SPARVEL', 'DUM DUM', 'ACTION', '12-10-2020');
 INSERT INTO comics (comic_id, comic_name, publisher_name, author_name, comic_type, date_published) VALUES (DEFAULT, 'RONA MAN', 'CDC COMICS', 'RORO', 'MYSTERY', '12-10-2020');
-INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (DEFAULT, '2', '1', '1', 'STANDARD');
-INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (DEFAULT, '2', '2', '2', 'PREMIUM');
+INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradable_status_id, collection_id, account_type_id) VALUES (DEFAULT, '2', '1', '1', '1', '1', '1');
+INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradable_status_id, collection_id, account_type_id) VALUES (DEFAULT, '2', '2', '2', '1', '2','2');
 INSERT INTO trades (trade_id, trade_type_id, trade_status_id, account_from, account_to, comic_id) VALUES (DEFAULT, '1', '2', '1', '2', '1');
 -----------------
 ---Testing Query Searches---

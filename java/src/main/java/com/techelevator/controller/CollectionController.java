@@ -61,8 +61,9 @@ public class CollectionController {
 	
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-	public Collection updateCollectionName(@PathVariable Long id) {
+	public Collection updateCollectionName(@Valid @RequestBody String newCollectionName, @PathVariable Long id) {		
 		Collection collection = collectionDAO.getCollectionById(id);
+		String newCollectionName =  
 		return collection;
 	}
 	
