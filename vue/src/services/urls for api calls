@@ -1,2 +1,2 @@
-get images for all comics sorted by cover date desc -
-    http://comicvine.gamespot.com/api/issues/?api_key=47f0b6437656ab0357447c9de1cbdc532a5269fe&sort=cover_date:desc&field_list:image
+get list of comics filtered by name
+    http://comicvine.gamespot.com/api/issue/?api_key=47f0b6437656ab0357447c9de1cbdc532a5269fe&filter=name:${name}&field_list:id,name,image

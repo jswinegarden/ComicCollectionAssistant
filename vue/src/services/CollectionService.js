@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 export default {
-    getComicList()
-
+    methods:{
+        saveCollection(){
+            
+        }
+    }
 
 }

@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import NewCollection from '../views/NewCollection'
+import NewComic from '../views/NewComic'
 import store from '../store/index'
 
 Vue.use(Router)
@@ -61,7 +62,15 @@ const router = new Router({
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path:"/newComic",
+      name: "newComic",
+      component: NewComic,
+      meta: {
+        requiresAuth: true
+      }
+    },
   ]
 })
 

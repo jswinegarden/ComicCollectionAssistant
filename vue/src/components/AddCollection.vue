@@ -13,7 +13,7 @@
                 <textarea class="form-control" rows="5" placeholder="Collection Description"/>
             </div>
             <div class="col">
-                <button type="submit" class="btn btn-primary" >Save Collection</button>
+                <router-link class="btn btn-primary" v-bind:to="{ name: 'newComic' }">Save Collection</router-link>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@ export default {
         width: 100%;
         margin: 5px 0;
     }
-    button{
+    .btn{
         width: 100%;
     }
 </style>

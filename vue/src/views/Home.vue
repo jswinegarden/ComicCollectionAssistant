@@ -58,7 +58,7 @@
         <p class="row"> collection title </p>
       </div>
       <div class="col-md-2 shadow"> <router-link class="btn btn-primary" 
-          v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create Collection</router-link>
+          v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
       </div>
     </div>
 
