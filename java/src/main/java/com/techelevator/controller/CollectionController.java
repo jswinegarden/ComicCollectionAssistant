@@ -4,6 +4,7 @@ import java.security.Principal;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,13 +44,35 @@ public class CollectionController {
 		return collection;
 	}
 	
-	@ResponseStatus()
+	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Collection createCollection(@Valid @RequestBody NewCollectionDTO collectionDTO, Principal principal) {
 		Collection collection = buildCollectionFromCollectionDTO(collectionDTO);
 		collection = collectionDAO.newCollection(collection);
 		return collection;
 	}
+	
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public Collection deleteCollection(@PathVariable Long id) {
+		Collection collection = collectionDAO.getCollectionById(id);
+		return collection;
+	}
+	
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+	public Collection updateCollectionName(@PathVariable Long id) {
+		Collection collection = collectionDAO.getCollectionById(id);
+		return collection;
+	}
+	
+//	@ResponseStatus(HttpStatus.ACCEPTED)
+//	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
+//	public Collection updateCollectionDescription(@PathVariable Long id) {
+//		Collection collection = collectionDAO.getCollectionById(id);
+//		return collection;
+//	}
+	
 	
 	private Collection buildCollectionFromCollectionDTO(NewCollectionDTO collectionDTO) {
 		return new Collection (collectionDTO.getCollectionId(),
