@@ -23,7 +23,7 @@ public class CollectionSQLDAO implements CollectionDAO {
 	@Override
 	public Collection getCollectionById(Long collectionId) {
 		Collection collection = null;
-		String sql = "SELECT collection_name, collection_desc FROM collections WHERE collection_id = ?";
+		String sql = "SELECT collection_id, collection_name, collection_desc FROM collections WHERE collection_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, collectionId);
 		while(results.next()) {
 			collection = mapRowToCollection(results);
@@ -67,6 +67,28 @@ public class CollectionSQLDAO implements CollectionDAO {
 		}
 	}
 
+	@Override
+	public void updateCollectionName(Collection someCollection) {
+		String sql = "UPDATE collections SET collection_name = ? WHERE collection_id = ?";
+		String collectionName = someCollection.getCollectionName();
+		jdbcTemplate.update(sql, collectionName, someCollection.getCollectionId());
+		
+	}
+
+	@Override
+	public void updateCollectionDesc(Collection someCollection) {
+		String sql = "UPDATE collections SET collection_desc = ? WHERE collection_id = ?";
+		String collectionDesc = someCollection.getCollectionDescription();
+		jdbcTemplate.update(sql, collectionDesc, someCollection.getCollectionId());
+		
+	}
+
+	@Override
+	public void deleteCollection(Collection someCollection) {
+		String sql = "DELETE FROM collections WHERE collection_id = ?";
+		jdbcTemplate.update(sql, someCollection.getCollectionId());
+		
+	}
 	
 	private Collection mapRowToCollection (SqlRowSet rs) {
 		return new Collection(rs.getLong("collection_id"),
@@ -74,6 +96,8 @@ public class CollectionSQLDAO implements CollectionDAO {
 				rs.getString("collection_desc")); 
 		
 	}
+
+	
 
 	
 }
