@@ -1,6 +1,7 @@
 package com.techelevator.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -39,6 +40,12 @@ public class ComicController {
 	public Comic getComic(@PathVariable Long id) {
 		Comic comic = comicDAO.getComicById(id);
 		return comic;
+	}
+	
+	@RequestMapping(value="", method = RequestMethod.GET)
+	public List <Comic> getAllComics (){
+		List <Comic> allComics = comicDAO.getAllComics();
+		return allComics;
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.POST)

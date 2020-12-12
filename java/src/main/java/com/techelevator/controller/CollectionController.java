@@ -75,12 +75,10 @@ public class CollectionController {
 		if(newCollectionDTO.getCollectionName() != null && newCollectionDTO.getCollectionName().length() > 0 ) {
 			collection.setCollectionName(newCollectionDTO.getCollectionName());
 			collectionDAO.updateCollectionName(collection);
-			//return collection;
 		}
 		if (newCollectionDTO.getCollectionDescription() != null ) {
 			collection.setCollectionDescription(newCollectionDTO.getCollectionDescription());
 			collectionDAO.updateCollectionDesc(collection);
-			//return collection;
 		}
 		collection.setFavoriteStatusId(newCollectionDTO.getFavoriteStatusId());
 		collectionDAO.updateCollectionFavoriteStatusId(collection);
