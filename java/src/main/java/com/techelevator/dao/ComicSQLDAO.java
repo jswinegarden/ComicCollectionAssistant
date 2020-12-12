@@ -50,15 +50,14 @@ public class ComicSQLDAO implements ComicDAO{
 
 	@Override
 	public Comic addComic(Comic comic) {
-		String sql = "";
+		String sql = "INSERT INTO comics (comic_id, comic_name, author_name, comic_characters, date_published) VALUES (?, ?, ?, ?, ?)";
 		Long newComicId = getNextComicId();
 		String comicName = comic.getComicName();
-		String publisherName = comic.getPublisherName();
 		String authorName = comic.getAuthorName();
-		String comicType = comic.getComicType();
+		String comicCharacters = comic.getComicCharacters();
 		Date datePublished = comic.getDatePublished();
 		
-		jdbcTemplate.update(sql, newComicId, comicName, publisherName, authorName, comicType, datePublished);
+		jdbcTemplate.update(sql, newComicId, comicName, authorName, comicCharacters, datePublished);
 		return getComicById(newComicId);
 	}
 

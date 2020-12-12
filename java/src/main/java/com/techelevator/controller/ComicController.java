@@ -53,8 +53,7 @@ public class ComicController {
     	return new Comic(comicDTO.getComicId(),
     						comicDTO.getComicName(),
     						comicDTO.getAuthorName(),
-    						comicDTO.getComicType(),
-    						comicDTO.getPublisherName(),
+    						comicDTO.getComicCharacters(),
     						comicDTO.getDatePublished()
     						);
 		

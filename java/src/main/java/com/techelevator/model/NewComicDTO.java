@@ -5,9 +5,8 @@ import java.util.Date;
 public class NewComicDTO {
 	private Long comicId;
 	private String comicName;
-	private String publisherName;
 	private String authorName;
-	private String comicType;
+	private String comicCharacters;
 	private Date datePublished;
 	
 	public Long getComicId() {
@@ -22,23 +21,11 @@ public class NewComicDTO {
 	public void setComicName(String comicName) {
 		this.comicName = comicName;
 	}
-	public String getPublisherName() {
-		return publisherName;
-	}
-	public void setPublisherName(String publisherName) {
-		this.publisherName = publisherName;
-	}
 	public String getAuthorName() {
 		return authorName;
 	}
 	public void setAuthorName(String authorName) {
 		this.authorName = authorName;
-	}
-	public String getComicType() {
-		return comicType;
-	}
-	public void setComicType(String comicType) {
-		this.comicType = comicType;
 	}
 	public Date getDatePublished() {
 		return datePublished;
@@ -46,5 +33,12 @@ public class NewComicDTO {
 	public void setDatePublished(Date datePublished) {
 		this.datePublished = datePublished;
 	}
+	public String getComicCharacters() {
+		return comicCharacters;
+	}
+	public void setComicCharacters(String comicCharacters) {
+		this.comicCharacters = comicCharacters;
+	}
+	
 	
 }
