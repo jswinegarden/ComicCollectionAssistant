@@ -23,7 +23,7 @@ public class CollectionSQLDAO implements CollectionDAO {
 	@Override
 	public Collection getCollectionById(Long collectionId) {
 		Collection collection = null;
-		String sql = "SELECT collection_id, collection_name, collection_desc FROM collections WHERE collection_id = ?";
+		String sql = "SELECT collection_id, collection_name, collection_desc, favorite_status_id, collection_visibility_id FROM collections WHERE collection_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, collectionId);
 		while(results.next()) {
 			collection = mapRowToCollection(results);
@@ -34,7 +34,7 @@ public class CollectionSQLDAO implements CollectionDAO {
 	@Override
 	public List<Collection> getAllCollectionsByUserId(Long userId) {
 		List<Collection> collection = new ArrayList<>();
-		String sql = "SELECT collection_id, collection_name, collection_desc FROM collections "
+		String sql = "SELECT collection_id, collection_name, collection_desc, favorite_status_id, collection_visibility_id FROM collections "
 				+ "INNER JOIN accounts USING (collection_id)"
 				+ " INNER JOIN users USING (user_id) "
 				+ "WHERE user_id = ?";
@@ -49,12 +49,15 @@ public class CollectionSQLDAO implements CollectionDAO {
 
 	@Override
 	public Collection newCollection(Collection collection) {
-		String sql = "INSERT INTO collections(collection_id, collection_name, collection_desc) "
-				+ "VALUES (?, ?, ?)";
+		String sql = "INSERT INTO collections(collection_id, collection_name, collection_desc, favorite_status_id, collection_visibility_id) "
+				+ "VALUES (?, ?, ?, ?, ?)";
 		Long newCollectionId = getnextCollectionId();
 		String collectionName = collection.getCollectionName();
 		String collectionDesc = collection.getCollectionDescription();
-		jdbcTemplate.update(sql, newCollectionId, collectionName, collectionDesc);
+		Long favoriteStatusId = collection.getFavoriteStatusId();
+		Long collectionVisibilityId = collection.getCollectionVisbilityId();
+		
+		jdbcTemplate.update(sql, newCollectionId, collectionName, collectionDesc, favoriteStatusId, collectionVisibilityId);
 		return getCollectionById(newCollectionId);
 	}
 	
@@ -93,7 +96,9 @@ public class CollectionSQLDAO implements CollectionDAO {
 	private Collection mapRowToCollection (SqlRowSet rs) {
 		return new Collection(rs.getLong("collection_id"),
 				rs.getString("collection_name"), 
-				rs.getString("collection_desc")); 
+				rs.getString("collection_desc"),
+				rs.getLong("favorite_status_id"),
+				rs.getLong("collection_visibility_id")); 
 		
 	}
 

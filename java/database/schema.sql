@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS collections;
 DROP TABLE IF EXISTS favorite_statuses;
 DROP TABLE IF EXISTS collection_visibilities;
 DROP TABLE IF EXISTS comic_conditions;
-DROP TABLE IF EXISTS comic_tradable_statues;
+DROP TABLE IF EXISTS comic_tradable_statuses;
 DROP TABLE IF EXISTS account_types;
 DROP TABLE IF EXISTS comics;
 DROP TABLE IF EXISTS users;
@@ -164,9 +164,8 @@ CREATE TABLE collections (
 CREATE TABLE comics (
         comic_id int DEFAULT nextval('seq_comic_id'::regclass) NOT NULL,
         comic_name varchar(500) NOT NULL,
-        publisher_name varchar(500) NOT NULL,
         author_name varchar(500) NOT NULL,
-        comic_type varchar(500) NOT NULL,
+        comic_characters varchar (1000) NOT NULL, 
         date_published date NOT NULL,
         CONSTRAINT PK_comic_id PRIMARY KEY (comic_id)
        
@@ -304,8 +303,8 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 --DUMMY DATA--
 INSERT INTO collections (collection_id, collection_name, collection_desc, favorite_status_id, collection_visibility_id) VALUES (DEFAULT, 'DUMMY', 'SOME DESCRIPTION', '1', '1');
 INSERT INTO collections (collection_id, collection_name, collection_desc, favorite_status_id, collection_visibility_id) VALUES (DEFAULT, 'MY COLLECTION', 'SOME DESCRIPTION', '2', '2');
-INSERT INTO comics (comic_id, comic_name, publisher_name, author_name, comic_type, date_published) VALUES (DEFAULT, 'DUMMY MAN', 'SPARVEL', 'DUM DUM', 'ACTION', '12-10-2020');
-INSERT INTO comics (comic_id, comic_name, publisher_name, author_name, comic_type, date_published) VALUES (DEFAULT, 'RONA MAN', 'CDC COMICS', 'RORO', 'MYSTERY', '12-10-2020');
+INSERT INTO comics (comic_id, comic_name, author_name, comic_characters, date_published) VALUES (DEFAULT, 'DUMMY MAN', 'SPARVEL',  'DUMMY MAN, CAPTAIN GENIUS', '12-10-2020');
+INSERT INTO comics (comic_id, comic_name, author_name, comic_characters, date_published) VALUES (DEFAULT, 'RONA MAN', 'CDC COMICS', 'RONA MAN, DOCTOR VACCINE', '12-10-2020');
 INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradable_status_id, collection_id, account_type_id) VALUES (DEFAULT, '2', '1', '1', '1', '1', '1');
 INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradable_status_id, collection_id, account_type_id) VALUES (DEFAULT, '2', '2', '2', '1', '2','2');
 INSERT INTO trades (trade_id, trade_type_id, trade_status_id, account_from, account_to, comic_id) VALUES (DEFAULT, '1', '2', '1', '2', '1');
