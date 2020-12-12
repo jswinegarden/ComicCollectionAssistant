@@ -1,35 +1,33 @@
 <template>
     <div>
         <form class="row">
-            <div class="col-md-10">
-                <input type="search" class="form-control" placeholder="Search by Issue Name" name="q" v-on:submit="getComicIssue(name)">
-            </div>
-            <div class="col-md-2">
-                <button type="button" class="btn btn-primary" >Search</button>
+            <div class="col-md-8">
+                <input type="search" class="form-control" placeholder="Search by Issue Name" name="q" >
             </div>
         </form>
-        <tr v-for="comic in this.$store.state.comics" v-bind:key="comic.id">
-            <td>{{comic.title}}</td>
-        </tr>
-        <!-- equivolent to add message from post homework -->
+        <ul class="comics">
+            <li v-for="comic in comics.data.results" v-bind:key="comic.id" class="row">
+                <div class="col-lg-3">{{comic.title}}</div><div class="col-lg-8">{{comic.description}}</div>
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
-import comicServices from "@/services/ComicServices.js"
+import ComicServices from "@/services/ComicServices.js"
 
 export default {
     name: "add-comic",
-    methods:{
-        getComics(name){
-            comicServices.getComics(name).then(response => {
-                this.$store.commit("SET_COMICS",response.data)
-            })
-
+    data(){
+        return{
+            comics: {},
+            
         }
     },
-    created(){
-        this.getComics();
+    created() {
+        ComicServices.getComicIssue().then(response => {
+            this.comics = response.data;
+        });
     }
 }
 </script>
@@ -46,5 +44,8 @@ form{
     .btn{
         margin: 0;
         width: 100%;
+    }
+    .row {
+        padding: 5px;
     }
 </style>

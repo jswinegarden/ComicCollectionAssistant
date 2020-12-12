@@ -18,18 +18,6 @@ if(currentToken != null) {
 
 export default new Vuex.Store({
   state: {
-    collections: [],
-    comics: [],
-    activeCollection: {
-      id: 0,
-      title: '',
-      comics: []
-    },
-    activeComic: {
-      id: '',
-      title: '',
-      image: ''
-    },
     token: currentToken || '',
     user: currentUser || {}
   },

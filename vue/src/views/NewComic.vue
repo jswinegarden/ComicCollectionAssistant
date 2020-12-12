@@ -27,10 +27,9 @@ export default {
 }
 .row{
     width: 75%;
-    height: 500px;
     margin: 10px auto;
     padding: 15px 5px 15px 5px;
-    background-color: rgba(138, 138, 138, 0.94);
+    background-color: rgba(215, 214, 198, 0.94);
     border: white solid 6px;
 }
 </style>
