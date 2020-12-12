@@ -5,11 +5,15 @@ public class Collection {
 	private Long collectionId;
 	private String collectionName;
 	private String collectionDescription;
+	private Long favorite_status_id;
+	private Long collection_visibility_id;
 	
-	public Collection(Long collectionId, String collectionName, String collectionDesc) {
+	public Collection(Long collectionId, String collectionName, String collectionDesc, Long favorite_status_id, Long collection_visibility_id) {
 		this.collectionId = collectionId;
 		this.collectionName = collectionName;
 		this.collectionDescription = collectionDesc;
+		this.favorite_status_id = favorite_status_id;
+		this.collection_visibility_id = collection_visibility_id;
 	}
 	public Collection() {}
 	
@@ -30,6 +34,18 @@ public class Collection {
 	}
 	public void setCollectionDescription(String collectionDescription) {
 		this.collectionDescription = collectionDescription;
+	}
+	public void setFavoriteStatusId(Long favorite_status_id) {
+		this.favorite_status_id  = favorite_status_id;
+	}
+	public Long getFavoriteStatusId() {
+		return favorite_status_id;
+	}
+	public void setCollectionVisibilityId(Long collection_visibility_id) {
+		this.collection_visibility_id = collection_visibility_id;
+	}
+	public Long getCollectionVisibilityId() {
+		return collection_visibility_id;
 	}
 	
 }

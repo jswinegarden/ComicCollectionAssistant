@@ -10,6 +10,8 @@ public interface CollectionDAO {
 	Collection newCollection(Collection collection);
 	void updateCollectionName(Collection someCollection);
 	void updateCollectionDesc(Collection someCollection);
+	void updateCollectionFavoriteStatusId(Collection someCollection);
+	void updateCollectionVisibilityId(Collection someCollection);
 	void deleteCollection(Collection someCollection);
 
 }

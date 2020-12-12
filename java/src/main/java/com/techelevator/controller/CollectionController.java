@@ -1,10 +1,12 @@
 package com.techelevator.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,6 +46,13 @@ public class CollectionController {
 		return collection;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value="", method = RequestMethod.GET)
+	public List <Collection> getAllCollectionsByUser(Principal principal) {
+		List <Collection> allCollections = collectionDAO.getAllCollectionsByUserId(getCurrentUserId(principal));
+		return allCollections;
+	}
+	
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Collection createCollection(@Valid @RequestBody NewCollectionDTO collectionDTO, Principal principal) {
@@ -61,24 +70,33 @@ public class CollectionController {
 	
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-	public Collection updateCollectionName(@Valid @RequestBody String newCollectionName, @PathVariable Long id) {		
+	public Collection updateCollectionDetails(@Valid @RequestBody NewCollectionDTO newCollectionDTO, @PathVariable Long id) {		
 		Collection collection = collectionDAO.getCollectionById(id);
-		String newCollectionName =  
+		if(newCollectionDTO.getCollectionName() != null && newCollectionDTO.getCollectionName().length() > 0 ) {
+			collection.setCollectionName(newCollectionDTO.getCollectionName());
+			collectionDAO.updateCollectionName(collection);
+		}
+		if (newCollectionDTO.getCollectionDescription() != null ) {
+			collection.setCollectionDescription(newCollectionDTO.getCollectionDescription());
+			collectionDAO.updateCollectionDesc(collection);
+		}
+		collection.setFavoriteStatusId(newCollectionDTO.getFavoriteStatusId());
+		collectionDAO.updateCollectionFavoriteStatusId(collection);
+		collection.setCollectionVisibilityId(newCollectionDTO.getCollectionVisibilityId());
+		collectionDAO.updateCollectionVisibilityId(collection);
 		return collection;
+		
 	}
 	
-//	@ResponseStatus(HttpStatus.ACCEPTED)
-//	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
-//	public Collection updateCollectionDescription(@PathVariable Long id) {
-//		Collection collection = collectionDAO.getCollectionById(id);
-//		return collection;
-//	}
+
 	
 	
 	private Collection buildCollectionFromCollectionDTO(NewCollectionDTO collectionDTO) {
 		return new Collection (collectionDTO.getCollectionId(),
 				collectionDTO.getCollectionName(),
-				collectionDTO.getCollectionDesc());
+				collectionDTO.getCollectionDescription(),
+				collectionDTO.getFavoriteStatusId(),
+				collectionDTO.getCollectionVisibilityId());
 	}
 	
 	private void validateAuthorizationToCreate(Principal principal, Collection collection) {
@@ -87,4 +105,8 @@ public class CollectionController {
         	throw new AuthorizationException();
         }
 	}
+	
+	 private Long getCurrentUserId(Principal principal) {
+	        return userDAO.findByUsername(principal.getName()).getId();
+	    }
 }
