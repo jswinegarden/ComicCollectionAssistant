@@ -77,13 +77,15 @@ public class CollectionController {
 			collectionDAO.updateCollectionName(collection);
 			//return collection;
 		}
-		if (newCollectionDTO.getCollectionDesc() != null ) {
-			collection.setCollectionDescription(newCollectionDTO.getCollectionDesc());
+		if (newCollectionDTO.getCollectionDescription() != null ) {
+			collection.setCollectionDescription(newCollectionDTO.getCollectionDescription());
 			collectionDAO.updateCollectionDesc(collection);
 			//return collection;
 		}
-		collection.setFavoriteStatusId(newCollectionDTO.getFavorite_status_id());
-		collection.setCollectionVisbilityId(newCollectionDTO.getCollection_visibility_id());
+		collection.setFavoriteStatusId(newCollectionDTO.getFavoriteStatusId());
+		collectionDAO.updateCollectionFavoriteStatusId(collection);
+		collection.setCollectionVisibilityId(newCollectionDTO.getCollectionVisibilityId());
+		collectionDAO.updateCollectionVisibilityId(collection);
 		return collection;
 		
 	}
@@ -94,9 +96,9 @@ public class CollectionController {
 	private Collection buildCollectionFromCollectionDTO(NewCollectionDTO collectionDTO) {
 		return new Collection (collectionDTO.getCollectionId(),
 				collectionDTO.getCollectionName(),
-				collectionDTO.getCollectionDesc(),
-				collectionDTO.getFavorite_status_id(),
-				collectionDTO.getCollection_visibility_id());
+				collectionDTO.getCollectionDescription(),
+				collectionDTO.getFavoriteStatusId(),
+				collectionDTO.getCollectionVisibilityId());
 	}
 	
 	private void validateAuthorizationToCreate(Principal principal, Collection collection) {
