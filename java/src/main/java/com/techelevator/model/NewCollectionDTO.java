@@ -3,7 +3,7 @@ package com.techelevator.model;
 public class NewCollectionDTO {
 	private Long collectionId;
 	private String collectionName;
-	private String collectionDesc;
+	private String collectionDescription;
 	private Long favorite_status_id;
 	private Long collection_visibility_id;
 	
@@ -19,22 +19,22 @@ public class NewCollectionDTO {
 	public void setCollectionName(String collectionName) {
 		this.collectionName = collectionName;
 	}
-	public String getCollectionDesc() {
-		return collectionDesc;
+	public String getCollectionDescription() {
+		return collectionDescription;
 	}
-	public void setCollectionDesc(String collectionDesc) {
-		this.collectionDesc = collectionDesc;
+	public void setCollectionDescription(String collectionDescription) {
+		this.collectionDescription = collectionDescription;
 	}
-	public Long getFavorite_status_id() {
+	public Long getFavoriteStatusId() {
 		return favorite_status_id;
 	}
-	public void setFavorite_status_id(Long favorite_status_id) {
+	public void setFavoriteStatusId(Long favorite_status_id) {
 		this.favorite_status_id = favorite_status_id;
 	}
-	public Long getCollection_visibility_id() {
+	public Long getCollectionVisibilityId() {
 		return collection_visibility_id;
 	}
-	public void setCollection_visibility_id(Long collection_visibility_id) {
+	public void setCollectionVisibilityId(Long collection_visibility_id) {
 		this.collection_visibility_id = collection_visibility_id;
 	}
 	

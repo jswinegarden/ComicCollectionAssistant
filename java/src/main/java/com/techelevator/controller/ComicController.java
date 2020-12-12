@@ -1,7 +1,13 @@
 package com.techelevator.controller;
 
+import java.security.Principal;
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,7 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.dao.AccountDAO;
 import com.techelevator.dao.ComicDAO;
 import com.techelevator.dao.UserDAO;
+import com.techelevator.model.Account;
+import com.techelevator.model.AccountAuthorization;
+import com.techelevator.model.AuthorizationException;
 import com.techelevator.model.Comic;
+import com.techelevator.model.ComicAuthorization;
+import com.techelevator.model.NewComicDTO;
 
 @RestController
 @CrossOrigin
@@ -31,5 +42,34 @@ public class ComicController {
 		return comic;
 	}
 	
+	@RequestMapping(value="", method = RequestMethod.GET)
+	public List <Comic> getAllComics (){
+		List <Comic> allComics = comicDAO.getAllComics();
+		return allComics;
+	}
+	
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public Comic addComic(@Valid @RequestBody NewComicDTO comicDTO, Principal principal) {
+		Comic comic = buildComicFromComicDTO(comicDTO);
+		validateAuthorizationToCreate(principal, comic);
+		comic = comicDAO.addComic(comic);
+		return comic;
+	}
 
+    private Comic buildComicFromComicDTO(NewComicDTO comicDTO) {
+    	return new Comic(comicDTO.getComicId(),
+    						comicDTO.getComicName(),
+    						comicDTO.getAuthorName(),
+    						comicDTO.getComicCharacters(),
+    						comicDTO.getDatePublished()
+    						);
+		
+    }
+    
+    private void validateAuthorizationToCreate(Principal principal, Comic comic) {
+		ComicAuthorization auth = new ComicAuthorization(principal, comic);
+        if(!auth.isAllowedToCreate()) {
+        	throw new AuthorizationException();
+        }
+    }
 }

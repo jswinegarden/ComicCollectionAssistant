@@ -55,7 +55,7 @@ public class CollectionSQLDAO implements CollectionDAO {
 		String collectionName = collection.getCollectionName();
 		String collectionDesc = collection.getCollectionDescription();
 		Long favoriteStatusId = collection.getFavoriteStatusId();
-		Long collectionVisibilityId = collection.getCollectionVisbilityId();
+		Long collectionVisibilityId = collection.getCollectionVisibilityId();
 		
 		jdbcTemplate.update(sql, newCollectionId, collectionName, collectionDesc, favoriteStatusId, collectionVisibilityId);
 		return getCollectionById(newCollectionId);
@@ -85,6 +85,23 @@ public class CollectionSQLDAO implements CollectionDAO {
 		jdbcTemplate.update(sql, collectionDesc, someCollection.getCollectionId());
 		
 	}
+	
+	@Override
+	public void updateCollectionFavoriteStatusId(Collection someCollection) {
+		String sql = "UPDATE collections SET favorite_status_id = ? WHERE collection_id = ?";
+		Long collectionFavoriteStatusId = someCollection.getFavoriteStatusId();
+		jdbcTemplate.update(sql, collectionFavoriteStatusId, someCollection.getCollectionId());
+		
+	}
+
+	@Override
+	public void updateCollectionVisibilityId(Collection someCollection) {
+		String sql = "UPDATE collections SET collection_visibility_id = ? WHERE collection_id = ?";
+		Long collectionVisibilityId = someCollection.getCollectionVisibilityId();
+		jdbcTemplate.update(sql, collectionVisibilityId, someCollection.getCollectionId());		
+	}
+	
+	
 
 	@Override
 	public void deleteCollection(Collection someCollection) {
@@ -101,6 +118,8 @@ public class CollectionSQLDAO implements CollectionDAO {
 				rs.getLong("collection_visibility_id")); 
 		
 	}
+
+	
 
 	
 
