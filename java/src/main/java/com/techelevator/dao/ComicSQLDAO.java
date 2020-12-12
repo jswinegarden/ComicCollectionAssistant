@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -47,7 +48,27 @@ public class ComicSQLDAO implements ComicDAO{
 		return comic;
 	}
 
+	@Override
+	public Comic addComic(Comic comic) {
+		String sql = "INSERT INTO comics (comic_id, comic_name, author_name, comic_characters, date_published) VALUES (?, ?, ?, ?, ?)";
+		Long newComicId = getNextComicId();
+		String comicName = comic.getComicName();
+		String authorName = comic.getAuthorName();
+		String comicCharacters = comic.getComicCharacters();
+		Date datePublished = comic.getDatePublished();
+		
+		jdbcTemplate.update(sql, newComicId, comicName, authorName, comicCharacters, datePublished);
+		return getComicById(newComicId);
+	}
 
+	private Long getNextComicId() {
+		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval(seq_comic_id)");
+		if(nextIdResult.next()) {
+			return nextIdResult.getLong(1);
+		} else {
+			throw new RuntimeException("Something went wrong while getting an id for a new comic");
+		}
+	}
 	
 	private Comic mapRowToComic (SqlRowSet rs) {
 		return new Comic(rs.getLong("comic_id"),
