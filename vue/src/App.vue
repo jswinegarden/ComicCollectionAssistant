@@ -36,8 +36,8 @@
   #app{
     background-image: url("../img/HERO COLLAGE.png");
     background-repeat: repeat;
-    background-size: cover;
-   
+    background-size: contain;
+    height: 830px;
   }
   .nav-item {
     background-color:darkgrey;

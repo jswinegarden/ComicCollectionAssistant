@@ -8,5 +8,8 @@ public interface CollectionDAO {
 	Collection getCollectionById(Long collectionId);
 	List<Collection> getAllCollectionsByUserId(Long userId);
 	Collection newCollection(Collection collection);
+	void updateCollectionName(Collection someCollection);
+	void updateCollectionDesc(Collection someCollection);
+	void deleteCollection(Collection someCollection);
 
 }

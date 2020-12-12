@@ -18,10 +18,25 @@ if(currentToken != null) {
 
 export default new Vuex.Store({
   state: {
+    collections: [],
+    comics: [],
+    activeCollection: {
+      id: 0,
+      title: '',
+      comics: []
+    },
+    activeComic: {
+      id: '',
+      title: '',
+      image: ''
+    },
     token: currentToken || '',
     user: currentUser || {}
   },
   mutations: {
+    SET_COMICS(state, data){
+      state.comics = data;
+    },
     SET_AUTH_TOKEN(state, token) {
       state.token = token;
       localStorage.setItem('token', token);
