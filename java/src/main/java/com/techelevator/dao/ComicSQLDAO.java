@@ -24,10 +24,22 @@ public class ComicSQLDAO implements ComicDAO{
 	@Override
 	public Comic getComicById(Long comicId) {
 		Comic comic = null;
-		String sql = "SELECT comic_id, comic_name, publisher_name, author_name, comic_type, date_published FROM comics WHERE comic_id = ?";
+		String sql = "SELECT comic_id, comic_name, author_name, comic_characters, date_published FROM comics WHERE comic_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, comicId);
 		while(results.next()) {
 			comic = mapRowToComic(results);
+		}
+		return comic;
+	}
+	
+	@Override
+	public List<Comic> getAllComics() {
+		List<Comic> comic = new ArrayList<>();
+		String sql = "SELECT * FROM comics";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while(results.next()) {
+			Comic comics = mapRowToComic(results);
+			comic.add(comics);
 		}
 		return comic;
 	}
@@ -35,7 +47,7 @@ public class ComicSQLDAO implements ComicDAO{
 	@Override
 	public List<Comic> getAllComicsByUserId(Long userId) {
 		List<Comic> comic = new ArrayList<>();
-		String sql = "SELECT comic_id, comic_name, publisher_name, author_name, comic_type, date_published FROM comics "
+		String sql = "SELECT comic_id, comic_name, author_name, comic_characters, date_published FROM comics "
 				+ "INNER JOIN accounts USING (comic_id)"
 				+ " INNER JOIN users USING (user_id) "
 				+ "WHERE user_id = ?";
@@ -73,10 +85,11 @@ public class ComicSQLDAO implements ComicDAO{
 	private Comic mapRowToComic (SqlRowSet rs) {
 		return new Comic(rs.getLong("comic_id"),
 				rs.getString("comic_name"), 
-				rs.getString("publisher_name"),
 				rs.getString("author_name"),
-				rs.getString("comic_type"),
+				rs.getString("comic_characters"),
 				rs.getDate("date_published")); 
 		
 	}
+
+	
 }

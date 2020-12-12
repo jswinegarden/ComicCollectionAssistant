@@ -7,5 +7,6 @@ import com.techelevator.model.Comic;
 public interface ComicDAO {
 	Comic getComicById(Long comicId);
 	List<Comic> getAllComicsByUserId(Long userId);
+	List<Comic> getAllComics();
 	Comic addComic(Comic comic);
 }

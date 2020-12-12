@@ -41,10 +41,10 @@ public class Collection {
 	public Long getFavoriteStatusId() {
 		return favorite_status_id;
 	}
-	public void setCollectionVisbilityId(Long collection_visibility_id) {
+	public void setCollectionVisibilityId(Long collection_visibility_id) {
 		this.collection_visibility_id = collection_visibility_id;
 	}
-	public Long getCollectionVisbilityId() {
+	public Long getCollectionVisibilityId() {
 		return collection_visibility_id;
 	}
 	
