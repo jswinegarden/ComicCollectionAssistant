@@ -7,8 +7,13 @@ public class Account {
 	private Long accountId;
 	private Long userId;
 	private Long comicId;
+	private Long comicConditionId;
+	private Long comicTradeableStatusId;
 	private Long collectionId;
 	private String accountType;
+	
+	public static final String STANDARD_USER_ACCOUNT = "Standard";
+	public static final String PREMIUM_USER_ACCOUNT = "Premium";
 	
 	public Account (Long accountId, Long userId, Long comicId, Long collectionId, String accountType) {
 		this.accountId = accountId;
@@ -18,6 +23,9 @@ public class Account {
 		this.accountType = accountType;
 	}
 	public Account () {}
+	public Account(Long userId2, Long comicId2, Long comicConditionId2, Long comicTradeableStatusId2,
+			Long collectionId2, Long accountTypeId) {
+	}
 	public Long getAccountId() {
 		return accountId;
 	}
@@ -41,7 +49,20 @@ public class Account {
 	public Long getCollectionId() {
 		return collectionId;
 	}
+	public Long getComicConditionId() {
+		return comicConditionId;
+	}
+	public Long getComicTradeableStatusId() {
+		return comicTradeableStatusId;
+	}
 	
+	public boolean isStandard() {
+		   return STANDARD_USER_ACCOUNT.equals(this.accountType);
+	   }
+	   
+	public boolean isPremium() {
+		   return PREMIUM_USER_ACCOUNT.equals(this.accountType);
+	   }
 	
 	public void trade(Account accountTo, Long comicToTrade) {
 		if(this.comicId.compareTo(comicToTrade) == 0) {
@@ -52,8 +73,6 @@ public class Account {
     	}
 		
 	}
-	
-	
 
     @Override
     public boolean equals(Object o) {
