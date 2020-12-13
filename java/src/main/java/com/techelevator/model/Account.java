@@ -8,19 +8,19 @@ public class Account {
 	private Long userId;
 	private Long comicId;
 	private Long comicConditionId;
-	private Long comicTradeableStatusId;
+	private Long comicTradableStatusId;
 	private Long collectionId;
 	private Long accountTypeId;
 	
 	public static final Long STANDARD_USER_ACCOUNT = 1L;
 	public static final Long PREMIUM_USER_ACCOUNT = 2L;
 	
-	public Account (Long accountId, Long userId, Long comicId, Long collectionId, Long comicConditionId, Long comicTradeableStatusId, Long accountTypeId) {
+	public Account (Long accountId, Long userId, Long comicId, Long comicConditionId, Long comicTradableStatusId, Long collectionId, Long accountTypeId) {
 		this.accountId = accountId;
 		this.userId = userId;
 		this.comicId = comicId;
 		this.comicConditionId = comicConditionId;
-		this.comicTradeableStatusId = comicTradeableStatusId;
+		this.comicTradableStatusId = comicTradableStatusId;
 		this.collectionId = collectionId;
 		this.accountTypeId = accountTypeId;
 	}
@@ -52,8 +52,8 @@ public class Account {
 	public Long getComicConditionId() {
 		return comicConditionId;
 	}
-	public Long getComicTradeableStatusId() {
-		return comicTradeableStatusId;
+	public Long getComicTradableStatusId() {
+		return comicTradableStatusId;
 	}
 	
 	public void setAccountId(Long accountId) {
@@ -65,8 +65,8 @@ public class Account {
 	public void setComicConditionId(Long comicConditionId) {
 		this.comicConditionId = comicConditionId;
 	}
-	public void setComicTradeableStatusId(Long comicTradeableStatusId) {
-		this.comicTradeableStatusId = comicTradeableStatusId;
+	public void setComicTradableStatusId(Long comicTradableStatusId) {
+		this.comicTradableStatusId = comicTradableStatusId;
 	}
 	public void setCollectionId(Long collectionId) {
 		this.collectionId = collectionId;
@@ -98,13 +98,15 @@ public class Account {
         return accountId == account.accountId &&
                 userId == account.userId &&
                 comicId.equals(account.comicId)&&
+                comicConditionId.equals(account.comicConditionId)&&
+                comicTradableStatusId.equals(account.comicTradableStatusId)&&
                 collectionId.equals(account.collectionId)&&
                 accountTypeId.equals(account.accountTypeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountId, userId, comicId, collectionId, accountTypeId);
+        return Objects.hash(accountId, userId, comicId, comicConditionId, comicTradableStatusId, collectionId, accountTypeId);
     }
 
     @Override
@@ -113,6 +115,8 @@ public class Account {
                 "accountId=" + accountId +
                 ", userId=" + userId +
                 ", comicId=" + comicId +
+                ", comicConditionId=" + comicConditionId +
+                ", comicTradableStatusId=" + comicTradableStatusId +
                 ", collectionId=" + collectionId +
                 ", accountTypeId=" + accountTypeId +
                 '}';
