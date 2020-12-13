@@ -50,7 +50,7 @@ public class AccountController {
     @RequestMapping( value = "/comics", method = RequestMethod.GET)
     public Long getComic(Principal principal) throws UsernameNotFoundException {
         Long userId = getCurrentUserId(principal);
-        return accountDAO.getAccountByUserId(userId).getComicId();
+        return accountDAO.getAccountsByUserId(userId);
     }
     
 //    @RequestMapping(value = "/comics", method = RequestMethod.POST)
@@ -92,7 +92,10 @@ public class AccountController {
     						accountDTO.getComicConditionId(),
     						accountDTO.getComicTradeableStatusId(),
     						accountDTO.getCollectionId(),
-    						accountDTO.getAccountTypeId()
+    						accountDTO.getAccountTypeId(),
+    						accountDTO.getComicCondition(),
+    						accountDTO.getComicTradeableStatus(),
+    						accountDTO.getAccountType()
     						);
     }
     
@@ -135,6 +138,5 @@ public class AccountController {
         	throw new AuthorizationException();
         }
 	}
-	
 	
 }
