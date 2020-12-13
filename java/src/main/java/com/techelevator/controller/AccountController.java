@@ -95,7 +95,7 @@ public class AccountController {
     						accountDTO.getUserId(),
     						accountDTO.getComicId(),
     						accountDTO.getComicConditionId(),
-    						accountDTO.getComicTradeableStatusId(),
+    						accountDTO.getComicTradableStatusId(),
     						accountDTO.getCollectionId(),
     						accountDTO.getAccountTypeId()
     						);
