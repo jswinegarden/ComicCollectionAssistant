@@ -52,7 +52,7 @@
     height: 1176px;
   }
   .nav-item {
-    background-color:darkgrey;
+    background-color:black;
     font-family: CrashLanding;
     font-size: 25px;
   }
