@@ -1,13 +1,8 @@
 <template>
   <div>
     <div class="jumbotron jumbotron-fluid shadow">
-<<<<<<< HEAD
-      <h1>The Comic League!</h1>
-      <p>A place to collect and share comics!</p>
-=======
       <h1>Comic League!</h1>
       <p>Track your collection! Share with your friends!</p>
->>>>>>> d0d8d5f732b2bde2562a37b0023c1f32ffdfde78
     </div>
 
     <div class="row shadow">
@@ -62,22 +57,16 @@
       <div class="col-md-2 shadow"> image representing collection
         <p class="row"> collection title </p>
       </div>
-<<<<<<< HEAD
-      <div class="col-md-2 shadow"> <router-link class="btn btn-dark" 
-          v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
-      </div>
-=======
-      <span class="contain"> <router-link class="btn btn-primary" 
+      <span class="contain"> <router-link class="btn btn-dark" 
         v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
         <span> <router-link class="btn btn-success"
           v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link>
         </span>
       </span>
->>>>>>> d0d8d5f732b2bde2562a37b0023c1f32ffdfde78
     </div>
 
     <footer>
-      footer stuff
+      &copy;  Comic League Enterprises 2020 &copy;
     </footer>
   </div>
 </template>
@@ -107,21 +96,11 @@ div.row {
   padding: 0px;
   border: white solid 6px;
 }
-<<<<<<< HEAD
-div p.row {
-  width: 100%;
-  border-top: darkgrey solid 1px;
-  padding: 5px;
-  padding-left: 5px;
-  margin: 0px;
-  text-align: center;
-=======
 .col-md-12 {
   background-color: white;
   padding: 10px 10px 5px;
   margin: 0px;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
->>>>>>> d0d8d5f732b2bde2562a37b0023c1f32ffdfde78
+  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 /* ------------------ collection boxes ---------- */
 .col-md-2{
@@ -139,7 +118,6 @@ div p.row {
   border-top: darkgrey solid 1px;
   padding: 5px;
   margin: 0px;
-<<<<<<< HEAD
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 .col-md-12 .btn{
@@ -148,8 +126,6 @@ div p.row {
   border: none;
   padding: 5px;
   
-=======
->>>>>>> d0d8d5f732b2bde2562a37b0023c1f32ffdfde78
 }
 /* ----------- add comic and new collection buttons ------- */
 .contain {
@@ -168,7 +144,7 @@ footer {
   width: 75%;
   margin:auto;
   padding: 10px;
-  background-color: lightgray;
+  background-color:rgba(220, 207, 189, 0.94);
 }
 
 /* --------------- for buttons on a smaller screen -------------- */
