@@ -9,7 +9,7 @@ public class Comic {
 	private String comicCharacters;
 	private Date datePublished;
 	
-	public Comic(Long comicId, String comicName, String comicCharacters, String authorName, Date datePublished) {
+	public Comic(Long comicId, String comicName, String authorName, String comicCharacters,  Date datePublished) {
 		this.comicId = comicId;
 		this.comicName = comicName;
 		this.authorName = authorName;

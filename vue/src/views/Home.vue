@@ -57,7 +57,7 @@
       <div class="col-md-2 shadow"> image representing collection
         <p class="row"> collection title </p>
       </div>
-      <span class="contain"> <router-link class="btn btn-primary" 
+      <span class="contain"> <router-link class="btn btn-dark" 
         v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
         <span> <router-link class="btn btn-success"
           v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link>
@@ -66,7 +66,7 @@
     </div>
 
     <footer>
-      footer stuff
+      &copy;  Comic League Enterprises 2020 &copy;
     </footer>
   </div>
 </template>
@@ -80,7 +80,7 @@ export default {
 <style scoped>
 /* --------------------  header ---------------- */
 .jumbotron {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: white;
   background-color: rgba(220, 207, 189, 0.94);
   width: 75%;
@@ -100,7 +100,7 @@ div.row {
   background-color: white;
   padding: 10px 10px 5px;
   margin: 0px;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 /* ------------------ collection boxes ---------- */
 .col-md-2{
@@ -109,6 +109,7 @@ div.row {
   background-color: white; /*replace with image that represents collection */
   border: darkgrey solid 1px;
   text-align: center;
+  font-family: AnimeAce;
 }
 div p.row {
   width: 100%;
@@ -117,6 +118,14 @@ div p.row {
   border-top: darkgrey solid 1px;
   padding: 5px;
   margin: 0px;
+  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.col-md-12 .btn{
+  margin: auto;
+  background-color: none;
+  border: none;
+  padding: 5px;
+  
 }
 /* ----------- add comic and new collection buttons ------- */
 .contain {
@@ -135,7 +144,7 @@ footer {
   width: 75%;
   margin:auto;
   padding: 10px;
-  background-color: lightgray;
+  background-color:rgba(220, 207, 189, 0.94);
 }
 
 /* --------------- for buttons on a smaller screen -------------- */

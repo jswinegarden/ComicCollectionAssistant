@@ -90,8 +90,8 @@ public class TradeController {
 	}
 	
 	private void transferComicsBetweenAccounts(Trade trade) {
-		Account accountFrom = accountDAO.getAccountsByUserId(trade.getUserFrom().getId());
-		Account accountTo = accountDAO.getAccountsByUserId(trade.getUserTo().getId());
+		Account accountFrom = accountDAO.getAccountByUserId(trade.getUserFrom().getId());
+		Account accountTo = accountDAO.getAccountByUserId(trade.getUserTo().getId());
 		accountFrom.trade(accountTo, trade.getComicId());
 		accountDAO.updateComics(accountFrom);
 		accountDAO.updateComics(accountTo);

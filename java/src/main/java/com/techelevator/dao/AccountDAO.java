@@ -1,10 +1,14 @@
 package com.techelevator.dao;
 
+import java.util.List;
+
 import com.techelevator.model.Account;
 import com.techelevator.model.Comic;
 
 public interface AccountDAO {
-	Account getAccountsByUserId(Long userId);
+	List<Account> getAccountsByUserId(Long userId);
+	
+	Account getAccountByUserId(Long userId);
 	
 	void updateComics(Account account);
 	

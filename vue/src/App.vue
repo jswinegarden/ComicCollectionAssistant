@@ -23,6 +23,10 @@
           v-bind:to="{ name: 'home' }" v-show="$store.state.token != ''">Leaderboards</router-link>
         </li>
         <li class="nav-item">
+          <router-link class="nav-link"
+          v-bind:to="{name: 'aboutUs'}" v-show="$store.state.token != ''"> About Us </router-link>
+        </li>
+        <li class="nav-item">
           <router-link class="nav-link" 
           v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
         </li>
@@ -33,6 +37,14 @@
 </template>
 
 <style scoped>
+ @font-face {
+    font-family: CrashLanding;
+    src: url("../fonts/crashlanding-bb.italic.ttf");
+  }
+  @font-face {
+    font-family: AnimeAce;
+    src: url("../fonts/anime-ace.italic.ttf");
+ }
   #app{
     background-image: url("../img/HERO COLLAGE.png");
     background-repeat: repeat;
@@ -41,6 +53,8 @@
   }
   .nav-item {
     background-color:darkgrey;
+    font-family: CrashLanding;
+    font-size: 25px;
   }
   .nav-link {
     color: white;
