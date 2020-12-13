@@ -14,7 +14,7 @@ public class AccountSQLDAO implements AccountDAO{
 	private JdbcTemplate jdbcTemplate;
 	
 	private static final String SQL_SELECT_COUNT_REQUEST = "SELECT COUNT comic_id FROM accounts WHERE collection_id = ?";
-	private static final String SQL_SELECT_ACCOUNT = "";
+	private static final String SQL_SELECT_ACCOUNT = "SELECT ";
 	public AccountSQLDAO(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
@@ -67,7 +67,7 @@ public class AccountSQLDAO implements AccountDAO{
 	
 	private Account getAccountById(Long accountId) {
 		Account account = null;
-		String sql = SQL_SELECT_ACCOUNT + "Where account_id = ?";
+		String sql = "SELECT * FROM accounts WHERE account_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
 		if(results.next()) {
 			account = mapRowToAccount(results);
