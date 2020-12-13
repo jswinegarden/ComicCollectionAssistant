@@ -17,7 +17,7 @@ public class AccountSQLDAO implements AccountDAO{
 	private JdbcTemplate jdbcTemplate;
 	
 	private static final String SQL_SELECT_COUNT_REQUEST = "SELECT COUNT comic_id FROM accounts WHERE collection_id = ?";
-	private static final String SQL_SELECT_ACCOUNT = "SELECT a.account_id, a.comic_id, a.collection_id, at.account_type_desc, cc.comic_condition_desc, cts.comic_tradeable_status_desc, " +
+	private static final String SQL_SELECT_ACCOUNT = "SELECT a.account_id, a.comic_id, a.collection_id, at.account_type_desc, cc.comic_condition_desc, cts.comic_tradeable_status_desc " +
 														"FROM accounts a " +
 														"INNER JOIN account_types at ON a.account_type_id = at.account_type_id " +
 														"INNER JOIN comic_conditions cc ON a.comic_condition_id = cc.comic_condition_id " +
