@@ -18,14 +18,14 @@
                 <textarea v-model="collection.collection_desc" class="form-control" rows="5" placeholder="Collection Description"/>
             </div>
             <div class="col">
-                <router-link class="btn btn-primary"  v-bind:to="{ name: 'newComic' }">Save Collection</router-link>
+                <router-link class="btn btn-primary"  v-on:click="saveCollection(collection)">Save Collection</router-link>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import collectionServices from "../services/CollectionService"
+import collectionService from "../services/CollectionService"
 export default {
     name: "add-collection",
     
@@ -43,8 +43,12 @@ export default {
         };
     },
     methods: {
-        saveCollection() {
-            collectionServices
+        saveCollection(collection) {
+            collectionService.createCollection(collection).then(response =>{
+                if(response.status === 201){
+                    this.$router.push(`/newComic`)
+                }
+            });
         },
         changeVis(){
             if(this.collection.collection_visibility_id == 1){
