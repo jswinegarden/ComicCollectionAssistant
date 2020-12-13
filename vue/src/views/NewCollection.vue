@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="jumbotron jumbotron-fluid">
-        <h2>Add New Collection</h2>
+        <h2>Create New Collection</h2>
   </div>
   <div class="row">
         <add-collection />
@@ -32,5 +32,4 @@ export default {
     background-color: rgba(138, 138, 138, 0.94);
     border: white solid 6px;
 }
-
 </style>
