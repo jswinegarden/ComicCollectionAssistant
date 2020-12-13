@@ -60,8 +60,8 @@ public class AccountController {
         return accountDAO.getAccountByUserId(userId);
     }
     
-    @RequestMapping(value = "/accounts", method = RequestMethod.GET)
-    public List<Account> getAccounts(Principal principal) {
+    @RequestMapping(value = "/allaccounts", method = RequestMethod.GET)
+    public List<Account> getAccountsByUser(Principal principal) {
     	return accountDAO.getAccountsByUserId(getCurrentUserId(principal));
     }
 >>>>>>> 19ecd28476f84fc266b9a7a2d584b7f6d31441f9
@@ -81,7 +81,7 @@ public class AccountController {
     	Account account = buildAccountFromAccountDTO(accountDTO);
     	Comic comic = buildComicFromComicDTO(comicDTO);
     	Long accountTypeId = account.getAccountTypeId();
-    	validateAuthorizationToCreate(principal, account);
+    	//validateAuthorizationToCreate(principal, account);
     	if(Account.STANDARD_USER_ACCOUNT.equals(accountTypeId)) {
     		addAccountForStandardAccount(comic, account);
     	} else if(Account.PREMIUM_USER_ACCOUNT.equals(accountTypeId)) {
@@ -103,7 +103,7 @@ public class AccountController {
     						accountDTO.getUserId(),
     						accountDTO.getComicId(),
     						accountDTO.getComicConditionId(),
-    						accountDTO.getComicTradeableStatusId(),
+    						accountDTO.getComicTradableStatusId(),
     						accountDTO.getCollectionId(),
     						accountDTO.getAccountTypeId()
     						);
@@ -135,18 +135,18 @@ public class AccountController {
 //    	
 //    }
     
-	private void validateAuthorizationToView(Principal principal, Account account) {
-		AccountAuthorization auth = new AccountAuthorization(principal, account);
-        if(!auth.isAllowedToView()) {
-        	throw new AuthorizationException();
-        }
-	}
-	
-	private void validateAuthorizationToCreate(Principal principal, Account account) {
-		AccountAuthorization auth = new AccountAuthorization(principal, account);
-        if(!auth.isAllowedToCreate()) {
-        	throw new AuthorizationException();
-        }
-	}
+//	private void validateAuthorizationToView(Principal principal, Account account) {
+//		AccountAuthorization auth = new AccountAuthorization(principal, account);
+//        if(!auth.isAllowedToView()) {
+//        	throw new AuthorizationException();
+//        }
+//	}
+//	
+//	private void validateAuthorizationToCreate(Principal principal, Account account) {
+//		AccountAuthorization auth = new AccountAuthorization(principal, account);
+//        if(!auth.isAllowedToCreate()) {
+//        	throw new AuthorizationException();
+//        }
+//	}
 	
 }

@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <div class="container">
-    <div class="row justify-content-center align-items-center h-100">
+    <div class="row justify-content-center align-items-center h-60">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body">
@@ -112,6 +112,7 @@ export default {
   border: 0;
   border-radius: 1rem;
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  
 }
 
 .card-signin .card-title {

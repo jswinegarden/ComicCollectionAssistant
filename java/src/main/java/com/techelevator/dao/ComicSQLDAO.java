@@ -74,7 +74,7 @@ public class ComicSQLDAO implements ComicDAO{
 	}
 
 	private Long getNextComicId() {
-		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval(seq_comic_id)");
+		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_comic_id')");
 		if(nextIdResult.next()) {
 			return nextIdResult.getLong(1);
 		} else {

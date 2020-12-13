@@ -64,10 +64,10 @@ public class CollectionSQLDAO implements CollectionDAO {
 	@Override
 	public List<Collection> getAllPublicCollections(){
 		List<Collection> collection = new ArrayList<>();
-		String sql = "SELECT collection_name, collection_desc, username"
-				+ " FROM collections"
-				+ " INNER JOIN users USING (user_id)"
-				+ " WHERE collection_visibility_id = 2";
+		String sql = "SELECT collection_name, collection_desc, username " +		       
+				"FROM collections " +
+		        "INNER JOIN users ON users.user_id = collections.user_id " +
+		        "WHERE collection_visibility_id = 2";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 		while(results.next()) {
 			Collection collections = mapRowToPublicCollections(results);

@@ -5,7 +5,7 @@ public class NewAccountDTO {
 	private Long userId;
 	private Long comicId;
 	private Long comicConditionId;
-	private Long comicTradeableStatusId;
+	private Long comicTradableStatusId;
 	private Long collectionId;
 	private Long accountTypeId;
 	
@@ -33,11 +33,11 @@ public class NewAccountDTO {
 	public void setComicConditionId(Long comicConditionId) {
 		this.comicConditionId = comicConditionId;
 	}
-	public Long getComicTradeableStatusId() {
-		return comicTradeableStatusId;
+	public Long getComicTradableStatusId() {
+		return comicTradableStatusId;
 	}
-	public void setComicTradeableStatusId(Long comicTradeableStatusId) {
-		this.comicTradeableStatusId = comicTradeableStatusId;
+	public void setComicTradableStatusId(Long comicTradableStatusId) {
+		this.comicTradableStatusId = comicTradableStatusId;
 	}
 	public Long getCollectionId() {
 		return collectionId;

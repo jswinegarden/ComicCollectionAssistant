@@ -40,6 +40,7 @@ public class CollectionController {
 		this.userDAO = userDAO;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public Collection getCollection (@PathVariable Long id) {
 		Collection collection = collectionDAO.getCollectionById(id);
@@ -59,6 +60,7 @@ public class CollectionController {
 		return allCollections;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Collection createCollection(@Valid @RequestBody NewCollectionDTO collectionDTO, Principal principal) {
@@ -67,6 +69,7 @@ public class CollectionController {
 		return collection;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public Collection deleteCollection(@PathVariable Long id) {
@@ -74,6 +77,7 @@ public class CollectionController {
 		return collection;
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@RequestMapping(value="/{id}", method = RequestMethod.PUT)
 	public Collection updateCollectionDetails(@Valid @RequestBody NewCollectionDTO newCollectionDTO, @PathVariable Long id) {		
