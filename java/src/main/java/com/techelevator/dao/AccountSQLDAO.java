@@ -16,12 +16,12 @@ public class AccountSQLDAO implements AccountDAO{
 
 	private JdbcTemplate jdbcTemplate;
 	
-	private static final String SQL_SELECT_COUNT_REQUEST = "SELECT COUNT comic_id FROM accounts WHERE collection_id = ?";
-	private static final String SQL_SELECT_ACCOUNT = "SELECT a.account_id, a.comic_id, a.collection_id, at.account_type_desc, cc.comic_condition_desc, cts.comic_tradeable_status_desc " +
+	private static final String SQL_SELECT_COUNT_REQUEST = "SELECT COUNT (*) AS comic_id FROM accounts WHERE collection_id = ?";
+	private static final String SQL_SELECT_ACCOUNT = "SELECT * " +
 														"FROM accounts a " +
-														"INNER JOIN account_types at ON a.account_type_id = at.account_type_id " +
+														"INNER JOIN account_types ats ON a.account_type_id = ats.account_type_id " +
 														"INNER JOIN comic_conditions cc ON a.comic_condition_id = cc.comic_condition_id " +
-														"INNER JOIN comic_tradeable_statuses cts ON a.comic_tradeable_status_id = cts.comic_tradeable_status_id ";
+														"INNER JOIN comic_tradable_statuses cts ON a.comic_tradable_status_id = cts.comic_tradable_status_id ";
 	public AccountSQLDAO(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
@@ -29,7 +29,7 @@ public class AccountSQLDAO implements AccountDAO{
 	@Override
 	public List<Account> getAccountsByUserId(Long userId) {
 		List<Account> accounts = new ArrayList<>();
-		String sql = SQL_SELECT_ACCOUNT + " WHERE user_id = ?";
+		String sql = SQL_SELECT_ACCOUNT + "WHERE user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 		while(results.next()) {
 			Account account = mapRowToAccount(results);
@@ -41,7 +41,7 @@ public class AccountSQLDAO implements AccountDAO{
 	@Override
 	public Account getAccountByUserId(Long userId) {
 		Account account = null;
-		String sql = SQL_SELECT_ACCOUNT + " WHERE user_id = ?";
+		String sql = SQL_SELECT_ACCOUNT + "WHERE user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 		while(results.next()) {
 			account = mapRowToAccount(results);
@@ -58,17 +58,17 @@ public class AccountSQLDAO implements AccountDAO{
 	
 	@Override
 	public Account addComicForStandardAccount(Comic comic, Account account) {
-		String sql = "INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradeable_status_id, collection_id, account_type_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradable_status_id, collection_id, account_type_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		Long newAccountId = getNextAccountId();		//Change sql for addComic methods to reflect table
 		Long userId = account.getUserId();
-		Long comicId = comic.getComicId();
+		Long comicId = account.getComicId();
 		Long collectionId = account.getCollectionId();
 		Long accountTypeId = account.getAccountTypeId();
 		Long comicConditionId = account.getComicConditionId();
-		Long comicTradeableStatusId = account.getComicTradeableStatusId();
-		int count = jdbcTemplate.update(SQL_SELECT_COUNT_REQUEST, collectionId);
+		Long comicTradableStatusId = account.getComicTradableStatusId();
+		int count = jdbcTemplate.queryForObject(SQL_SELECT_COUNT_REQUEST, int.class, collectionId);
 		if(count < 100) {
-			jdbcTemplate.update(sql, newAccountId, userId, comicId, comicConditionId, comicTradeableStatusId, collectionId, accountTypeId);
+			jdbcTemplate.update(sql, newAccountId, userId, comicId, comicConditionId, comicTradableStatusId, collectionId, accountTypeId);
 		}
 		return getAccountById(newAccountId);
 	}
@@ -78,7 +78,7 @@ public class AccountSQLDAO implements AccountDAO{
 		String sql = "INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (?, ?, ?, ?, ?)";
 		Long newAccountId = getNextAccountId();
 		Long userId = account.getUserId();
-		Long comicId = comic.getComicId();
+		Long comicId = account.getComicId();
 		Long collectionId = account.getCollectionId();
 		Long accountType = account.getAccountTypeId();
 		
@@ -96,7 +96,7 @@ public class AccountSQLDAO implements AccountDAO{
 		return account;
 	}
 	private Long getNextAccountId() {
-		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval(seq_account_id')");
+		SqlRowSet nextIdResult = jdbcTemplate.queryForRowSet("SELECT nextval('seq_account_id')");
 		if(nextIdResult.next()) {
 			return nextIdResult.getLong(1);
 		}  else {
@@ -109,7 +109,7 @@ public class AccountSQLDAO implements AccountDAO{
 				rs.getLong("user_id"),
 				rs.getLong("comic_id"),
 				rs.getLong("comic_condition_id"),
-				rs.getLong("comic_tradeable_status_id"),
+				rs.getLong("comic_tradable_status_id"),
 				rs.getLong("collection_id"),
 				rs.getLong("account_type_id"))
 				;
