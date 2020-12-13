@@ -10,22 +10,22 @@ public class Account {
 	private Long comicConditionId;
 	private Long comicTradeableStatusId;
 	private Long collectionId;
-	private String accountType;
+	private Long accountTypeId;
 	
-	public static final String STANDARD_USER_ACCOUNT = "Standard";
-	public static final String PREMIUM_USER_ACCOUNT = "Premium";
+	public static final Long STANDARD_USER_ACCOUNT = 1L;
+	public static final Long PREMIUM_USER_ACCOUNT = 2L;
 	
-	public Account (Long accountId, Long userId, Long comicId, Long collectionId, String accountType) {
+	public Account (Long accountId, Long userId, Long comicId, Long collectionId, Long comicConditionId, Long comicTradeableStatusId, Long accountTypeId) {
 		this.accountId = accountId;
 		this.userId = userId;
 		this.comicId = comicId;
+		this.comicConditionId = comicConditionId;
+		this.comicTradeableStatusId = comicTradeableStatusId;
 		this.collectionId = collectionId;
-		this.accountType = accountType;
+		this.accountTypeId = accountTypeId;
 	}
 	public Account () {}
-	public Account(Long userId2, Long comicId2, Long comicConditionId2, Long comicTradeableStatusId2,
-			Long collectionId2, Long accountTypeId) {
-	}
+	
 	public Long getAccountId() {
 		return accountId;
 	}
@@ -34,11 +34,11 @@ public class Account {
 		return userId;
 	}
 	
-	public String getAccountType() {
-		return accountType;
+	public Long getAccountTypeId() {
+		return accountTypeId;
 	}
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
+	public void setAccountType(Long accountTypeId) {
+		this.accountTypeId = accountTypeId;
 	}
 	public Long getComicId() {
 		return comicId;
@@ -56,12 +56,27 @@ public class Account {
 		return comicTradeableStatusId;
 	}
 	
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	public void setComicConditionId(Long comicConditionId) {
+		this.comicConditionId = comicConditionId;
+	}
+	public void setComicTradeableStatusId(Long comicTradeableStatusId) {
+		this.comicTradeableStatusId = comicTradeableStatusId;
+	}
+	public void setCollectionId(Long collectionId) {
+		this.collectionId = collectionId;
+	}
 	public boolean isStandard() {
-		   return STANDARD_USER_ACCOUNT.equals(this.accountType);
+		   return STANDARD_USER_ACCOUNT.equals(this.accountTypeId);
 	   }
 	   
 	public boolean isPremium() {
-		   return PREMIUM_USER_ACCOUNT.equals(this.accountType);
+		   return PREMIUM_USER_ACCOUNT.equals(this.accountTypeId);
 	   }
 	
 	public void trade(Account accountTo, Long comicToTrade) {
@@ -83,12 +98,12 @@ public class Account {
                 userId == account.userId &&
                 comicId.equals(account.comicId)&&
                 collectionId.equals(account.collectionId)&&
-                accountType.equals(account.accountType);
+                accountTypeId.equals(account.accountTypeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountId, userId, comicId, collectionId, accountType);
+        return Objects.hash(accountId, userId, comicId, collectionId, accountTypeId);
     }
 
     @Override
@@ -98,7 +113,7 @@ public class Account {
                 ", userId=" + userId +
                 ", comicId=" + comicId +
                 ", collectionId=" + collectionId +
-                ", accountType=" + accountType +
+                ", accountTypeId=" + accountTypeId +
                 '}';
     }
 	
