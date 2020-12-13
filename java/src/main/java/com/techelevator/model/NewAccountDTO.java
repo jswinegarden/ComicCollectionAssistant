@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 public class NewAccountDTO {
+	private Long accountId;
 	private Long userId;
 	private Long comicId;
 	private Long comicConditionId;
@@ -8,6 +9,13 @@ public class NewAccountDTO {
 	private Long collectionId;
 	private Long accountTypeId;
 	
+	
+	public Long getAccountId() {
+		return accountId;
+	}
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
 	public Long getUserId() {
 		return userId;
 	}

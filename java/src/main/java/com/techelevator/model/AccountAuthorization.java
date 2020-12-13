@@ -30,12 +30,12 @@ public class AccountAuthorization {
 		return isAllowed;
 	}
 	
-	public String standardAccount() {
-		return account.getAccountType();
+	public Long standardAccount() {
+		return account.getAccountTypeId();
 	}
 	
-	public String premiumAccount() {
-		return account.getAccountType();
+	public Long premiumAccount() {
+		return account.getAccountTypeId();
 	}
 	public Long userId() {
 		return account.getUserId();
