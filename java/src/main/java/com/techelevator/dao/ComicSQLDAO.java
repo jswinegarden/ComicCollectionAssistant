@@ -24,7 +24,7 @@ public class ComicSQLDAO implements ComicDAO{
 	@Override
 	public Comic getComicById(Long comicId) {
 		Comic comic = null;
-		String sql = "SELECT comic_id, comic_name, author_name, comic_characters, date_published FROM comics WHERE comic_id = ?";
+		String sql = "SELECT * FROM comics WHERE comic_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, comicId);
 		while(results.next()) {
 			comic = mapRowToComic(results);
