@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="jumbotron jumbotron-fluid shadow">
-      <h1>Comic Collector!</h1>
+      <h1>The Comic League!</h1>
       <p>A place to collect and share comics!</p>
     </div>
 
