@@ -38,8 +38,8 @@ public class FriendListSQLDAO implements FriendListDAO{
 		Long newRequestId = getNextRequestId();
 		Long requestTypeId = getRequestTypeId(someRequest.getRequestType());
 		Long requestStatusId = getRequestStatusId(someRequest.getRequestStatus());
-		Account fromAccount = accountDAO.getAccountsByUserId(someRequest.getUserFrom().getId());
-		Account toAccount = accountDAO.getAccountsByUserId(someRequest.getUserTo().getId());
+		Account fromAccount = accountDAO.getAccountByUserId(someRequest.getUserFrom().getId());
+		Account toAccount = accountDAO.getAccountByUserId(someRequest.getUserTo().getId());
 		
 		jdbcTemplate.update(sql, newRequestId, requestTypeId, requestStatusId, fromAccount.getAccountId(), toAccount.getAccountId());
 		return getRequestById(newRequestId);
