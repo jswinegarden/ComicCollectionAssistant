@@ -18,7 +18,7 @@
                 <textarea v-model="collection.collection_desc" class="form-control" rows="5" placeholder="Collection Description"/>
             </div>
             <div class="col">
-                <router-link class="btn btn-primary"  v-on:click="saveCollection(collection)">Save Collection</router-link>
+                <button class="btn btn-primary" v-on:submit="saveCollection(collection)">Save Collection</button>
             </div>
         </div>
     </div>
