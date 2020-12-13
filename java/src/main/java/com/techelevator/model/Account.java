@@ -11,11 +11,14 @@ public class Account {
 	private Long comicTradeableStatusId;
 	private Long collectionId;
 	private Long accountTypeId;
+	private String comicCondition;
+	private String comicTradeableStatus;
+	private String accountType;
 	
 	public static final Long STANDARD_USER_ACCOUNT = 1L;
 	public static final Long PREMIUM_USER_ACCOUNT = 2L;
 	
-	public Account (Long accountId, Long userId, Long comicId, Long collectionId, Long comicConditionId, Long comicTradeableStatusId, Long accountTypeId) {
+	public Account (Long accountId, Long userId, Long comicId, Long collectionId, Long comicConditionId, Long comicTradeableStatusId, Long accountTypeId, String comicCondition, String comicTradeableStatus, String accountType) {
 		this.accountId = accountId;
 		this.userId = userId;
 		this.comicId = comicId;
@@ -23,6 +26,9 @@ public class Account {
 		this.comicTradeableStatusId = comicTradeableStatusId;
 		this.collectionId = collectionId;
 		this.accountTypeId = accountTypeId;
+		this.comicCondition = comicCondition;
+		this.comicTradeableStatus = comicTradeableStatus;
+		this.accountType = accountType;
 	}
 	public Account () {}
 	
@@ -71,6 +77,23 @@ public class Account {
 	public void setCollectionId(Long collectionId) {
 		this.collectionId = collectionId;
 	}
+	
+	public String getComicCondition() {
+		return comicCondition;
+	}
+	public void setComicCondition(String comicCondition) {
+		this.comicCondition = comicCondition;
+	}
+	public String getComicTradeableStatus() {
+		return comicTradeableStatus;
+	}
+	public void setComicTradeableStatus(String comicTradeableStatus) {
+		this.comicTradeableStatus = comicTradeableStatus;
+	}
+	public String getAccountType() {
+		return accountType;
+	}
+	
 	public boolean isStandard() {
 		   return STANDARD_USER_ACCOUNT.equals(this.accountTypeId);
 	   }
@@ -114,6 +137,9 @@ public class Account {
                 ", comicId=" + comicId +
                 ", collectionId=" + collectionId +
                 ", accountTypeId=" + accountTypeId +
+                ", comicCondition=" + comicCondition +
+                ", comicTradeableStatus=" + comicTradeableStatus +
+                ", accountType=" + accountType +
                 '}';
     }
 	

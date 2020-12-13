@@ -4,7 +4,7 @@ import com.techelevator.model.Account;
 import com.techelevator.model.Comic;
 
 public interface AccountDAO {
-	Account getAccountByUserId(Long userId);
+	Account getAccountsByUserId(Long userId);
 	
 	void updateComics(Account account);
 	
