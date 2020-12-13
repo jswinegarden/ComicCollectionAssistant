@@ -47,11 +47,11 @@ public class AccountController {
         this.comicDAO = comicDAO;
     }
 
-    @RequestMapping( value = "/comics", method = RequestMethod.GET)
-    public Long getComic(Principal principal) throws UsernameNotFoundException {
-        Long userId = getCurrentUserId(principal);
-        return accountDAO.getAccountsByUserId(userId);
-    }
+//    @RequestMapping( value = "/comics", method = RequestMethod.GET)
+//    public Long getComic(Principal principal) throws UsernameNotFoundException {
+//        Long userId = getCurrentUserId(principal);
+//        return accountDAO.getAccountsByUserId(userId);
+//    }
     
 //    @RequestMapping(value = "/comics", method = RequestMethod.POST)
 //    public Comic addComic(@Valid @RequestBody NewComicDTO comicDTO, Principal principal) throws InvalidComicException {
