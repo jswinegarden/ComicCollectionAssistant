@@ -18,14 +18,14 @@
                 <textarea v-model="collection.collection_desc" class="form-control" rows="5" placeholder="Collection Description"/>
             </div>
             <div class="col">
-                <button class="btn btn-primary" v-on:submit="saveCollection(collection)">Save Collection</button>
+                <button class="btn btn-primary" v-on:click="saveCollection(collection)">Save Collection</button>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import collectionService from "../services/CollectionService"
+import CollectionService from "../services/CollectionService.js"
 export default {
     name: "add-collection",
     
@@ -34,9 +34,10 @@ export default {
             fav: false,
             visibility: false,
             collection: {
-                collection_id: '',
-                collection_name:'',
-                colection_desc:'',
+                collection_id: "",
+                user_id: "",
+                collection_name: "",
+                collection_desc: "",
                 favorite_status_id: 2,
                 collection_visibility_id: 1
             }
@@ -44,7 +45,7 @@ export default {
     },
     methods: {
         saveCollection(collection) {
-            collectionService.createCollection(collection).then(response =>{
+            CollectionService.createCollection(collection).then(response =>{
                 if(response.status === 201){
                     this.$router.push(`/newComic`)
                 }
