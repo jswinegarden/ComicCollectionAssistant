@@ -7,6 +7,8 @@ import Register from '../views/Register.vue'
 import NewCollection from '../views/NewCollection'
 import NewComic from '../views/NewComic'
 import store from '../store/index'
+import AboutUs from '../views/AboutUs.vue'
+import Viewer from '../views/HomeDefault.vue'
 
 Vue.use(Router)
 
@@ -69,6 +71,22 @@ const router = new Router({
       component: NewComic,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path:"/aboutUs",
+      name:"aboutUs",
+      component: AboutUs,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path:"/viewer",
+      name:"viewer",
+      component: Viewer,
+      meta:{
+        requiresAuth: false
       }
     },
   ]

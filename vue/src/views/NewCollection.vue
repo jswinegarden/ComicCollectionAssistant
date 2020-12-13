@@ -19,6 +19,10 @@ export default {
 </script>
 
 <style scoped>
+
+ h2{
+   font-family: CrashLanding;
+ }
 .jumbotron{
     width: 75%;
     margin: auto;
