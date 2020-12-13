@@ -57,7 +57,7 @@
       <div class="col-md-2 shadow"> image representing collection
         <p class="row"> collection title </p>
       </div>
-      <div class="col-md-2 shadow"> <router-link class="btn btn-primary" 
+      <div class="col-md-2 shadow"> <router-link class="btn btn-dark" 
           v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
       </div>
     </div>
@@ -76,7 +76,7 @@ export default {
 
 <style scoped>
 .jumbotron {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: white;
   background-color: rgba(220, 207, 189, 0.94);
   width: 75%;
@@ -95,7 +95,9 @@ div p.row {
   width: 100%;
   border-top: darkgrey solid 1px;
   padding: 5px;
+  padding-left: 5px;
   margin: 0px;
+  text-align: center;
 }
 .col-md-2{
   margin: 20px auto;
@@ -103,12 +105,20 @@ div p.row {
   background-color: white; /*replace with image that represents collection */
   border: darkgrey solid 1px;
   text-align: center;
+  font-family: AnimeAce;
 }
 .col-md-12 {
   background-color: white;
   padding: 10px 10px 5px;
   margin: 0px;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.col-md-12 .btn{
+  margin: auto;
+  background-color: none;
+  border: none;
+  padding: 5px;
+  
 }
 footer {
   text-align:center;
