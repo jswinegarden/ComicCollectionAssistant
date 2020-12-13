@@ -1,5 +1,8 @@
 package com.techelevator.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
@@ -24,15 +27,27 @@ public class AccountSQLDAO implements AccountDAO{
 	}
 	
 	@Override
-	public Account getAccountsByUserId(Long userId) {
+	public List<Account> getAccountsByUserId(Long userId) {
+		List<Account> accounts = new ArrayList<>();
+		String sql = SQL_SELECT_ACCOUNT + " WHERE user_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+		while(results.next()) {
+			Account account = mapRowToAccount(results);
+			accounts.add(account);
+		}
+		return accounts;
+	}
+	
+	@Override
+	public Account getAccountByUserId(Long userId) {
 		Account account = null;
-		String sql = "SELECT * FROM accounts WHERE user_id = ?";
+		String sql = SQL_SELECT_ACCOUNT + " WHERE user_id = ?";
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 		while(results.next()) {
 			account = mapRowToAccount(results);
 		}
 		return account;
-	}
+	} 
 
 	@Override
 	public void updateComics(Account account) {
@@ -43,15 +58,17 @@ public class AccountSQLDAO implements AccountDAO{
 	
 	@Override
 	public Account addComicForStandardAccount(Comic comic, Account account) {
-		String sql = "INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradeable_status_id, collection_id, account_type_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		Long newAccountId = getNextAccountId();		//Change sql for addComic methods to reflect table
 		Long userId = account.getUserId();
 		Long comicId = comic.getComicId();
 		Long collectionId = account.getCollectionId();
-		Long accountType = account.getAccountTypeId();
+		Long accountTypeId = account.getAccountTypeId();
+		Long comicConditionId = account.getComicConditionId();
+		Long comicTradeableStatusId = account.getComicTradeableStatusId();
 		int count = jdbcTemplate.update(SQL_SELECT_COUNT_REQUEST, collectionId);
 		if(count < 100) {
-			jdbcTemplate.update(sql, newAccountId, userId, comicId, collectionId, accountType);
+			jdbcTemplate.update(sql, newAccountId, userId, comicId, comicConditionId, comicTradeableStatusId, collectionId, accountTypeId);
 		}
 		return getAccountById(newAccountId);
 	}
@@ -94,10 +111,7 @@ public class AccountSQLDAO implements AccountDAO{
 				rs.getLong("comic_condition_id"),
 				rs.getLong("comic_tradeable_status_id"),
 				rs.getLong("collection_id"),
-				rs.getLong("account_type_id"),
-				rs.getString("comic_condition"),
-				rs.getString("comic_tradeable_status"),
-				rs.getString("account_type"))
+				rs.getLong("account_type_id"))
 				;
 	}
 
