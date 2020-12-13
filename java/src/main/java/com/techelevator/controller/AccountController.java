@@ -47,11 +47,24 @@ public class AccountController {
         this.comicDAO = comicDAO;
     }
 
+<<<<<<< HEAD
 //    @RequestMapping( value = "/comics", method = RequestMethod.GET)
 //    public Long getComic(Principal principal) throws UsernameNotFoundException {
 //        Long userId = getCurrentUserId(principal);
 //        return accountDAO.getAccountsByUserId(userId);
 //    }
+=======
+    @RequestMapping( value = "", method = RequestMethod.GET)
+    public Account getAccount(Principal principal) throws UsernameNotFoundException {
+        Long userId = getCurrentUserId(principal);
+        return accountDAO.getAccountByUserId(userId);
+    }
+    
+    @RequestMapping(value = "/accounts", method = RequestMethod.GET)
+    public List<Account> getAccounts(Principal principal) {
+    	return accountDAO.getAccountsByUserId(getCurrentUserId(principal));
+    }
+>>>>>>> 19ecd28476f84fc266b9a7a2d584b7f6d31441f9
     
 //    @RequestMapping(value = "/comics", method = RequestMethod.POST)
 //    public Comic addComic(@Valid @RequestBody NewComicDTO comicDTO, Principal principal) throws InvalidComicException {
@@ -92,10 +105,7 @@ public class AccountController {
     						accountDTO.getComicConditionId(),
     						accountDTO.getComicTradeableStatusId(),
     						accountDTO.getCollectionId(),
-    						accountDTO.getAccountTypeId(),
-    						accountDTO.getComicCondition(),
-    						accountDTO.getComicTradeableStatus(),
-    						accountDTO.getAccountType()
+    						accountDTO.getAccountTypeId()
     						);
     }
     
