@@ -49,7 +49,7 @@
     background-image: url("../img/HERO COLLAGE.png");
     background-repeat: repeat;
     background-size: contain;
-    height: 830px;
+    height: 1176px;
   }
   .nav-item {
     background-color:darkgrey;

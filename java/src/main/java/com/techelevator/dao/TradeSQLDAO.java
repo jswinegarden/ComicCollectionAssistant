@@ -38,8 +38,8 @@ public class TradeSQLDAO implements TradeDAO{
 		Long newTradeId = getnextTradeId();
 		Long tradeTypeId = getTradeTypeId(someTrade.getTradeType());
 		Long tradeStatusId = getTradeStatusId(someTrade.getTradeStatus());
-		Account fromAccount = accountDAO.getAccountByUserId(someTrade.getUserFrom().getId());
-		Account toAccount = accountDAO.getAccountByUserId(someTrade.getUserTo().getId());
+		Account fromAccount = accountDAO.getAccountsByUserId(someTrade.getUserFrom().getId());
+		Account toAccount = accountDAO.getAccountsByUserId(someTrade.getUserTo().getId());
 		
 		jdbcTemplate.update(sql, newTradeId, tradeTypeId, tradeStatusId, fromAccount.getAccountId(), toAccount.getAccountId(), someTrade.getComicId());
 		return getTradeById(newTradeId);
