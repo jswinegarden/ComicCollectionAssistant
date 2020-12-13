@@ -5,7 +5,7 @@ const http = axios.create({
 });
 
 export default {
-    getUserName(){
-        return http.get(`/users/${username}`)
+    getUser(){
+        return http.get(`/users/current`)
     }
 }

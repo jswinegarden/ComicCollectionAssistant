@@ -1,11 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <div class="container">
-<<<<<<< HEAD
-    <div class="row justify-content-center align-items-center h-80">
-=======
     <div class="row justify-content-center align-items-center h-60">
->>>>>>> 805b8524a7785b5af33194ee438ddf699119ee21
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
         <div class="card card-signin my-5">
           <div class="card-body">

@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-md-8">
-                <input type="text" v-model="collection.collection_name" class="form-control" placeholder="Collection Title" name="Collection Title">
+                <input type="text" v-model="collection.collectionName" class="form-control" placeholder="Collection Title" name="Collection Title">
             </div>
             <div class="col-md-2">
                 <button type="button" v-show="visibility" v-on:click="changeVis()" class="btn btn-primary">Make Private</button>
@@ -15,7 +15,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <textarea v-model="collection.collection_desc" class="form-control" rows="5" placeholder="Collection Description"/>
+                <textarea v-model="collection.collectionDescription" class="form-control" rows="5" placeholder="Collection Description"/>
             </div>
             <div class="col">
                 <button class="btn btn-primary" v-on:click="saveCollection(collection)">Save Collection</button>
@@ -25,21 +25,24 @@
 </template>
 
 <script>
+
 import CollectionService from "../services/CollectionService.js"
+
 export default {
     name: "add-collection",
     
     data() {
         return {
+            
             fav: false,
             visibility: false,
             collection: {
-                collection_id: "",
-                user_id: "",
-                collection_name: "",
-                collection_desc: "",
-                favorite_status_id: 2,
-                collection_visibility_id: 1
+                collectionId: "",
+                userId:"",
+                collectionName: "",
+                collectionDescription: "",
+                favoriteStatusId: 2,
+                collectionVisibilityId: 1,
             }
         };
     },
@@ -52,24 +55,25 @@ export default {
             });
         },
         changeVis(){
-            if(this.collection.collection_visibility_id == 1){
-                this.collection.collection_visibility_id = 2;
+            if(this.collection.collectionVisibilityId == 1){
+                this.collection.collectionVisibilityId = 2;
                 this.visibility = !this.visibility;
-            }else if(this.collection.collection_visibility_id == 2){
-                this.collection.collection_visibility_id = 1;
+            }else if(this.collection.collectionVisibilityId == 2){
+                this.collection.collectionVisibilityId = 1;
                 this.visibility = !this.visibility;
             }
         } ,
         changeFav(){
-            if(this.collection.favorite_status_id == 1){
-                this.collection.favorite_status_id = 2;
+            if(this.collection.favoriteStatusId == 1){
+                this.collection.favoriteStatusId = 2;
                 this.fav = !this.fav;
-            }else if(this.collection.favorite_status_id == 2){
-                this.collection.favorite_status_id = 1;
+            }else if(this.collection.favoriteStatusId == 2){
+                this.collection.favoriteStatusId = 1;
                 this.fav = !this.fav;
             }
         } 
-    }
+    },
+    
 }
 
 </script>
