@@ -44,7 +44,6 @@ export default {
 }
 #cartoonedPicture{
   height:400px;
-  padding: 5px;
 }
 div h1{
   font-family: CrashLanding;
