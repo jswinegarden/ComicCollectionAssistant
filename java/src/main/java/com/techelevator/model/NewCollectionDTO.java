@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 public class NewCollectionDTO {
 	private Long collectionId;
+	private Long userId;
 	private String collectionName;
 	private String collectionDescription;
 	private Long favorite_status_id;
@@ -36,6 +37,12 @@ public class NewCollectionDTO {
 	}
 	public void setCollectionVisibilityId(Long collection_visibility_id) {
 		this.collection_visibility_id = collection_visibility_id;
+	}
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 	
 	

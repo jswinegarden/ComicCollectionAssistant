@@ -3,19 +3,26 @@ package com.techelevator.model;
 public class Collection {
 	
 	private Long collectionId;
+	private Long userId;
 	private String collectionName;
 	private String collectionDescription;
 	private Long favorite_status_id;
 	private Long collection_visibility_id;
+	private String userName;
 	
-	public Collection(Long collectionId, String collectionName, String collectionDesc, Long favorite_status_id, Long collection_visibility_id) {
+	public Collection(Long collectionId, Long userId, String collectionName, String collectionDesc, Long favorite_status_id, Long collection_visibility_id) {
 		this.collectionId = collectionId;
+		this.userId = userId;
 		this.collectionName = collectionName;
 		this.collectionDescription = collectionDesc;
 		this.favorite_status_id = favorite_status_id;
 		this.collection_visibility_id = collection_visibility_id;
 	}
-	public Collection() {}
+	public Collection(String collectionName, String collectionDescription, String userName ) {
+		this.collectionName = collectionName;
+		this.collectionDescription = collectionDescription;
+		this.userName = userName;
+	}
 	
 	public Long getCollectionId() {
 		return collectionId;
@@ -47,5 +54,15 @@ public class Collection {
 	public Long getCollectionVisibilityId() {
 		return collection_visibility_id;
 	}
+	public Long getUserId() {
+		return userId;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+	
+	
+	
 	
 }
