@@ -7,7 +7,8 @@ import com.techelevator.model.Collection;
 public interface CollectionDAO {
 	Collection getCollectionById(Long collectionId);
 	List<Collection> getAllCollectionsByUserId(Long userId);
-	Collection newCollection(Collection collection);
+	List<Collection> getAllPublicCollections();
+	Collection newCollection(Collection collection, Long currentUserId);
 	void updateCollectionName(Collection someCollection);
 	void updateCollectionDesc(Collection someCollection);
 	void updateCollectionFavoriteStatusId(Collection someCollection);

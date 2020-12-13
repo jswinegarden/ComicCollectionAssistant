@@ -46,8 +46,14 @@ public class CollectionController {
 		return collection;
 	}
 	
+	@RequestMapping(value="", method= RequestMethod.GET)
+	public List <Collection> getAllPublicCollections(){
+		List <Collection> publicCollections = collectionDAO.getAllPublicCollections();
+		return publicCollections;
+	}
+	
 	@PreAuthorize("isAuthenticated()")
-	@RequestMapping(value="", method = RequestMethod.GET)
+	@RequestMapping(value="/mycollections", method = RequestMethod.GET)
 	public List <Collection> getAllCollectionsByUser(Principal principal) {
 		List <Collection> allCollections = collectionDAO.getAllCollectionsByUserId(getCurrentUserId(principal));
 		return allCollections;
@@ -57,7 +63,7 @@ public class CollectionController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Collection createCollection(@Valid @RequestBody NewCollectionDTO collectionDTO, Principal principal) {
 		Collection collection = buildCollectionFromCollectionDTO(collectionDTO);
-		collection = collectionDAO.newCollection(collection);
+		collection = collectionDAO.newCollection(collection, getCurrentUserId(principal));
 		return collection;
 	}
 	
@@ -93,6 +99,7 @@ public class CollectionController {
 	
 	private Collection buildCollectionFromCollectionDTO(NewCollectionDTO collectionDTO) {
 		return new Collection (collectionDTO.getCollectionId(),
+				collectionDTO.getUserId(),
 				collectionDTO.getCollectionName(),
 				collectionDTO.getCollectionDescription(),
 				collectionDTO.getFavoriteStatusId(),
