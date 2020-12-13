@@ -67,11 +67,11 @@ public class AccountController {
     public Account addAccount(@Valid @RequestBody NewAccountDTO accountDTO, NewComicDTO comicDTO, Principal principal) {
     	Account account = buildAccountFromAccountDTO(accountDTO);
     	Comic comic = buildComicFromComicDTO(comicDTO);
-    	String accountType = account.getAccountType();
+    	Long accountTypeId = account.getAccountTypeId();
     	validateAuthorizationToCreate(principal, account);
-    	if(Account.STANDARD_USER_ACCOUNT.equals(accountType)) {
+    	if(Account.STANDARD_USER_ACCOUNT.equals(accountTypeId)) {
     		addAccountForStandardAccount(comic, account);
-    	} else if(Account.PREMIUM_USER_ACCOUNT.equals(accountType)) {
+    	} else if(Account.PREMIUM_USER_ACCOUNT.equals(accountTypeId)) {
     		addAccountForPremiumAccount(comic, account);
     	}
     	return account;
@@ -86,12 +86,14 @@ public class AccountController {
     }
     
     private Account buildAccountFromAccountDTO(NewAccountDTO accountDTO) {
-    	return new Account(accountDTO.getUserId(),
+    	return new Account(accountDTO.getAccountId(),
+    						accountDTO.getUserId(),
     						accountDTO.getComicId(),
     						accountDTO.getComicConditionId(),
     						accountDTO.getComicTradeableStatusId(),
     						accountDTO.getCollectionId(),
-    						accountDTO.getAccountTypeId());
+    						accountDTO.getAccountTypeId()
+    						);
     }
     
     private Comic buildComicFromComicDTO(NewComicDTO comicDTO) {

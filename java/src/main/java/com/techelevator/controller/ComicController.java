@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,7 +39,7 @@ public class ComicController {
 	}
 	
 	@RequestMapping(value="/{id}", method= RequestMethod.GET)
-	public Comic getComic(@RequestParam Long id) {
+	public Comic getComic(@PathVariable Long id) {
 		Comic comic = comicDAO.getComicById(id);
 		return comic;
 	}
@@ -49,6 +50,7 @@ public class ComicController {
 		return allComics;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Comic addComic(@Valid @RequestBody NewComicDTO comicDTO, Principal principal) {
 		Comic comic = buildComicFromComicDTO(comicDTO);
