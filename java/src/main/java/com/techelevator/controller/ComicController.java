@@ -58,7 +58,7 @@ public class ComicController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Comic addComic(@Valid @RequestBody NewComicDTO comicDTO, Principal principal) {
 		Comic comic = buildComicFromComicDTO(comicDTO);
-		validateAuthorizationToCreate(principal, comic);
+		//validateAuthorizationToCreate(principal, comic);
 		comic = comicDAO.addComic(comic);
 		return comic;
 	}
@@ -73,10 +73,10 @@ public class ComicController {
 		
     }
     
-    private void validateAuthorizationToCreate(Principal principal, Comic comic) {
-		ComicAuthorization auth = new ComicAuthorization(principal, comic);
-        if(!auth.isAllowedToCreate()) {
-        	throw new AuthorizationException();
-        }
-    }
+//    private void validateAuthorizationToCreate(Principal principal, Comic comic) {
+//		ComicAuthorization auth = new ComicAuthorization(principal, comic);
+//        if(!auth.isAllowedToCreate()) {
+//        	throw new AuthorizationException();
+//        }
+//    }
 }
