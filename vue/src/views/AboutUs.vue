@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style >
-.jumbotron {
+.jumbotron.jumbotron-fluid {
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: white;
   background-color: rgba(220, 207, 189, 0.94);
@@ -37,7 +37,6 @@ export default {
 }
 #cartoonedPicture{
   height:400px;
-  padding: 5px;
 }
 div h1{
   font-family: CrashLanding;
@@ -52,6 +51,5 @@ div p{
 .img-container{
   text-align: center;
   display:block;
-  padding: 5px;
 }
 </style>
