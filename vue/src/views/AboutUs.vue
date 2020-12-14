@@ -10,9 +10,27 @@
           This allows you to see what vast collections they have! Our founder, Jacob Frey (pictured left), ....   
         </p>
       </div>
-    <p class="text-center" id="stats"> Statistics are something that we hold near and dear to us and our statistics speak for itself with over 5,000 users registered nation wide and over 37,000 comics in our inventory!
-    There are plenty of comics to be counted for towards a personalized collection of yours or a few that you are looking out for!
-    </p>
+      <h2> Meet the team </h2> 
+      <div id="container" class="picturePadding">
+        <img class="rounded-circle float-left mr-2 img-fluid mx-auto" id="cartoonedPicture" src="../../img/spencer.jpg">
+        <h3> Spencer Waplinger </h3>
+      </div>
+      <div id="container">
+        <img class="rounded-circle float-left mr-2 img-fluid mx-auto" id="cartoonedPicture" src="../../img/jonathon.jpg">
+        <h3> Jonathon Winegarden </h3>
+      </div>
+      <div id="container" class="picturePadding">
+        <img class="rounded-circle float-right mr-2 img-fluid mx-auto" id="cartoonedPicture" src="../../img/tyler.jpg"> 
+        <h3> Tyler Rash </h3>
+      </div>
+      <div id="container">
+        <img class="rounded-circle float-right mr-2 img-fluid mx-auto" id="cartoonedPicture" src="../../img/Shane.png">
+        <h3> Shane Craig </h3>
+      </div> 
+      <h2> Statistics </h2>
+      <p class="text-center" id="stats"> Statistics are something that we hold near and dear to us and our statistics speak for itself with over 5,000 users registered nation wide and over 37,000 comics in our inventory!
+      There are plenty of comics to be counted for towards a personalized collection of yours or a few that you are looking out for!
+      </p>
     <div class="img-container"> 
       <img  class="img-fluid" src="../../img/thorFunny.gif">
     </div>
@@ -59,6 +77,19 @@ div p{
 .img-container{
   text-align: center;
   display:block;
+  
+}
+h2{
+  text-align: center;
+  color: black;
+  font-size:75px;
+}
+h3{
+  color: black;
+}
+.picturePadding {
+  padding-right:150px;
+  padding-left: 200px;
   
 }
 #container {
