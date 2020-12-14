@@ -5,11 +5,12 @@
   </div>
   <div class="row shadow">
       
-      <div class="col-md shadow"> Image For Comic Book
+      <div class="col-md shadow"> 
+          <img class="img-fluid" src="https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/724077/724077._SX1600_QL80_TTD_.jpg">
         
       </div>
-       <div class="col-md shadow"> Comic Book Title
-        <p class="row"> Comic Book Details Insert Here </p>
+       <div class="col-md shadow"><h3> Comic Book Title</h3>
+        <h5 class="row"> Comic Book Details Insert Here </h5>
       </div>
       
     </div>
@@ -62,9 +63,9 @@ div.row {
   text-align: center;
   font-family: AnimeAce;
 }
-div p.row {
+div h5 {
   width: 100%;
-  height: 100px;
+  height: 200px;
   display: block;
   border-top: darkgrey solid 1px;
   padding: 5px;
