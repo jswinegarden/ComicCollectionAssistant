@@ -45,7 +45,7 @@
     </div>
     <router-view/>
     <footer>
-      &copy;  Comic League Enterprises 2020 &copy;
+      &copy;  Comic League Enterprises 2020
     </footer>
   </div>
 </template>
@@ -62,7 +62,7 @@
   #app{
     background-image: url("../img/HERO COLLAGE.png");
     background-size: cover;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-attachment:fixed;
     padding-bottom: 10px;
   }
