@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
         <div class="jumbotron jumbotron-fluid shadow">
             <h1>Friends</h1>
             <p> Our newest feature the friend system! A way to stay close to those registered on our site and a way to see the collections of 
@@ -31,11 +31,6 @@
                 <p class="row"> collection title </p>
              </div>
         </div>
-        <div class="row shadow"> 
-        </div>
-        <footer>
-            &copy;  Comic League Enterprises 2020 &copy;
-        </footer>
     </div>
 </template>
 
@@ -46,6 +41,9 @@ export default {
 </script>
 
 <style scoped>
+.box{
+  height: 1080px;
+}
 .jumbotron {
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: white;

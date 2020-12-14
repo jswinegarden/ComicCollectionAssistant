@@ -1,8 +1,11 @@
 <template>
   <div id="login" class="text-center">
+    <div class="nav1"></div>
+    <div class="nav2"></div>
+    <div class="nav3"></div>
     <div class="container">
-    <div class="row justify-content-center align-items-center h-60">
-      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="row justify-content-center align-items-center h-40">
+      <div class="col-md-5">
         <div class="card card-signin my-5">
           <div class="card-body">
             <h1 class="h3 mb-3 font-weight-normal text-center">Sign In</h1>
@@ -99,20 +102,30 @@ export default {
 </script>
 
 <style scoped>
+
+.nav2{
+  border: solid 3px white;
+  width:242px;
+  left: 12.5%;
+  top: 55px;
+  position: absolute;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.961);
+}
 .container{
   height: 1080px;
 }
-
+.row{
+  margin-top: 10%;
+  
+}
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
 }
-
 .card-signin {
-  border: 0;
-  border-radius: 1rem;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-  
+  border: solid black 2px;
+  border-radius: 20px;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.961);
 }
 
 .card-signin .card-title {

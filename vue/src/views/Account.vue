@@ -1,10 +1,10 @@
 <template>
-  <div>
-      <div class="jumbotron jumbotron-fluid shadow">
-        <h1> My Account </h1> 
-        <p> All of your accounts details </p>
-      </div>
-      <div class="row shadow">
+  <div class="box">
+    <div class="jumbotron jumbotron-fluid shadow">
+      <h1> My Account </h1> 
+      <p> All of your accounts details </p>
+    </div>
+    <div class="row shadow">
       <h4 class="col-md-12">My Collections:</h4>
       <div class="col-md-2 shadow"> image representing collection
         <p class="row"> collection title </p>
@@ -38,6 +38,9 @@ export default {
 
 <style scoped>
 /* --------------------  header ---------------- */
+.box{
+  height: 1080px;
+}
 .jumbotron {
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: white;
@@ -84,8 +87,11 @@ div p.row {
   width: 15%;
   margin: 20px auto;
 }
-.btn-primary{
+.btn-dark{
   width: 100%;
+}
+.btn-dark:hover{
+  background-color: rgb(80, 80, 76);
 }
 .btn-success{
   width: 100%;
