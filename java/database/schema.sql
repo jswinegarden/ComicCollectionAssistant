@@ -337,5 +337,10 @@ INSERT INTO trades (trade_id, trade_type_id, trade_status_id, account_from, acco
         --FROM collections 
         --INNER JOIN users USING (user_id)
         --WHERE collection_visibility_id = 2;
+        --publicCollectionsWithoutUsing--
+        --SELECT collection_name, collection_desc, username
+        --FROM collections
+        --INNER JOIN users ON users.user_id = collections.user_id
+        --WHERE collection_visibility_id = 2;
 -------------------
 COMMIT TRANSACTION;
