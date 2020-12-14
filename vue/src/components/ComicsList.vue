@@ -1,6 +1,6 @@
 <template>
 <span class="row">
-        <ul class="col-md-3" v-for="comic in comics" v-bind:key="comic.id">
+        <ul class="col-md-3" v-for="comics in collection" v-bind:key="comics.collectionId">
            <li class="comic">
                 <img class="camic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                 <p class="comic-title">{{comic.comicTitle}}</p>
@@ -10,21 +10,38 @@
 </template>
 
 <script>
-import comicServices from '../services/ComicServices';
+import ComicServices from '../services/ComicServices';
 
 export default {
     name: 'comics-list',
     data(){
         return{
-            comics:{
-            },
+            title: "",
+            collectionId: 0
         }
     },
-    created(){
-        ComicServices.getComicsByColectionId().then(response => {
-            this.comics = response.data
-        })
+    methods: {
+        retrieveComics() {
+            comicServices
+            .getComicsByCollectionId(this.collectionId)
+            .then(response => {
+                this.title = response.data.title;
+                this.$store.commit("SET_COLLECTION_COMICS", response.data.comics);
+            })
+            .catch(error => {
+                if (error.response && error.response.status === 404) {
+                    alert(
+                        "Comics not available. This collection may have been deleted or you have entered an invalid collection ID."
+                    );
+                    this.$router.push("/");
+                }
+            })
+        }
     },
+    created() {
+        this.collectionId = this.$route.params.id;
+        this.retrieveComics();
+    }
 };
 </script>
 <style scoped>

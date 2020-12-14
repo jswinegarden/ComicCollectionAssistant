@@ -2,6 +2,9 @@
   <div>
       <div class="row shadow">
         <h4 class="col-md-12">{{ collectionTitle }}</h4>
+          <div id=thisCollection>
+            <comics-list />
+            </div>
         <p class="row"> collection title </p>
         <span> <router-link class="btn btn-success"
           v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link>
@@ -11,7 +14,7 @@
 </template>
 
 <script>
-import ComicsList from '@/components/ComicsList';
+import ComicsList from '../components/ComicsList';
 export default {
   name: "collection",
   components: {
