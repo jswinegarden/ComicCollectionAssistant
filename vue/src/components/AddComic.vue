@@ -46,6 +46,13 @@ export default {
             comics: {
                 data:{}
             },
+            comic:{
+                comicId:'',
+                comicName:'',
+                comicCharacters:'',
+                authorName:'',
+                datePublished:''
+            }
         }
     },
     methods: {

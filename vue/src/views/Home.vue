@@ -42,7 +42,6 @@
         <p class="row"> collection title </p>
       </div>
     </div>
-
     <div class="row shadow">
       <h4 class="col-md-12">My Collections:</h4>
       <div id="mycollection">
