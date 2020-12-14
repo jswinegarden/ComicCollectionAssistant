@@ -1,16 +1,19 @@
 <template>
-    <div>
-        <form class="row">
-            <div class="col-md-8">
-                <input type="search" class="form-control" placeholder="Search by Issue Name" name="q" >
-            </div>
-        </form>
-        <ul class="comics">
-            <li v-for="comic in comics.data.results" v-bind:key="comic.id" class="row">
-                <div class="col-lg-3">{{comic.title}}</div><div class="col-lg-8">{{comic.description}}</div>
+<span>
+    <div class="row">
+        <input v-model="comicTitle" type="search" class="form-control col-md-9" placeholder="Search by Issue Name" name="q">
+        <button class="btn btn-dark col-md-2" v-on:click="searchComics(comicTitle)">Search</button>
+    </div>
+    <div class="row">
+        <ul class="col-md-4" v-for="comic in comics.data.results" v-bind:key="comic.title">
+            <li class="card">
+                <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+                <p class="card-title">{{comic.title}}</p>
+                <div class="btn btn-dark">add comic</div>
             </li>
         </ul>
     </div>
+</span>
 </template>
 
 <script>
@@ -20,31 +23,40 @@ export default {
     name: "add-comic",
     data(){
         return{
-            comics: {},
+            comicTitle: '',
+            comics: {
+                data:{}
+            },
         }
     },
-    created() {
-        ComicServices.getComicIssue().then(response => {
-            this.comics = response.data;
-        });
+    methods: {
+        searchComics(title) {
+            ComicServices.getComicsByName(title).then(response => {
+                this.comics = response.data;
+                this.comicTitle = '';
+            })
+        }
     }
 }
 </script>
 
 <style scoped>
-form{
+span{
     width: 100%;
-    margin: 0%;
+    margin: auto 2%;
 }
-    div{
-        width: 100%;
-        margin: 0px;
-    }
-    .btn{
-        margin: 0;
-        width: 100%;
-    }
-    .row {
-        padding: 5px;
-    }
+input{
+    margin:auto;
+}
+button{
+    margin:auto;
+}
+.card{
+    margin:10px auto;
+    padding: 5px;
+}
+ul{
+   list-style-type: none; 
+}
+
 </style>

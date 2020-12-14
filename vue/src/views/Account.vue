@@ -4,10 +4,10 @@
 </template>
 
 <script>
-import ViewCollection from '../components/ViewCollection.vue'
+
 export default {
     name: 'Account',
-    components: { ViewCollection },
+    
 }
 </script>
 
