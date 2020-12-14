@@ -1,5 +1,6 @@
 <template>
   <div>
+      
         <div class="row shadow">
       <h4 class="col-md-12">{{ collectionTitle }}</h4>
       <div class="col-md-2 shadow"> image representing comic
