@@ -30,7 +30,7 @@
       <h2> Statistics </h2>
       <p class="text-center" id="stats"> Statistics are something that we hold near and dear to us and our statistics speak for itself with over 5,000 users registered nation wide and over 37,000 comics in our inventory!
       There are plenty of comics to be counted for towards a personalized collection of yours or a few that you are looking out for!
-      </p>
+      </p> 
     <div class="img-container"> 
       <img  class="img-fluid" src="../../img/thorFunny.gif">
     </div>
