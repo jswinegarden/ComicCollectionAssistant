@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import ViewCollection from '@/components/ViewCollection';
+import ComicsList from '@/components/ComicsList';
 export default {
   components: {
-    ViewCollection
+    ComicsList
   }
 };
 </script>
