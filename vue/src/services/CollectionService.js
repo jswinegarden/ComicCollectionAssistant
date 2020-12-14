@@ -13,6 +13,6 @@ export default {
             return axios.get(`/collections`);
         },
         getCollectionByCurrentUser(){
-            return axios.get(`/collections/myCollections`)
+            return axios.get(`/collections/mycollections`)
         }
 }
