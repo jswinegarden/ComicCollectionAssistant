@@ -1,7 +1,4 @@
 body {
-  background-image: url("../../vue/img/HERO\ COLLAGE.png ");
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-image: url("../img/HERO COLLAGE.png");
+  background-size: contain;
 }

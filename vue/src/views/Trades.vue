@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
         <div class="jumbotron jumbotron-fluid shadow">
             <h1>Trades</h1>
             <p>Make a request to exchange with another user a personal comic of yours from one of your collections!
@@ -25,13 +25,6 @@
                 <p class="row"> collection title </p>
              </div>
         </div>
-        <div class="row shadow">
-        </div>
-        <div class="row shadow"> 
-        </div>
-        <footer>
-            &copy;  Comic League Enterprises 2020 &copy;
-        </footer>
     </div>
 </template>
 
@@ -42,6 +35,9 @@ export default {
 </script>
 
 <style scoped>
+.box{
+  height: 1080px;
+}
 .jumbotron {
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: white;

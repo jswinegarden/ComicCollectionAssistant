@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div class="shadow">
+    <div>
+      <div class="nav1"></div>
       <ul class="nav nav-tabs">
         <li class="nav-item">   
           <router-link class="nav-link active" 
@@ -9,7 +10,7 @@
         <li class="nav-item" >
           <p v-if="$store.state.token != ''"></p>
           <router-link class="nav-link" 
-          v-bind:to="{ name: 'viewer' }" v-else>home</router-link>
+          v-bind:to="{ name: 'viewer' }" v-else>Home</router-link>
         </li>
         <li class="nav-item" >
           <p v-if="$store.state.token != ''"></p>
@@ -43,10 +44,13 @@
       </ul>
     </div>
     <router-view/>
+    <footer>
+      &copy;  Comic League Enterprises 2020 &copy;
+    </footer>
   </div>
 </template>
 
-<style scoped>
+<style>
  @font-face {
     font-family: CrashLanding;
     src: url("../fonts/crashlanding-bb.italic.ttf");
@@ -54,17 +58,29 @@
   @font-face {
     font-family: AnimeAce;
     src: url("../fonts/anime-ace.italic.ttf");
- }
+  }
   #app{
     background-image: url("../img/HERO COLLAGE.png");
-    background-repeat: repeat;
     background-size: contain;
-    height: 1176px;
+    background-repeat: repeat;
+    background-attachment:scroll;
+    padding-bottom: 10px;
+  }
+  .nav1{
+  border: solid 3px white;
+  height: 56px;
+  left: 12.5%;
+  top: 0;
+  position: absolute;
+  
   }
   .nav-item {
     background-color:black;
     font-family: CrashLanding;
     font-size: 25px;
+  }
+  .nav-link:hover{
+    color: rgb(226, 209, 75);
   }
   .nav-link {
     color: white;
@@ -72,9 +88,35 @@
   .active.nav-link{
     background-color: lightgrey;
   }
-  .nav-tabs{
+  .nav.nav-tabs{
     width: 75%;
     margin: auto;
     border-bottom: none;
   }
+  div h1{
+  font-family: CrashLanding;
+  font-weight: bold;
+  font-size: 75px;
+  color: black;
+}
+div p{
+  font-family: AnimeAce;
+  color: black;
+}
+h2{
+  text-align: center;
+  color: black;
+  font-size:75px;
+}
+h3{
+  color: black;
+}
+footer {
+  text-align:center;
+  width: 75%;
+  margin: auto;
+  padding: 10px;
+  background-color:rgba(220, 207, 189, 0.94);
+  border: solid 6px white;
+}
 </style>

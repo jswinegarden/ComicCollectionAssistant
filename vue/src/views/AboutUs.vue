@@ -44,13 +44,13 @@ export default {
 }
 </script>
 
-<style >
+<style scoped>
 .jumbotron.jumbotron-fluid {
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: white;
   background-color: rgba(220, 207, 189, 0.94);
   width: 75%;
-  margin: auto;
+  margin: auto auto 10px;
   padding: 20px;
   border: white solid 6px;
 }
@@ -63,28 +63,10 @@ export default {
 #cartoonedPicture{
   height:400px;
 }
-div h1{
-  font-family: CrashLanding;
-  font-weight: bold;
-  font-size: 75px;
-  color: black;
-}
-div p{
-  font-family: AnimeAce;
-  color: black;
-}
 .img-container{
   text-align: center;
   display:block;
   
-}
-h2{
-  text-align: center;
-  color: black;
-  font-size:75px;
-}
-h3{
-  color: black;
 }
 .picturePadding {
   padding-right:150px;

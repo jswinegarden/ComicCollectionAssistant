@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
     <div class="jumbotron jumbotron-fluid shadow">
       <h1>Comic League!</h1>
       <p>Track your collection! Share with your friends!</p>
@@ -64,10 +64,6 @@
         </span>
       </span>
     </div>
-
-    <footer>
-      &copy;  Comic League Enterprises 2020 &copy;
-    </footer>
   </div>
 </template>
 
@@ -78,6 +74,9 @@ export default {
 </script>
 
 <style scoped>
+.box{
+  height: 1080px;
+}
 /* --------------------  header ---------------- */
 .jumbotron {
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -132,21 +131,15 @@ div p.row {
   width: 15%;
   margin: 20px auto;
 }
-.btn-primary{
+.btn-dark{
   width: 100%;
+}
+.btn-dark:hover{
+  background-color: rgb(80, 80, 76);
 }
 .btn-success{
   width: 100%;
 }
-/* ------------- footer ------------ */
-footer {
-  text-align:center;
-  width: 75%;
-  margin:auto;
-  padding: 10px;
-  background-color:rgba(220, 207, 189, 0.94);
-}
-
 /* --------------- for buttons on a smaller screen -------------- */
 @media only screen and (max-width: 800px) {
   .contain{

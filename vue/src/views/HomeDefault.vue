@@ -1,6 +1,6 @@
 /* view of the home page from a user who is not logged in */
 <template>
-    <div>
+    <div class="box">
         <div class="jumbotron jumbotron-fluid shadow">
             <h1>Comic League!</h1>
             <p>Track your collection! Share with your friends!</p>
@@ -24,13 +24,6 @@
                 <p class="row"> collection title </p>
              </div>
         </div>
-        <div class="row shadow">
-        </div>
-        <div class="row shadow"> 
-        </div>
-        <footer>
-            &copy;  Comic League Enterprises 2020 &copy;
-        </footer>
     </div>
 </template>
 
@@ -41,6 +34,9 @@ export default {
 </script>
 
 <style scoped>
+.box{
+  height: 1080px;
+}
 .jumbotron {
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   color: white;
@@ -80,11 +76,5 @@ div p.row {
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-footer {
-  text-align:center;
-  width: 75%;
-  margin:auto;
-  padding: 10px;
-  background-color:rgba(220, 207, 189, 0.94);
-}
+
 </style>

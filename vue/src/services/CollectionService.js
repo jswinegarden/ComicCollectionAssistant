@@ -11,5 +11,8 @@ export default {
         },
         getAllCollections(){
             return axios.get(`/collections`);
+        },
+        getCollectionByCurrentUser(){
+            return axios.get(`/collections/myCollections`)
         }
 }
