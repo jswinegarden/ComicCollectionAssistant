@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /* view of the home page from a user who is not logged in */
 <template>
     <div>
@@ -90,4 +88,3 @@ footer {
   background-color:rgba(220, 207, 189, 0.94);
 }
 </style>
->>>>>>> 8d057ef11560b25b9f6806f871f6dec83edcb05b

@@ -1,25 +1,17 @@
 <template>
 <div>
   <div class="jumbotron jumbotron-fluid shadow">
-      <h1>Comic Book Title Goes Here</h1>
+      <h1>Comic book</h1>
   </div>
   <div class="row shadow">
-      <h4 class="col-md-12">Featured Collections:</h4>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
+      
+      <div class="col-md shadow"> Image For Comic Book
+        
       </div>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
+       <div class="col-md shadow"> Comic Book Title
+        <p class="row"> Comic Book Details Insert Here </p>
       </div>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
-      </div>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
-      </div>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
-      </div>
+      
     </div>
     <footer>
       &copy;  Comic League Enterprises 2020
@@ -62,7 +54,7 @@ div.row {
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 /* ------------------ collection boxes ---------- */
-.col-md-2{
+.col-md{
   margin: 20px auto;
   padding: 0px;
   background-color: white; /*replace with image that represents collection */
@@ -72,10 +64,11 @@ div.row {
 }
 div p.row {
   width: 100%;
-  height: 30px;
+  height: 100px;
   display: block;
   border-top: darkgrey solid 1px;
   padding: 5px;
+  text-align: left;
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
@@ -95,6 +88,5 @@ footer {
     margin:auto auto 20px;
   }  
 }
-<style>
 
 </style>
