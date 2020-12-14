@@ -14,6 +14,7 @@ import Account from '../views/Account.vue'
 import LeaderBoard from '../views/Leaderboard.vue'
 import Friends from '../views/Friends.vue'
 import Trades from '../views/Trades.vue'
+import Collection from '../views/Collection.vue'
 Vue.use(Router)
 
 /**
@@ -136,6 +137,13 @@ const router = new Router({
        requiresAuth: true
      },
    },
+   {path:"/collection",
+    name: "collection",
+    component: Collection,
+  meta: {
+    requiresAuth: true
+  },
+}
    
   ]
 })

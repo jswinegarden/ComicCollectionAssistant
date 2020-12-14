@@ -8,5 +8,8 @@ export default {
         },
         viewCollection(collection){
             return axios.get(`/collections/${collectionId}`)
+        },
+        getAllCollections(collection){
+            return axios.get(`/collections`);
         }
 }
