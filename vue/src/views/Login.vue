@@ -86,7 +86,7 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/");
+            this.$router.push("/home");
           }
         })
         .catch(error => {
@@ -141,7 +141,8 @@ export default {
   border-radius: 1rem;
   background-image: url("https://thumbs.dreamstime.com/b/comic-pop-art-background-lightning-blast-halftone-dots-cartoon-vector-illustration-orange-comic-background-151418372.jpg%22");
   background-size: 105%;
-
+background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .form-signin {
