@@ -1,28 +1,15 @@
 <template>
-    <div>
-        <div class="row shadow">
-      <h4 class="col-md-12">My Collections:</h4>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
+  <div>
+      <div class="jumbotron jumbotron-fluid shadow">
+        <h1> My Account </h1> 
+        <p> All of your accounts details </p>
       </div>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
+      <div class="row shadow">
+          <h4 class="col-md-12"> My Collections </h4>
+          <div class="col-md-2 shadow"> 
+          </div>
       </div>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
-      </div>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
-      </div>
-      <span class="contain"> <router-link class="btn btn-dark" 
-        v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
-        <span> <router-link class="btn btn-success"
-          v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link>
-        </span>
-      </span>
-    </div>
-    
-    </div>
+  </div>
 </template>
 
 <script>
@@ -33,7 +20,16 @@ export default {
 </script>
 
 <style scoped>
-
+/* --------------------  header ---------------- */
+.jumbotron {
+  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: white;
+  background-color: rgba(220, 207, 189, 0.94);
+  width: 75%;
+  margin: auto;
+  padding: 20px;
+  border: white solid 6px;
+}
 /* ------------------------ collection sections ------------- */
 div.row {
   background-color:rgba(220, 207, 189, 0.94);
@@ -65,22 +61,5 @@ div p.row {
   padding: 5px;
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-.col-md-12 .btn{
-  margin: auto;
-  background-color: none;
-  border: none;
-  padding: 5px;
-}
-/* ----------- add comic and new collection buttons ------- */
-.contain {
-  width: 15%;
-  margin: 20px auto;
-}
-.btn-primary{
-  width: 100%;
-}
-.btn-success{
-  width: 100%;
 }
 </style>

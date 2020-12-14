@@ -4,13 +4,16 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
+import Comic from '../views/Comic.vue'
 import NewCollection from '../views/NewCollection'
 import NewComic from '../views/NewComic'
 import store from '../store/index'
 import AboutUs from '../views/AboutUs.vue'
 import Viewer from '../views/HomeDefault.vue'
 import Account from '../views/Account.vue'
-
+import LeaderBoard from '../views/Leaderboard.vue'
+import Friends from '../views/Friends.vue'
+import Trades from '../views/Trades.vue'
 Vue.use(Router)
 
 /**
@@ -62,6 +65,14 @@ const router = new Router({
       }
     },
     {
+      path: "/comic",
+      name: "comic",
+      component: Comic,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
       path: "/newCollection",
       name: "newCollection",
       component: NewCollection,
@@ -99,8 +110,32 @@ const router = new Router({
     component: Account,
     meta:{
       requiresAuth: true
-    }
-    }
+      }
+    },
+    {
+    path:"/leaderboard",
+    name:"leaderboard",
+    component: LeaderBoard,
+    meta:{
+      requiresAuth: false
+     }
+   },
+   {
+     path:"/friends",
+     name:"friends",
+     component: Friends,
+     meta:{
+       requiresAuth: true
+     }
+   },
+   {
+     path:"/trades",
+     name:"trades",
+     component: Trades,
+     meta:{
+       requiresAuth: true
+     }
+   },
   ]
 })
 

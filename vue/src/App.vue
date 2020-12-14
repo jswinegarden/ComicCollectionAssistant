@@ -4,7 +4,17 @@
       <ul class="nav nav-tabs">
         <li class="nav-item">   
           <router-link class="nav-link active" 
-          v-bind:to="{ name: 'home' }">Home</router-link>
+          v-bind:to="{ name: 'home' }" v-show="$store.state.token != ''">Home</router-link>
+        </li>
+        <li class="nav-item" >
+          <p v-if="$store.state.token != ''"></p>
+          <router-link class="nav-link" 
+          v-bind:to="{ name: 'viewer' }" v-else>home</router-link>
+        </li>
+        <li class="nav-item" >
+          <p v-if="$store.state.token != ''"></p>
+          <router-link class="nav-link" 
+          v-bind:to="{ name: 'login' }" v-else>Login</router-link>
         </li>
         <li class="nav-item" >
           <router-link class="nav-link" 
@@ -12,19 +22,19 @@
         </li>
         <li class="nav-item">
           <router-link class="nav-link" 
-          v-bind:to="{ name: 'home' }"  v-show="$store.state.token != ''">Friends</router-link>
+          v-bind:to="{ name: 'friends' }"  v-show="$store.state.token != ''">Friends</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" 
-          v-bind:to="{ name: 'home' }"  v-show="$store.state.token != ''">Trades</router-link>
+          v-bind:to="{ name: 'trades' }"  v-show="$store.state.token != ''">Trades</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" 
-          v-bind:to="{ name: 'home' }" v-show="$store.state.token != ''">Leaderboards</router-link>
+          v-bind:to="{ name: 'leaderboard' }" v-show="$store.state.token != ''">Leaderboards</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link"
-          v-bind:to="{name: 'aboutUs'}" v-show="$store.state.token != ''"> About Us </router-link>
+          v-bind:to="{name: 'aboutUs'}"> About Us </router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" 
