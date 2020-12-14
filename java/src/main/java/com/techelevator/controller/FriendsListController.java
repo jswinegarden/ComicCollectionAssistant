@@ -39,6 +39,7 @@ public class FriendsListController {
 		this.userDAO = userDao;
 	}
 
+	//Do we add an ID to the pathway to create a certain friend request?
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public FriendsList createRequest(@Valid @RequestBody NewFriendRequestDTO friendRequestDTO, Principal principal) {
@@ -46,10 +47,20 @@ public class FriendsListController {
 		validateAuthorizationToCreate(principal, friendsList);
 		friendsList = friendListDAO.newRequest(friendsList);
 		if(friendsList.isApproved()) {
-			
+			return friendsList;
 		}
 		return friendsList;
 	}
+	
+	//Do we add an ID to the pathway to delete a certain friend request?
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@RequestMapping(value = "", method = RequestMethod.DELETE)
+	public void deleteRequest(@Valid @RequestBody NewFriendRequestDTO friendRequestDTO, Principal principal) {
+		FriendsList friendsList = buildRequestFromRequestDTO(friendRequestDTO);
+		validateAuthorizationToDelete(principal, friendsList);
+		
+	}
+	
 	
 	private FriendsList buildRequestFromRequestDTO(NewFriendRequestDTO friendRequestDTO) {
 		User userFrom = userDAO.getUserById(friendRequestDTO.getUserFrom());
@@ -72,6 +83,13 @@ public class FriendsListController {
         if(!auth.isAllowedToCreate()) {
         	throw new AuthorizationException();
         }
+	}
+	
+	private void validateAuthorizationToDelete(Principal principal, FriendsList friendsList) {
+		FriendsListAuthorization auth = new FriendsListAuthorization(principal, friendsList);
+		if(!auth.isAllowedToDelete()) {
+			throw new AuthorizationException();
+		}
 	}
 	
 	private void validateAuthorizationToUpdateStatus(Principal principal, FriendsList friendsList) {
