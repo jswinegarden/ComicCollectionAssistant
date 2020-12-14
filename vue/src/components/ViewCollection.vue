@@ -11,7 +11,7 @@
                 >
                 <div class="header">
                     <h3> {{ collection.title }}</h3>
-                    <img :src="" />
+                    <img  />
                 </div>
             </div>
         </div>
