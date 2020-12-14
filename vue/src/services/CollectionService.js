@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-export default {
-    methods:{
-        saveCollection(){
-            
-        }
-    }
 
+
+export default {
+        createCollection(collection){
+            return axios.post(`/collections/`, collection)
+        },
 }
