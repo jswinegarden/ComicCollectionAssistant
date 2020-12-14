@@ -1,12 +1,14 @@
 <template>
   <div>
         <div class="jumbotron jumbotron-fluid shadow">
-            <h1>LeaderBoards</h1>
-            <p>Track who has the best personal stats throughout the whole site!</p>
+            <h1>Trades</h1>
+            <p>Make a request to exchange with another user a personal comic of yours from one of your collections!
+            Keep track of your previous trades here!
+            </p>
         </div>
 
         <div class="row shadow">
-             <h4 class="col-md-12">Leaderboard example 1:</h4>
+             <h4 class="col-md-12">Previous Trades:</h4>
              <div class="col-md-2 shadow"> image representing collection
                 <p class="row"> collection title </p>
              </div>
