@@ -7,7 +7,7 @@
 
     <div class="row shadow">
       <h4 class="col-md-12">Featured Collections:</h4>
-      <div class="col-md-2 shadow"> image representing collection
+      <div class="col-md-2 shadow">image representing collection
         <p class="row"> collection title </p>
       </div>
       <div class="col-md-2 shadow"> image representing collection
@@ -45,37 +45,26 @@
 
     <div class="row shadow">
       <h4 class="col-md-12">My Collections:</h4>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
+      <div id="mycollection">
+        <get-my-collections />
       </div>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
-      </div>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
-      </div>
-      <div class="col-md-2 shadow"> image representing collection
-        <p class="row"> collection title </p>
-      </div>
-      <span class="contain"> <router-link class="btn btn-dark" 
-        v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
-        <span> <router-link class="btn btn-success"
-          v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link>
-        </span>
-      </span>
     </div>
   </div>
 </template>
 
 <script>
+import GetMyCollections from '../components/GetMyCollections.vue'
 export default {
   name: "home",
+  components: { GetMyCollections },
 };
 </script>
 
 <style scoped>
-.box{
-  height: 1080px;
+#mycollection{
+  width: 100%;
+  margin: auto;
+  padding: 10px auto;
 }
 /* --------------------  header ---------------- */
 .jumbotron {
@@ -125,26 +114,5 @@ div p.row {
   border: none;
   padding: 5px;
   
-}
-/* ----------- add comic and new collection buttons ------- */
-.contain {
-  width: 15%;
-  margin: 20px auto;
-}
-.btn-dark{
-  width: 100%;
-}
-.btn-dark:hover{
-  background-color: rgb(80, 80, 76);
-}
-.btn-success{
-  width: 100%;
-}
-/* --------------- for buttons on a smaller screen -------------- */
-@media only screen and (max-width: 800px) {
-  .contain{
-    width: 75%;
-    margin:auto auto 20px;
-  }  
 }
 </style>
