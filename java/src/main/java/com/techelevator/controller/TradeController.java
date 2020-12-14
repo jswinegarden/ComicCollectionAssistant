@@ -53,7 +53,7 @@ public class TradeController {
 	
 	@ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Trade createTransfer(@Valid @RequestBody NewTradeDTO tradeDTO, Principal principal) {
+    public Trade createTrade(@Valid @RequestBody NewTradeDTO tradeDTO, Principal principal) {
     	Trade trade = buildTradeFromTradeDTO(tradeDTO);
     	validateAuthorizationToCreate(principal, trade);
     	trade = tradeDAO.newTrade(trade);
