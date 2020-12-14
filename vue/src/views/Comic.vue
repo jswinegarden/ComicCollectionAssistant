@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 !<template>
 <div>
   <div class="jumbotron jumbotron-fluid shadow">
@@ -25,6 +26,10 @@
       &copy;  Comic League Enterprises 2020
     </footer>
 </div>
+=======
+<template>
+  
+>>>>>>> 8d057ef11560b25b9f6806f871f6dec83edcb05b
 </template>
 
 <script>
@@ -33,6 +38,7 @@ export default {
 }
 </script>
 
+<<<<<<< HEAD
 <style scoped>
 
 .jumbotron {
@@ -93,4 +99,8 @@ footer {
     margin:auto auto 20px;
   }  
 }
+=======
+<style>
+
+>>>>>>> 8d057ef11560b25b9f6806f871f6dec83edcb05b
 </style>
