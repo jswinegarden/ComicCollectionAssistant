@@ -10,6 +10,7 @@ import NewComic from '../views/NewComic'
 import store from '../store/index'
 import AboutUs from '../views/AboutUs.vue'
 import Viewer from '../views/HomeDefault.vue'
+import Account from '../views/Account.vue'
 
 Vue.use(Router)
 
@@ -101,6 +102,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+    path:"/account",
+    name:"account",
+    component: Account,
+    meta:{
+      requiresAuth: true
+    }
+    }
   ]
 })
 

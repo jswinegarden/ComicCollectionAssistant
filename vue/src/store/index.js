@@ -40,6 +40,9 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    SET_COLLECTIONS(state, data) {
+      state.collections = data;
     }
   }
 })
