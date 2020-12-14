@@ -1,40 +1,43 @@
 <template>
-    <div>
-        <div class="collections">
-            <router-link :to="{ name: 'Collection', params: {id: collection.id} }"
-            class="collection"
-            v-for="collection in this.$store.state.collections"
-            v-bind:key="collection.id"
-            >
-                {{ collection.title }}
-            </router-link>
-        </div>
-    </div>
+<span class="row">
+        <ul class="col-md-3" v-for="comic in comics" v-bind:key="comic.id">
+           <li class="comic">
+                <img class="camic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+                <p class="comic-title">{{comic.comicTitle}}</p>
+            </li>
+        </ul>
+  </span>
 </template>
 
 <script>
-import collectionService from '../services/CollectionService';
+import comicServices from '../services/ComicServices';
 
 export default {
-    name: 'view-collection',
-    methods: {
-        retrieveComics() {
-            collectionService
-                .viewCollection(this.collectionId)
-                .then(response => {
-                    this.title = response.data.title;
-                    this.$store.commit("SET_COLLECTION_COMICS", response.data.comics);
-                })
-                .catch(error => {
-                    if (error.response && error.response.status === 404) {
-                        alert(
-                            "Comics not available. This collection may have been deleted or you have entered an invalid collection ID."
-                        );
-                        this.$router.push("/");
-                    }
-                });
+    name: 'comics-list',
+    data(){
+        return{
+            comics:{
+            },
         }
-    }
+    },
+    created(){
+        ComicServices.getComicsByColectionId().then(response => {
+            this.comics = response.data
+        })
+    },
 };
 </script>
-/* references CardList from week19 lecture code */
+<style scoped>
+.comic{
+    padding:10px;
+}
+.comic:hover{
+    background-color: wheat;
+}
+.comic-title{
+    padding-top: 10px;
+}
+.row{
+   margin: 10px auto;
+}
+</style>
