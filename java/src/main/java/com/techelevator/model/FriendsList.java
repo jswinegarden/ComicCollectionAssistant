@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class FriendsList {
 	private Long requestId;
-	private User userFrom;
-	private User userTo;
+	private Long userFrom;
+	private Long userTo;
 	private String friendListRequestStatus;
 	private String friendListRequestType;
 	
@@ -15,11 +15,11 @@ public class FriendsList {
     public static final String FRIEND_LIST_REQUEST_STATUS_APPROVED = "Approved";
     public static final String FRIEND_LIST_REQUEST_STATUS_REJECTED = "Rejected";
 	
-    public FriendsList(String friendListRequestType, User userFrom, User userTo) {
+    public FriendsList(String friendListRequestType, Long userFrom, Long userTo) {
     	this(null, friendListRequestType, getInitialStatusForFriendsListRequestType(friendListRequestType), userFrom, userTo);
     }
     	
-    public FriendsList(Long requestId, String friendListRequestStatus, String friendListRequestType, User userFrom, User userTo) {
+    public FriendsList(Long requestId, String friendListRequestStatus, String friendListRequestType, Long userFrom, Long userTo) {
 		this.requestId = requestId;
 		this.friendListRequestType = friendListRequestType;
 		this.friendListRequestStatus = friendListRequestStatus;
@@ -31,11 +31,11 @@ public class FriendsList {
 		return requestId;
 	}
 	
-	public User getUserFrom() {
+	public Long getUserFrom() {
 		return userFrom;
 	}
 	
-	public User getUserTo() {
+	public Long getUserTo() {
 		return userTo;
 	}
 	

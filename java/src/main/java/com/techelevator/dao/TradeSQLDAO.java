@@ -34,7 +34,7 @@ public class TradeSQLDAO implements TradeDAO{
 	
 	@Override
 	public Trade newTrade(Trade someTrade) {
-		String sql = "INSERT INTO trades(trade_id, trade_type_id, trade_status_id, user_from, user_to, comic_id) VALUES (?, ?, ?, ?, ?,?)";
+		String sql = "INSERT INTO trades(trade_id, trade_type_id, trade_status_id, account_from, account_to, comic_id) VALUES (?, ?, ?, ?, ?,?)";
 		Long newTradeId = getnextTradeId();
 		Long tradeTypeId = getTradeTypeId(someTrade.getTradeType());
 		Long tradeStatusId = getTradeStatusId(someTrade.getTradeStatus());

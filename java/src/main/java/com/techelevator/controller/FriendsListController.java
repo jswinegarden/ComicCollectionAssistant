@@ -1,6 +1,8 @@
 package com.techelevator.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -33,10 +35,10 @@ public class FriendsListController {
 	private AccountDAO accountDAO;
 	private UserDAO userDAO;
 	
-	public FriendsListController(FriendListDAO friendListDAO, AccountDAO accountDAO, UserDAO userDao) {
+	public FriendsListController(FriendListDAO friendListDAO, AccountDAO accountDAO, UserDAO userDAO) {
 		this.friendListDAO = friendListDAO;
 		this.accountDAO = accountDAO;
-		this.userDAO = userDao;
+		this.userDAO = userDAO;
 	}
 
 	//Do we add an ID to the pathway to create a certain friend request?
@@ -44,7 +46,6 @@ public class FriendsListController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public FriendsList createRequest(@Valid @RequestBody NewFriendRequestDTO friendRequestDTO, Principal principal) {
 		FriendsList friendsList = buildRequestFromRequestDTO(friendRequestDTO);
-		validateAuthorizationToCreate(principal, friendsList);
 		friendsList = friendListDAO.newRequest(friendsList);
 		if(friendsList.isApproved()) {
 			return friendsList;
@@ -52,12 +53,19 @@ public class FriendsListController {
 		return friendsList;
 	}
 	
+	@RequestMapping(value = "/myFriends", method = RequestMethod.GET)
+	public List <FriendsList> allCurrentUsersFriends(Principal principal){
+		List <FriendsList> allFriends = new ArrayList<>();
+		Long userId = getCurrentUserId(principal);
+		return friendListDAO.getApprovedRequestsForUser(userId);
+		
+	}
+	
 	//Do we add an ID to the pathway to delete a certain friend request?
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@RequestMapping(value = "", method = RequestMethod.DELETE)
 	public void deleteRequest(@Valid @RequestBody NewFriendRequestDTO friendRequestDTO, Principal principal) {
 		FriendsList friendsList = buildRequestFromRequestDTO(friendRequestDTO);
-		validateAuthorizationToDelete(principal, friendsList);
 		
 	}
 	
@@ -66,38 +74,17 @@ public class FriendsListController {
 		User userFrom = userDAO.getUserById(friendRequestDTO.getUserFrom());
 		User userTo = userDAO.getUserById(friendRequestDTO.getUserTo());
 		
-		return new FriendsList(friendRequestDTO.getFriendListRequestType(),
-									userFrom,
-									userTo);
+//		return new FriendsList(friendRequestDTO.getFriendListRequestType(),
+//									userFrom,
+//									userTo);
+		return null;
 	}
 	
-	private void validateAuthorizationToView(Principal principal, FriendsList friendsList) {
-		FriendsListAuthorization auth = new FriendsListAuthorization(principal, friendsList);
-        if(!auth.isAllowedToView()) {
-        	throw new AuthorizationException();
-        }
+	private Long getCurrentUserId(Principal principal) {
+		return userDAO.findByUsername(principal.getName()).getId();
 	}
 	
-	private void validateAuthorizationToCreate(Principal principal, FriendsList friendsList) {
-		FriendsListAuthorization auth = new FriendsListAuthorization(principal, friendsList);
-        if(!auth.isAllowedToCreate()) {
-        	throw new AuthorizationException();
-        }
-	}
 	
-	private void validateAuthorizationToDelete(Principal principal, FriendsList friendsList) {
-		FriendsListAuthorization auth = new FriendsListAuthorization(principal, friendsList);
-		if(!auth.isAllowedToDelete()) {
-			throw new AuthorizationException();
-		}
-	}
-	
-	private void validateAuthorizationToUpdateStatus(Principal principal, FriendsList friendsList) {
-		FriendsListAuthorization auth = new FriendsListAuthorization(principal, friendsList);
-        if(!auth.isAllowedToApproveOrReject()) {
-        	throw new AuthorizationException();
-        }
-	}
 	
 }
 
