@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
+import Comic from '../views/Comic.vue'
 import NewCollection from '../views/NewCollection'
 import NewComic from '../views/NewComic'
 import store from '../store/index'
@@ -56,6 +57,14 @@ const router = new Router({
       path: "/register",
       name: "register",
       component: Register,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/comic",
+      name: "comic",
+      component: Comic,
       meta: {
         requiresAuth: false
       }
