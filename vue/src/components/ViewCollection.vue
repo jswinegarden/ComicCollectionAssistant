@@ -1,15 +1,20 @@
 <template>
     <div>
-    <div id="Collection">
-        <h1>{{ title }}</h1>
-            <router-link :to="{ name: 'Account', params: { id: collection.id } }"
-            class="collection"
-            v-for="collection in this.$store.state.collections"
-            v-bind:key="collection.id"
-            v-bind:style="{ 'background-color': collection.backgroundColor }"
-            >
-            </router-link>
-    </div>
+        <div class="account">
+            <h2>{{ title }}</h2>
+            <div class="collections">
+                <div
+                    class="collection"
+                    v-for="collection in collections"
+                    v-bind:key="collection.id"
+                    v-on:click="viewCollection(collection.id)"
+                >
+                <div class="header">
+                    <h3> {{ collection.title }}</h3>
+                    <img :src="" />
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -17,21 +22,12 @@
 import collectionService from '../services/CollectionService';
 
 export default {
-    data() {
-        return {
-
-        };
-    },
+    name: 'account',
+    props: ['title', 'collections', 'collectionId'],
     methods: {
-        retrieveCollections() {
-            collectionService.viewCollections().then(response => {
-                this.$store.commit("SET_COLLECTIONS", response.data);
-                
-                if (this.$route.name == "Account" && response.status === 200 && response.data.length > 0) {
-                    this.$router.push(`/account/${response.data[0].id}`);
-                }
-            });
-        },
+        viewCollection(collectionId) {
+            this.$router.push(`/collection/${this.collectionId}`);
+        }
     }
-}
+};
 </script>
