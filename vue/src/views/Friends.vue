@@ -1,12 +1,14 @@
 <template>
   <div>
         <div class="jumbotron jumbotron-fluid shadow">
-            <h1>LeaderBoards</h1>
-            <p>Track who has the best personal stats throughout the whole site!</p>
+            <h1>Friends</h1>
+            <p> Our newest feature the friend system! A way to stay close to those registered on our site and a way to see the collections of 
+                all of your friends regardless of their privacy status for a collection! 
+            </p>
         </div>
 
         <div class="row shadow">
-             <h4 class="col-md-12">Leaderboard example 1:</h4>
+             <h4 class="col-md-12">All Friends</h4>
              <div class="col-md-2 shadow"> image representing collection
                 <p class="row"> collection title </p>
              </div>
@@ -24,6 +26,10 @@
              </div>
         </div>
         <div class="row shadow">
+            <h4 class="col-md-12">Pending Friends</h4>
+             <div class="col-md-2 shadow"> image representing collection
+                <p class="row"> collection title </p>
+             </div>
         </div>
         <div class="row shadow"> 
         </div>
