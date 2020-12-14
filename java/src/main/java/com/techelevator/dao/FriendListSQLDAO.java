@@ -16,9 +16,11 @@ public class FriendListSQLDAO implements FriendListDAO{
 	private UserDAO userDAO;
 	private AccountDAO accountDAO;
 	
-	private static final String SQL_SELECT_REQUEST = "";
-	
-	private static final String SQL_SELECT_FRIENDS_LIST = "SELECT friend_list_id,";
+	private static final String SQL_SELECT_REQUEST = "SELECT friend_list_id, userFrom.username AS UserFrom, userTo.username AS UserTo, fs.friend_request_status_desc AS Status"
+						+ " FROM friends_list"
+						+ " INNER JOIN users userFrom ON userFrom.user_id = friends_list.user_from "
+						+ " INNER JOIN users userTo ON userTo.user_id = friends_list.user_to"
+						+ " INNER JOIN friend_request_statuses fs USING (friend_request_status_id)";
 	
 	private FriendListSQLDAO(JdbcTemplate jdbcTemplate, UserDAO userDAO) {
 		this.jdbcTemplate = jdbcTemplate;
@@ -28,22 +30,33 @@ public class FriendListSQLDAO implements FriendListDAO{
 	
 	@Override
 	public FriendsList newRequest(FriendsList someRequest) {
-		String sql = "INSERT INTO friends_list(friend_list_id, friend_request_type_id, friend_request_status_id, user_from, user_to) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO friends_list(friend_list_id, friend_request_type_id, friend_request_status_id, user_from, user_to) VALUES (?, ?, ?, ?, ?)";
 		Long newRequestId = getNextRequestId();
 		Long requestTypeId = getRequestTypeId(someRequest.getRequestType());
 		Long requestStatusId = getRequestStatusId(someRequest.getRequestStatus());
-	//Account fromAccount = accountDAO.getAccountByUserId(someRequest.getUserFrom().getId());
-		//Account toAccount = accountDAO.getAccountByUserId(someRequest.getUserTo().getId());
+		Long userFrom = someRequest.getUserFrom();
+		Long userTo = someRequest.getUserTo();
 		
-		//jdbcTemplate.update(sql, newRequestId, requestTypeId, requestStatusId, fromAccount.getAccountId(), toAccount.getAccountId());
+		jdbcTemplate.update(sql, newRequestId, requestTypeId, requestStatusId, userFrom, userTo);
 		return getRequestById(newRequestId);
 	}
 
 	@Override
 	public void updateRequestStatus(FriendsList someRequest) {
-		String sql = "UPDATE friends_list SET friend_request_status_id = ? WHERE friend_list_id = ?";
-		Long requestStatusId = getRequestStatusId(someRequest.getRequestStatus());
-		jdbcTemplate.update(sql, requestStatusId, someRequest.getRequestId());
+//		String sql = "UPDATE friends_list SET friend_request_status_id = ? WHERE friend_list_id = ?";
+//		Long requestStatusId = getRequestStatusId(someRequest.getRequestStatus());
+//		jdbcTemplate.update(sql, requestStatusId, someRequest.getRequestId());
+	}
+	
+	@Override
+	public List<FriendsList> getAllRequests (){
+		List <FriendsList> friendsLists = new ArrayList<>();
+		SqlRowSet results = jdbcTemplate.queryForRowSet(SQL_SELECT_REQUEST);
+		while(results.next()) {
+			FriendsList friends = mapRowToFriendsList(results);
+			friendsLists.add(friends);
+		}
+		return friendsLists;
 	}
 	
 	@Override
@@ -64,22 +77,22 @@ public class FriendListSQLDAO implements FriendListDAO{
 	}
 
 	@Override
-	public String getRequestType(int requestTypeId) {
+	public String getRequestType(Long requestTypeId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getRequestStatus(int requestStatusId) {
+	public String getRequestStatus(Long requestStatusId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<FriendsList> getPendingRequestsForUser(Long userId) {
-		String sql = SQL_SELECT_REQUEST + "WHERE friend_request_status_id = 1 AND account_from IN (SELECT account_id FROM accounts WHERE user_id = ?)";
+		String sql = SQL_SELECT_REQUEST + "WHERE (userFrom.user_id = ? OR userTo.user_id = ?) AND friend_request_status_id = 1)";
 		List<FriendsList> friendsLists = new ArrayList<>();
-		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, userId);
 		while(results.next()) {
 			FriendsList friendsList = mapRowToFriendsList(results);
 			friendsLists.add(friendsList);

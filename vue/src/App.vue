@@ -31,7 +31,7 @@
         </li>
         <li class="nav-item">
           <router-link class="nav-link" 
-          v-bind:to="{ name: 'leaderboard' }" v-show="$store.state.token != ''">Leaderboards</router-link>
+          v-bind:to="{ name: 'leaderboard' }" >Leaderboards</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link"
