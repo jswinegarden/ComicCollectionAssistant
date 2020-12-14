@@ -18,7 +18,7 @@
         </li>
         <li class="nav-item" >
           <router-link class="nav-link" 
-          v-bind:to="{ name: 'home' }" v-show="$store.state.token != ''">Account</router-link>
+          v-bind:to="{ name: 'account' }" v-show="$store.state.token != ''">Account</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" 
