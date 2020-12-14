@@ -134,8 +134,9 @@ const router = new Router({
      component: Trades,
      meta:{
        requiresAuth: true
-     }
+     },
    },
+   
   ]
 })
 

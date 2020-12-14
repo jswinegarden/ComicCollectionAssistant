@@ -1,19 +1,13 @@
 <template>
     <div>
-        <div class="account">
-            <h2>{{ title }}</h2>
-            <div class="collections">
-                <div
-                    class="collection"
-                    v-for="collection in collections"
-                    v-bind:key="collection.id"
-                    v-on:click="viewCollection(collection.id)"
-                >
-                <div class="header">
-                    <h3> {{ collection.title }}</h3>
-                    <img  />
-                </div>
-            </div>
+        <div class="collections">
+            <router-link :to="{ name: 'Collection', params: {id: collection.id} }"
+            class="collection"
+            v-for="collection in this.$store.state.collections"
+            v-bind:key="collection.id"
+            >
+                {{ collection.title }}
+            </router-link>
         </div>
     </div>
 </template>
@@ -22,11 +16,23 @@
 import collectionService from '../services/CollectionService';
 
 export default {
-    name: 'account',
-    props: ['title', 'collections', 'collectionId'],
+    name: 'view-collection',
     methods: {
-        viewCollection(collectionId) {
-            this.$router.push(`/collection/${this.collectionId}`);
+        retrieveComics() {
+            collectionService
+                .viewCollection(this.collectionId)
+                .then(response => {
+                    this.title = response.data.title;
+                    this.$store.commit("SET_COLLECTION_COMICS", response.data.comics);
+                })
+                .catch(error => {
+                    if (error.response && error.response.status === 404) {
+                        alert(
+                            "Comics not available. This collection may have been deleted or you have entered an invalid collection ID."
+                        );
+                        this.$router.push("/");
+                    }
+                });
         }
     }
 };

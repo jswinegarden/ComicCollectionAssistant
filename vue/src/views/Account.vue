@@ -5,18 +5,30 @@
         <p> All of your accounts details </p>
       </div>
       <div class="row shadow">
-          <h4 class="col-md-12"> My Collections </h4>
-          <div class="col-md-2 shadow"> 
-          </div>
+      <h4 class="col-md-12">My Collections:</h4>
+      <div class="col-md-2 shadow"> image representing collection
+        <p class="row"> collection title </p>
       </div>
+      <div class="col-md-2 shadow"> image representing collection
+        <p class="row"> collection title </p>
+      </div>
+      <div class="col-md-2 shadow"> image representing collection
+        <p class="row"> collection title </p>
+      </div>
+      <div class="col-md-2 shadow"> image representing collection
+        <p class="row"> collection title </p>
+      </div>
+      <span class="contain"> <router-link class="btn btn-dark" 
+        v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
+        <span> <router-link class="btn btn-success"
+          v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link>
+        </span>
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
-import ViewCollection from '../components/ViewCollection';
-export default {
-    components: { ViewCollection }
-};
 </script>
 
 <style scoped>
@@ -61,5 +73,16 @@ div p.row {
   padding: 5px;
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+/* ----------- add comic and new collection buttons ------- */
+.contain {
+  width: 15%;
+  margin: 20px auto;
+}
+.btn-primary{
+  width: 100%;
+}
+.btn-success{
+  width: 100%;
 }
 </style>

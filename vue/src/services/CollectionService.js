@@ -7,6 +7,6 @@ export default {
             return axios.post(`/collections/`, collection)
         },
         viewCollection(collection){
-            return axios.get(`/collections/`, collection)
+            return axios.get(`/collections/${collectionId}`)
         }
 }
