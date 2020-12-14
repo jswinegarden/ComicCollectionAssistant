@@ -34,7 +34,7 @@ const router = new Router({
   },
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: Home,
       meta: {
@@ -98,7 +98,7 @@ const router = new Router({
       }
     },
     {
-      path:"/viewer",
+      path:"/",
       name:"viewer",
       component: Viewer,
       meta:{
