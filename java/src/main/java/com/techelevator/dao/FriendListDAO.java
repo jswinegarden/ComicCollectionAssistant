@@ -7,6 +7,7 @@ import com.techelevator.model.FriendsList;
 public interface FriendListDAO {
 	FriendsList newRequest(FriendsList someRequest);
 	void updateRequestStatus(FriendsList someRequest);
+	List<FriendsList> getApprovedRequestsForUser(Long userId);
 	String getRequestType(int requestTypeId);
 	String getRequestStatus(int requestStatusId);
 	List<FriendsList> getPendingRequestsForUser(Long userId);

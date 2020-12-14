@@ -12,37 +12,37 @@ public class FriendsListAuthorization {
 		this.friendsList = friendsList;
 	}
 	
-	public boolean isAllowedToView() {
-		return principalUsername().equals(fromUsername()) ||
-				principalUsername().equals(toUsername());
-	}
-	
-	public boolean isAllowedToCreate() {
-		boolean isAllowed = false;
-		if(friendsList.isRequestType()) {
-			isAllowed = principalUsername().equals(toUsername());
-		} else if(friendsList.isSendType()) {
-			isAllowed = principalUsername().equals(fromUsername());
-		}
-		return isAllowed;
-	}
-	
-	public boolean isAllowedToDelete() {
-		return principalUsername().equals(fromUsername());
-		
-	}
-	
-	public boolean isAllowedToApproveOrReject() {
-		return principalUsername().equals(fromUsername());
-	}
+//	public boolean isAllowedToView() {
+//		return principalUsername().equals(fromUsername()) ||
+//				principalUsername().equals(toUsername());
+//	}
+//	
+//	public boolean isAllowedToCreate() {
+//		boolean isAllowed = false;
+//		if(friendsList.isRequestType()) {
+//			isAllowed = principalUsername().equals(toUsername());
+//		} else if(friendsList.isSendType()) {
+//			isAllowed = principalUsername().equals(fromUsername());
+//		}
+//		return isAllowed;
+//	}
+//	
+//	public boolean isAllowedToDelete() {
+//		return principalUsername().equals(fromUsername());
+//		
+//	}
+//	
+//	public boolean isAllowedToApproveOrReject() {
+//		return principalUsername().equals(fromUsername());
+//	}
 
-	private String toUsername() {
-		return friendsList.getUserTo().getUsername();
-	}
-
-	private String fromUsername() {
-		return friendsList.getUserFrom().getUsername();
-	}
+//	private String toUsername() {
+//		return friendsList.getUserTo().getUsername();
+//	}
+//
+//	private String fromUsername() {
+//		return friendsList.getUserFrom().getUsername();
+//	}
 
 	private String principalUsername() {
 		return principal.getName();

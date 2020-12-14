@@ -310,6 +310,7 @@ INSERT INTO comics (comic_id, comic_name, author_name, comic_characters, date_pu
 INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradable_status_id, collection_id, account_type_id) VALUES (DEFAULT, '2', '1', '1', '1', '1', '1');
 INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradable_status_id, collection_id, account_type_id) VALUES (DEFAULT, '2', '2', '2', '1', '2','2');
 INSERT INTO trades (trade_id, trade_type_id, trade_status_id, account_from, account_to, comic_id) VALUES (DEFAULT, '1', '2', '1', '2', '1');
+INSERT INTO friends_list(friend_list_id, friend_request_type_id, friend_request_status_id, user_from, user_to) VALUES (DEFAULT, '1', '2', '3', '1');
 -----------------
 ---Testing Query Searches---
 
@@ -342,5 +343,14 @@ INSERT INTO trades (trade_id, trade_type_id, trade_status_id, account_from, acco
         --FROM collections
         --INNER JOIN users ON users.user_id = collections.user_id
         --WHERE collection_visibility_id = 2;
+        
+        --DisplayCurrentUsersFriends--
+        --SELECT userFrom.username AS UserFrom, userTo.username AS UserTo, fs.friend_request_status_desc AS Status
+        --FROM friends_list
+        --INNER JOIN users userFrom ON userFrom.user_id = friends_list.user_from  
+        --INNER JOIN users userTo ON userTo.user_id = friends_list.user_to
+        --INNER JOIN friend_request_statuses fs USING (friend_request_status_id)
+        --WHERE (userFrom.user_id = 3 OR userTo.user_id = 3) AND friend_request_status_id = 2  
+        --;
 -------------------
 COMMIT TRANSACTION;

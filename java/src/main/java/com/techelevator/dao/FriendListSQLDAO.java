@@ -16,13 +16,7 @@ public class FriendListSQLDAO implements FriendListDAO{
 	private UserDAO userDAO;
 	private AccountDAO accountDAO;
 	
-	private static final String SQL_SELECT_REQUEST = "SELECT fl.friends_list_id, frt.friend_request_type_desc, frs.friend_request_status_desc, " +
-										"aFrom.account_id as fromAcct, aFrom.user_id as fromUser, " +
-										"FROM friends_list fl " +
-										"INNER JOIN friend_request_types frt ON fl.friend_request_type_id = frt.friend_request_type_id " +
-										"INNER JOIN friend_request_statuses frs ON fl.friend_request_status_id = frs.friend_request_status_id " +
-										"INNER JOIN accounts aFrom on user_from = aFrom.account_id " +
-										"INNER JOIN accounts aTo on user_to = aTo.account_id ";
+	private static final String SQL_SELECT_REQUEST = "";
 	
 	private static final String SQL_SELECT_FRIENDS_LIST = "SELECT friend_list_id,";
 	
@@ -38,10 +32,10 @@ public class FriendListSQLDAO implements FriendListDAO{
 		Long newRequestId = getNextRequestId();
 		Long requestTypeId = getRequestTypeId(someRequest.getRequestType());
 		Long requestStatusId = getRequestStatusId(someRequest.getRequestStatus());
-		Account fromAccount = accountDAO.getAccountByUserId(someRequest.getUserFrom().getId());
-		Account toAccount = accountDAO.getAccountByUserId(someRequest.getUserTo().getId());
+	//Account fromAccount = accountDAO.getAccountByUserId(someRequest.getUserFrom().getId());
+		//Account toAccount = accountDAO.getAccountByUserId(someRequest.getUserTo().getId());
 		
-		jdbcTemplate.update(sql, newRequestId, requestTypeId, requestStatusId, fromAccount.getAccountId(), toAccount.getAccountId());
+		//jdbcTemplate.update(sql, newRequestId, requestTypeId, requestStatusId, fromAccount.getAccountId(), toAccount.getAccountId());
 		return getRequestById(newRequestId);
 	}
 
@@ -50,6 +44,23 @@ public class FriendListSQLDAO implements FriendListDAO{
 		String sql = "UPDATE friends_list SET friend_request_status_id = ? WHERE friend_list_id = ?";
 		Long requestStatusId = getRequestStatusId(someRequest.getRequestStatus());
 		jdbcTemplate.update(sql, requestStatusId, someRequest.getRequestId());
+	}
+	
+	@Override
+	public List<FriendsList> getApprovedRequestsForUser(Long userId){
+		List<FriendsList> friendsLists = new ArrayList<>();
+		String sql = "SELECT userFrom.username AS UserFrom, userTo.username AS UserTo, fs.friend_request_status_desc AS Status"
+				+ " FROM friends_list"
+				+ " INNER JOIN users userFrom ON userFrom.user_id = friends_list.user_from "
+				+ " INNER JOIN users userTo ON userTo.user_id = friends_list.user_to"
+				+ " INNER JOIN friend_request_statuses fs USING (friend_request_status_id)"
+				+ " WHERE (userFrom.user_id = ? OR userTo.user_id = ?) AND friend_request_status_id = 2";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, userId);
+		while(results.next()) {
+			FriendsList friends = mapRowToFriendsList(results);
+			friendsLists.add(friends);
+		}
+		return friendsLists;
 	}
 
 	@Override
@@ -119,7 +130,7 @@ public class FriendListSQLDAO implements FriendListDAO{
 		return new FriendsList(rs.getLong("friend_list_id"),
 				rs.getString("friend_request_type_desc"),
 				rs.getString("friend_request_status_desc"),
-				userDAO.getUserById(rs.getLong("fromUser")),
-				userDAO.getUserById(rs.getLong("toUser")));
+				rs.getLong("user_from"),
+				rs.getLong("user_to"));
 	}
 }

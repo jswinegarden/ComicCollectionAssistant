@@ -63,15 +63,6 @@ public class AccountController {
     	return accountDAO.getAccountsByUserId(getCurrentUserId(principal));
     }
     
-//    @RequestMapping(value = "/comics", method = RequestMethod.POST)
-//    public Comic addComic(@Valid @RequestBody NewComicDTO comicDTO, Principal principal) throws InvalidComicException {
-//    	Comic comic = buildComicFromComicDTO(comicDTO);
-//    	String accountType = account.getAccountType();
-//    	if(Account.STANDARD_USER_ACCOUNT.equals(accountType)) {
-//    		
-//    	}
-//    	return null;
-//    }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Account addAccount(@Valid @RequestBody NewAccountDTO accountDTO, NewComicDTO comicDTO, Principal principal) {

@@ -73,10 +73,5 @@ public class ComicController {
 		
     }
     
-//    private void validateAuthorizationToCreate(Principal principal, Comic comic) {
-//		ComicAuthorization auth = new ComicAuthorization(principal, comic);
-//        if(!auth.isAllowedToCreate()) {
-//        	throw new AuthorizationException();
-//        }
-//    }
+
 }
