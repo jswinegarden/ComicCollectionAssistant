@@ -28,3 +28,4 @@ export default {
     
 }
 </script>
+/* references BoardColumn from week19 lecture code */

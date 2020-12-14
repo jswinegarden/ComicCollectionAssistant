@@ -37,3 +37,4 @@ export default {
     }
 };
 </script>
+/* references CardList from week19 lecture code */

@@ -25,3 +25,4 @@ export default {
     }
 }
 </script>
+/* references CardDetails from week19 lecture code */
