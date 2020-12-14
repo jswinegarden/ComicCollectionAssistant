@@ -43,6 +43,9 @@ export default new Vuex.Store({
     },
     SET_COLLECTIONS(state, data) {
       state.collections = data;
+    },
+    SET_COLLECTION_COMICS(state, data) {
+      state.collectionComics = data;
     }
   }
 })
