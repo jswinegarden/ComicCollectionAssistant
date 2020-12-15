@@ -22,11 +22,13 @@ export default new Vuex.Store({
     user: currentUser || {},
     collection:{
       collectionId: '',
-      collectionName: ''
+      collectionName: '',
+      collectionDesc: ''
     },
     comic:{
       comicId: '',
-      comicName: ''
+      comicName: '',
+      comicDesc: '',
     },
   },
   mutations: {
