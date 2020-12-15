@@ -11,11 +11,6 @@ export default {
     getComicsByName(title){
         return http.get(`comics?format=comic&formatType=comic&orderBy=title&limit=12&title=${title}&apikey=9d96d996f4bfce42975b47820c47174a&hash=eadb34d00cfcc0a0b08ebf5d5b1123ff&ts=1`)
     },
-    getComicsByCollectionId(collectionId){
-        return axios.get(`/collections/${collectionId}`)
-    },
-    getComicDetails(collectionId, comicId){
-        return axios.get(`/collections/${collectionId}/comics/${comicId}`)
-    }
+    
 }
 
