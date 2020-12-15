@@ -78,7 +78,7 @@ div p.row {
   border-top: darkgrey solid 1px;
   padding: 5px;
   margin: 0px;
-  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: AnimeAce, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-kerning: none;
 }
 footer {
@@ -87,5 +87,6 @@ footer {
   margin:auto;
   padding: 10px;
   background-color:rgba(220, 207, 189, 0.94);
+  
 }
 </style>
