@@ -1,12 +1,17 @@
 <template>
- <div class="box">
+ <div>
    <div class="jumbotron jumbotron-fluid shadow">
      <h1>Account</h1>
-     <p>Track your collection! Share with your friends!</p>
+     <p>View and manage all of your collections!</p>
    </div>
  
    <div class="row shadow">
-     <h4 class="col-md-12">My Collections:</h4>
+     <h4 class="col-md-12">My Collections:
+       <span> 
+            <router-link class="btn btn-dark" v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
+            <router-link class="btn btn-success" v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link> 
+        </span>
+     </h4>
      <div id="mycollection">
        <collections-list />
      </div>
@@ -23,11 +28,7 @@ export default {
 </script>
  
 <style scoped>
-#mycollection{
- width: 100%;
- margin: auto;
- padding: 10px auto;
-}
+
 /* --------------------  header ---------------- */
 .jumbotron {
  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -48,11 +49,17 @@ div.row {
  border: white solid 6px;
 }
 .col-md-12 {
- background-color: white;
- padding: 10px 10px 5px;
- margin: 0px;
- font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
- font-kerning: none;
+  background-color: white;
+  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-kerning: none;
+  height:50px;
+  padding: 10px 0 0 15px;
+}
+.col-md-12 span{
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 /* ------------------ collection boxes ---------- */
 .col-md-2{
@@ -75,9 +82,19 @@ div p.row {
  font-kerning: none;
 }
 .col-md-12 .btn{
- margin: auto;
  background-color: none;
- border: none;
+ margin: 5px 5px 10px;
  padding: 5px;
- }
+}
+.btn-dark{
+    width: 200px;
+    padding: 20px 0;
+}
+.btn-dark:hover{
+  background-color: rgb(80, 80, 76);
+}
+.btn-success{
+    width: 200px;
+    padding: 20px 0;
+}
 </style>

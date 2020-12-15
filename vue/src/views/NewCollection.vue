@@ -23,11 +23,16 @@ export default {
  h2{
    font-family: CrashLanding;
  }
-.jumbotron{
-    width: 75%;
-    margin: auto;
-    padding: 30px 15px;
-    border: white solid 6px;
+/* --------------------  header ---------------- */
+.jumbotron {
+ font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+ color: white;
+ background-color: rgba(220, 207, 189, 0.94);
+ width: 75%;
+ margin: auto;
+ padding: 20px;
+ border: white solid 6px;
+ font-kerning: none;
 }
 .row{
     width: 75%;

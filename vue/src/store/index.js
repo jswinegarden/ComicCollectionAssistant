@@ -19,7 +19,15 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    collection:{
+      collectionId: '',
+      collectionName: ''
+    },
+    comic:{
+      comicId: '',
+      comicName: ''
+    },
   },
   mutations: {
     SET_COMICS(state, data){

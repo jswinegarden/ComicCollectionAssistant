@@ -1,15 +1,11 @@
 <template>
     <span class="row">
         <ul class="col-md-3" v-for="collection in collections" v-bind:key="collection.collectionId">
-           <li class="card">
+           <li class="card" v-on:click="toCollection(collection.collectionName)"><!-- --------calls method to push router to collection.vue when card is clicked ------- -->
                 <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
-                <p class="card-title">{{collection.collectionName}}</p>
+                <p class="card-title">{{collection.collectionName}}</p>  
             </li>
         </ul>
-        <span class="contain"> 
-            <router-link class="btn btn-dark" v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
-            <router-link class="btn btn-success" v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link> 
-        </span>
   </span>
 </template>
 
@@ -21,6 +17,13 @@ export default {
         return{
             collections:{    
             },
+        }
+    },
+    methods:{
+        toCollection(collectionName){
+            this.$store.state.collection.collectionName = collectionName;
+            this.$router.push(`/collection`)/* routes to collection.vue when called by event */
+            
         }
     },
     created(){
@@ -43,25 +46,5 @@ export default {
 }
 .row{
    margin: 10px auto;
-}
-.contain {
-    width: 20%;
-    margin: auto;
-}
-.btn-dark{
-    width: 100%;
-    padding: 20px 0;
-}
-.btn-dark:hover{
-  background-color: rgb(80, 80, 76);
-}
-.btn-success{
-    width: 100%;
-    margin: 20px auto;
-    padding: 20px 0;
-}
-.btn-info{
-    width: 100%;
-    padding: 20px 0;
 }
 </style>
