@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ComicServices from '../services/ComicServices';
+import CollectionService from '../services/CollectionService';
 export default {
     name: 'comics-list',
     data(){
@@ -22,6 +22,7 @@ export default {
             collection: {},
             comicName: '',
             comics: {
+                data:{}
             },
         }
     },
@@ -30,13 +31,29 @@ export default {
             this.$store.state.comic.comicName = comicName;
             this.$router.push(`/comic/`)
         },
+        retrieveComics(collectionId) {
+            CollectionService
+            .getComicsByCollectionId(collectionId)
+            .then(response => {
+                this.name = response.data.name;
+                this.$store.commit("SET_COLLECTION_COMICS", response.data.comics);
+            })
+            .catch(error => {
+                if (error.response && error.response.status === 404) {
+                    alert(
+                        "Comics not available. This collection may have been deleted or you have entered an invalid collection ID."
+                    );
+                    this.$router.push("/");
+                }
+            })
+        }
     },
     created() {
-        ComicServices.getComicsByCollectionId(this.collectionId).then(response => {
+        CollectionService.getComicsByCollectionId(this.$store.state.collection.collectionId).then(response => {
             this.comics = response.data
         })
     }
-}
+};
 </script>
 <style scoped>
 .comic{
