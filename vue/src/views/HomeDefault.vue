@@ -66,6 +66,7 @@ div.row {
   border: darkgrey solid 1px;
   text-align: center;
   font-family: AnimeAce;
+  font-kerning: none;
 }
 div p.row {
   width: 100%;
@@ -75,6 +76,7 @@ div p.row {
   padding: 5px;
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-kerning: none;
 }
 
 </style>

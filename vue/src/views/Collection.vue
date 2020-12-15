@@ -14,12 +14,10 @@
 </template>
 
 <script>
-import ComicsList from '../components/ComicsList';
+import ComicsList from '../components/ComicsList.vue';
 export default {
-  name: "collection",
-  components: {
-    ComicsList
-  }
+  name: "Collection",
+  components: { ComicsList }
 };
 </script>
 <style scoped>
@@ -37,6 +35,7 @@ export default {
  margin: auto;
  padding: 20px;
  border: white solid 6px;
+ font-kerning: none;
 }
 /* ------------------------ collection sections ------------- */
 div.row {
@@ -51,6 +50,7 @@ div.row {
  padding: 10px 10px 5px;
  margin: 0px;
  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+ font-kerning: none;
 }
 /* ------------------ collection boxes ---------- */
 .col-md-2{
@@ -60,6 +60,7 @@ div.row {
  border: darkgrey solid 1px;
  text-align: center;
  font-family: AnimeAce;
+ font-kerning: none;
 }
 div p.row {
  width: 100%;
@@ -69,6 +70,7 @@ div p.row {
  padding: 5px;
  margin: 0px;
  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+ font-kerning: none;
 }
 .col-md-12 .btn{
  margin: auto;

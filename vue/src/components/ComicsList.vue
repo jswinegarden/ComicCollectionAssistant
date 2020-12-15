@@ -3,10 +3,10 @@
         <ul class="col-md-3" 
         v-for="comics in collection" 
         v-bind:key="comics.collectionId"
-        v-on:click="getComicsByCollectionId(collectionId)"
+        v-on:click="retrieveComics(collectionId)"
         >
            <li class="comic">
-                <img class="camic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+                <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                 <p class="comic-title">{{comic.comicTitle}}</p>
             </li>
         </ul>
@@ -20,13 +20,15 @@ export default {
     name: 'comics-list',
     data(){
         return{
-            title: "",
-            collectionId: 0
+            comicTitle: '',
+            comics: {
+                data:{}
+            },
         }
     },
     methods: {
-        retrieveComics() {
-            comicServices
+        retrieveComics(collectionId) {
+            ComicServices
             .getComicsByCollectionId(this.collectionId)
             .then(response => {
                 this.title = response.data.title;
@@ -43,8 +45,9 @@ export default {
         }
     },
     created() {
-        this.collectionId = this.$route.params.id;
-        this.retrieveComics();
+        ComicsServices.getComicsByCollectionId(collectionId).then(response => {
+            this.comoics = response.data
+        })
     }
 };
 </script>

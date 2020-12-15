@@ -18,7 +18,8 @@
                 <textarea v-model="collection.collectionDescription" class="form-control" rows="5" placeholder="Collection Description"/>
             </div>
             <div class="col">
-                <button class="btn btn-primary" v-on:click="saveCollection(collection)">Save Collection</button>
+                <button class="btn-primary" v-on:click="saveCollectionAndAddComics(collection)">Save and Add Comics</button>
+                <button class="btn-primary" v-on:click="saveCollectionAndReturnToAccount(collection)">Save and Return to Account</button>
             </div>
         </div>
     </div>
@@ -47,10 +48,17 @@ export default {
         };
     },
     methods: {
-        saveCollection(collection) {
+        saveCollectionAndAddComics(collection) {
             CollectionService.createCollection(collection).then(response =>{
                 if(response.status === 201){
                     this.$router.push(`/newComic`)
+                }
+            });
+        },
+        saveCollectionAndReturnToAccount(collection) {
+            CollectionService.createCollection(collection).then(response => {
+                if(response.status === 201){
+                    this.$router.push(`/account`)
                 }
             });
         },
@@ -85,5 +93,9 @@ export default {
     }
     .btn{
         width: 100%;
+    }
+    .btn-primary{
+        width: 100%;
+        margin: 5px;
     }
 </style>
