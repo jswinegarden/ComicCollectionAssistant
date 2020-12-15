@@ -43,9 +43,9 @@ public class FriendListSQLDAO implements FriendListDAO{
 
 	@Override
 	public void updateRequestStatus(FriendsList someRequest) {
-//		String sql = "UPDATE friends_list SET friend_request_status_id = ? WHERE friend_list_id = ?";
-//		Long requestStatusId = getRequestStatusId(someRequest.getRequestStatus());
-//		jdbcTemplate.update(sql, requestStatusId, someRequest.getRequestId());
+		String sql = "UPDATE friends_list SET friend_request_status_id = ? WHERE friend_list_id = ?";
+		Long requestStatusId = getRequestStatusId(someRequest.getRequestStatus());
+		jdbcTemplate.update(sql, requestStatusId, someRequest.getRequestId());
 	}
 	
 	@Override
