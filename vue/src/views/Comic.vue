@@ -38,6 +38,7 @@ export default {
   margin: auto;
   padding: 20px;
   border: white solid 6px;
+  font-kerning: none;
 }
 
 /* ------------------------ collection sections ------------- */
@@ -53,6 +54,7 @@ div.row {
   padding: 10px 10px 5px;
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-kerning: none;
 }
 /* ------------------ collection boxes ---------- */
 .col-md{
@@ -62,6 +64,7 @@ div.row {
   border: darkgrey solid 1px;
   text-align: center;
   font-family: AnimeAce;
+  font-kerning: none;
 }
 div h5 {
   width: 100%;
@@ -72,6 +75,7 @@ div h5 {
   text-align: left;
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-kerning: none;
 }
 /* ------------- footer ------------ */
 footer {

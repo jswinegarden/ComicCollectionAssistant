@@ -78,6 +78,7 @@
     background-color:black;
     font-family: CrashLanding;
     font-size: 25px;
+    font-kerning: none;
   }
   .nav-link:hover{
     color: rgb(226, 209, 75);
@@ -98,6 +99,7 @@
   font-weight: bold;
   font-size: 75px;
   color: black;
+  font-kerning: none;
 }
 div p{
   font-family: AnimeAce;
@@ -107,9 +109,11 @@ h2{
   text-align: center;
   color: black;
   font-size:75px;
+  font-kerning: none;
 }
 h3{
   color: black;
+  font-kerning: none;
 }
 footer {
   text-align:center;
