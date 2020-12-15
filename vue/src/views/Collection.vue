@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="box">
       <div class="row shadow">
           <div id=thisCollection>
             <comics-list />
@@ -19,6 +19,9 @@ export default {
 };
 </script>
 <style scoped>
+.box{
+  height: 1080px;
+}
 #mycollection{
  width: 100%;
  margin: auto;

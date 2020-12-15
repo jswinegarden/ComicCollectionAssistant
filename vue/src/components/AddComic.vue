@@ -53,9 +53,9 @@ export default {
         addComic(comic){
             this.comic.comicId = comic.id
             this.comic.comicName = comic.title
-            this.comic.comicCharacters = comic.characters.items.name
-            this.comic.authorName = comic.creators.items.name
-            this.comic.datePublished = comic.dates.date
+            this.comic.comicCharacters = comic.characters.items.obj(0).name
+            this.comic.authorName = comic.creators.items.array(0).name
+            this.comic.datePublished = comic.dates.array(0).date
             this.account.comicId = comic.id
         }
     }
