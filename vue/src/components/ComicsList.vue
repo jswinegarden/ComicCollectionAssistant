@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="collectionPage">
         <div class="jumbotron jumbotron-fluid shadow">
             <h1>{{ this.$store.state.collection.collectionName }}</h1>
         </div>
@@ -7,7 +7,6 @@
         <ul class="col-md-3" 
         v-for="comics in collection" 
         v-bind:key="comics.collectionId"
-        v-on:click="retrieveComics(collectionId)"
         >
            <li class="comic">
                 <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
@@ -60,6 +59,9 @@ export default {
 };
 </script>
 <style scoped>
+#collectionPage{
+    height: 1080px;
+  }
 /* --------------------  header ---------------- */
 .jumbotron {
  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
