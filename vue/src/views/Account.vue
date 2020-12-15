@@ -6,7 +6,12 @@
    </div>
  
    <div class="row shadow">
-     <h4 class="col-md-12">My Collections:</h4>
+     <h4 class="col-md-12">My Collections:
+       <span class="container-fluid"> 
+            <router-link class="btn btn-dark" v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
+            <router-link class="btn btn-success" v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link> 
+        </span>
+     </h4>
      <div id="mycollection">
        <collections-list />
      </div>
@@ -71,9 +76,32 @@ div p.row {
  font-kerning: none;
 }
 .col-md-12 .btn{
- margin: auto;
+ margin: 5px;
  background-color: none;
  border: none;
  padding: 5px;
  }
+ .container-fluid {
+    display: inline-flex;
+    font-family: Helvetica, sans-serif;
+    width: 85%;
+    margin: auto;
+    padding: auto;
+}
+.btn-dark{
+    width: 100%;
+    padding: 20px 0;
+}
+.btn-dark:hover{
+  background-color: rgb(80, 80, 76);
+}
+.btn-success{
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px 0;
+}
+.btn-info{
+    width: 100%;
+    padding: 20px 0;
+}
 </style>
