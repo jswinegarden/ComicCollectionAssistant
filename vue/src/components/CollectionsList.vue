@@ -21,7 +21,7 @@ export default {
     },
     methods:{
         toCollection(){
-            this.$router.push(`/collection`)
+            this.$router.push(`/collection`)/* routes to collection.vue when called by event */
         }
     },
     created(){
