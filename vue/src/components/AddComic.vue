@@ -1,5 +1,5 @@
 <template>
-<span>
+<span class="box">
     <div class="row">
         <input v-model="comicTitle" type="search" class="form-control col-md-9" placeholder="Search by Issue Name" name="q">
         <button class="btn btn-dark col-md-2" v-on:click="searchComics(comicTitle)">Search</button>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import CollectionService from '@/services/CollectionService.js'
 import ComicServices from "@/services/ComicServices.js"
 
 export default {
@@ -53,17 +54,23 @@ export default {
         addComic(comic){
             this.comic.comicId = comic.id
             this.comic.comicName = comic.title
-            this.comic.comicCharacters = comic.characters.items.obj(0).name
-            this.comic.authorName = comic.creators.items.array(0).name
-            this.comic.datePublished = comic.dates.array(0).date
+            this.comic.comicCharacters = comic.characters.items[0].name
+            this.comic.authorName = comic.creators.items[0].name
+            this.comic.datePublished = comic.dates[0].date
             this.account.comicId = comic.id
+            this.account.comicConditionId = ''
+            this.account.comicTradableStatusId = ''
         }
+    },
+    created(){
+        CollectionService.getCollectionByCurrentUser().then(response => {
+            this.collections = response.data
+        });
     }
 }
 </script>
 
 <style scoped>
-
 span{
     width: 100%;
     margin: auto 2%;
