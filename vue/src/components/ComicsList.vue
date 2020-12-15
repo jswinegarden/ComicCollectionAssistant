@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="jumbotron jumbotron-fluid shadow">
-            <h1>{{ this.$store.state.collection.collectionName }}</h1>
+            <h1>{{this.$store.state.collection.collectionName}}</h1>
         </div>
     <span class="row">
         <ul class="col-md-3" 
@@ -20,9 +20,7 @@
 
 <script>
 import ComicServices from '../services/ComicServices';
-import CollectionsList from '../components/CollectionsList.vue';
 export default {
-    name: 'collections-list',
     name: 'comics-list',
     data(){
         return{
