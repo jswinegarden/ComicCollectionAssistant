@@ -114,7 +114,7 @@ export default {
 
 .nav2{
   border: solid 3px white;
-  width:242px;
+  width:430px;
   left: 12.5%;
   top: 55px;
   position: absolute;
@@ -150,7 +150,7 @@ border: solid black 2px;
 .card-body{
   border-radius: 1rem;
   background-image: url("https://thumbs.dreamstime.com/b/comic-pop-art-background-lightning-blast-halftone-dots-cartoon-vector-illustration-orange-comic-background-151418372.jpg%22") ;
-  background-size: 105%;
+  background-size: cover;
 
 }
 
