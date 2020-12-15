@@ -63,6 +63,7 @@ export default {
 </script>
 
 <style scoped>
+
 span{
     width: 100%;
     margin: auto 2%;
