@@ -78,7 +78,7 @@
     background-color:black;
     font-family: CrashLanding;
     font-size: 25px;
-    font-kerning: none;
+    letter-spacing: 2px;
   }
   .nav-link:hover{
     color: rgb(226, 209, 75);
