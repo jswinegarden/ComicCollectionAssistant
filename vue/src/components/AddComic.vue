@@ -1,5 +1,5 @@
 <template>
-<span class="box">
+<span>
     <div class="row">
         <input v-model="comicTitle" type="search" class="form-control col-md-9" placeholder="Search by Issue Name" name="q">
         <button class="btn btn-dark col-md-2" v-on:click="searchComics(comicTitle)">Search</button>
@@ -29,7 +29,6 @@ export default {
                 data:{}
             },
             account:{
-                userId:'',
                 comicId:'',
                 collectionId:'',
                 comicConditionId:'',
@@ -52,20 +51,21 @@ export default {
             })
         },
         addComic(comic){
-            this.comic.comicId = comic.id
-            this.comic.comicName = comic.title
-            this.comic.comicCharacters = comic.characters.items[0].name
-            this.comic.authorName = comic.creators.items[0].name
-            this.comic.datePublished = comic.dates[0].date
-            this.account.comicId = comic.id
-            this.account.comicConditionId = ''
-            this.account.comicTradableStatusId = ''
+            this.comic.comicId = comic.id;
+            this.comic.comicName = comic.title;
+            this.comic.comicCharacters = comic.characters.items[0].name;
+            this.comic.authorName = comic.creators.items[0].name;
+            this.comic.datePublished = comic.dates[0].date;
+            this.account.comicId = comic.id;
+            this.account.comicConditionId = '';
+            this.account.comicTradableStatusId = '';
+            this.account.colloectionId = '';
         }
     },
     created(){
         CollectionService.getCollectionByCurrentUser().then(response => {
             this.collections = response.data
-        });
+        })
     }
 }
 </script>

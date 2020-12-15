@@ -1,10 +1,10 @@
 <template>
     <div id="collectionPage">
         <span class="row">
-            <ul class="col-md-3" v-for="comics in collection" v-bind:key="comics.collectionId">
+            <ul class="col-md-3" v-for="comics in collection" v-bind:key="comics.comicName">
                 <li class="comic" v-on:click="toComicDetails(comic.comicName, comic.comicDescription)">
                     <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
-                    <p class="comic-title">{{comic.comicName}}</p>
+                    <p class="comic-title">{{comics.comicName}}</p>
                 </li>
             </ul>
     </span>
@@ -50,7 +50,7 @@ export default {
         }
     },
     created() {
-        ComicServices.getComicsByCollectionId(this.collectionId).then(response => {
+        ComicServices.getComicsByCollectionId(this.$store.state.collection.collectionId).then(response => {
             this.comics = response.data
         })
     }

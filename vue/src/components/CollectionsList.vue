@@ -20,9 +20,10 @@ export default {
         }
     },
     methods:{
-        toCollection(collectionName, collectionDescription){
+        toCollection(collectionName, collectionDescription, collectionId){
             this.$store.state.collection.collectionName = collectionName;
             this.$store.state.collection.collectionDesc = collectionDescription;
+            this.$store.state.collection.collectionId = collectionId;
             this.$router.push(`/collection`)/* routes to collection.vue when called by event */
             
         }
