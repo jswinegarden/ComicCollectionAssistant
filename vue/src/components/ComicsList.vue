@@ -1,8 +1,13 @@
 <template>
     <div id="collectionPage">
         <span class="row">
+<<<<<<< HEAD
             <ul class="col-md-3" v-for="comics in collection" v-bind:key="comics.comicName">
                 <li class="comic" v-on:click="toComicDetails(comic.comicName, comic.comicDescription)">
+=======
+            <ul class="col-md-3" v-for="comics in collection" v-bind:key="comics.collectionId">
+                <li class="comic" v-on:click="toComicDetails(comic.comicName)">
+>>>>>>> 182916ec85ab12b958bb17664772ecf1316a2e78
                     <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                     <p class="comic-title">{{comics.comicName}}</p>
                 </li>
@@ -12,7 +17,7 @@
 </template>
 
 <script>
-import ComicServices from '../services/ComicServices';
+import CollectionService from '../services/CollectionService';
 export default {
     name: 'comics-list',
     data(){
@@ -27,16 +32,15 @@ export default {
         }
     },
     methods: {
-        toComicDetails(comicName, comicDescription){
+        toComicDetails(comicName){
             this.$store.state.comic.comicName = comicName;
-            this.$store.state.comic.comicDescription = comicDescription;
             this.$router.push(`/comic/`)
         },
         retrieveComics(collectionId) {
-            ComicServices
+            CollectionService
             .getComicsByCollectionId(collectionId)
             .then(response => {
-                this.title = response.data.title;
+                this.name = response.data.name;
                 this.$store.commit("SET_COLLECTION_COMICS", response.data.comics);
             })
             .catch(error => {
@@ -50,7 +54,11 @@ export default {
         }
     },
     created() {
+<<<<<<< HEAD
         ComicServices.getComicsByCollectionId(this.$store.state.collection.collectionId).then(response => {
+=======
+        CollectionService.getComicsByCollectionId(this.$store.state.collection.collectionId).then(response => {
+>>>>>>> 182916ec85ab12b958bb17664772ecf1316a2e78
             this.comics = response.data
         })
     }
