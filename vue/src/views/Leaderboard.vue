@@ -28,7 +28,7 @@
 
 <script>
 export default {
-
+  name: "leaderboard",
 }
 </script>
 
@@ -76,7 +76,7 @@ div p.row {
   border-top: darkgrey solid 1px;
   padding: 5px;
   margin: 0px;
-  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: AnimeAce, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-kerning: none;
 }
 footer {

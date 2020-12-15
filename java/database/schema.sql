@@ -345,12 +345,24 @@ INSERT INTO friends_list(friend_list_id, friend_request_type_id, friend_request_
         --WHERE collection_visibility_id = 2;
         
         --DisplayCurrentUsersFriends--
-        SELECT userFrom.username AS UserFrom, userTo.username AS UserTo, fs.friend_request_status_desc AS Status
-        FROM friends_list
-        INNER JOIN users userFrom ON userFrom.user_id = friends_list.user_from  
-        INNER JOIN users userTo ON userTo.user_id = friends_list.user_to
-        INNER JOIN friend_request_statuses fs USING (friend_request_status_id)
-        WHERE (userFrom.user_id = 2 OR userTo.user_id = 2) AND friend_request_status_id = 2  
-        ;
+        --SELECT userFrom.username AS UserFrom, userTo.username AS UserTo, fs.friend_request_status_desc AS Status
+        --FROM friends_list
+        --INNER JOIN users userFrom ON userFrom.user_id = friends_list.user_from  
+        --INNER JOIN users userTo ON userTo.user_id = friends_list.user_to
+        --INNER JOIN friend_request_statuses fs USING (friend_request_status_id)
+        --WHERE (userFrom.user_id = 2 OR userTo.user_id = 2) AND friend_request_status_id = 2  
+        --;
+        
+        --getComicCountOverallByUser--
+        --SELECT COUNT (*) AS COMICS 
+        --FROM accounts
+        --WHERE user_id = 2
+        --;
+        
+        --getComicCountPerCollectionByUser--
+        --SELECT COUNT (*) AS COMICS 
+        --FROM accounts 
+        --WHERE user_id = 2 AND collection_id = 1
+        --;
 -------------------
 COMMIT TRANSACTION;
