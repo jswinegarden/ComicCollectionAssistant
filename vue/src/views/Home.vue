@@ -56,6 +56,7 @@ import GetMyCollections from '../components/GetMyCollections.vue'
 export default {
   name: "home",
   components: { GetMyCollections },
+
 };
 </script>
 

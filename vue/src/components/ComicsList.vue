@@ -47,7 +47,12 @@ export default {
     created() {
         ComicsServices.getComicsByCollectionId(collectionId).then(response => {
             this.comoics = response.data
-        })
+        });
+
+        ComicServices.getComicIssue().then(respnse => {
+      this.comics = response.data
+        });
+
     }
 };
 </script>

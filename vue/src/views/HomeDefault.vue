@@ -24,22 +24,50 @@
                 <p class="row"> collection title </p>
              </div>
         </div>
-        <div class="row shadow">
-          <h4 class= "col-md-12"> Comics: </h4>
-          <div class="col-md-2 shadow"> comics image diplayed here
-              <p class="row"> comic title </p>  
-          </div> 
-        </div>
-    </div>
+          <div class="row">
+            <h4 class= "col-md-12"> Comics: </h4>
+            <div class="comics"> 
+                <ul class="col-md-4" v-for="comic in comics.data.results" v-bind:key="comic.title">
+                  <li class="card">
+                    <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+                    <p class="card-title">{{comic.title}}</p>
+                    <div class="btn btn-dark">add comic</div>
+                  </li>
+                </ul>
+            </div> 
+          </div>
+      </div>
 </template>
 
 <script>
+import ComicServices from '../services/ComicServices'
 export default {
     name: "viewer",
+  data(){
+        return{
+            comicTitle: '',
+            comics: {
+                data:{}
+            },
+        }
+    },
+  created() {
+       
+        ComicServices.getComicIssue().then(response => {
+      this.comics = response.data
+        });
+
+    },
+    
 }
 </script>
 
 <style scoped>
+.comics{
+  width: 100%;
+  margin: auto;
+  padding: 10px auto;
+}
 .box{
   height: 1080px;
 }

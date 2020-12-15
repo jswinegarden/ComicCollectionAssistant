@@ -86,6 +86,20 @@ public class AccountSQLDAO implements AccountDAO{
 		return getAccountById(newAccountId);
 	}
 	
+	@Override
+	public Long getComicCountOverallByUser (Long userId) {
+		String sql = "";
+		return null;
+		
+	}
+	
+	@Override
+	public Long getComicCountPerCollectionByUser (Long userId, Long collection_id){
+		String sql = "SELECT COUNT (*) AS COMICS FROM accounts WEHRE user_id = ? AND collection_id = ?";
+		return null;
+		
+	}
+	
 	private Account getAccountById(Long accountId) {
 		Account account = null;
 		String sql = "SELECT * FROM accounts WHERE account_id = ?";

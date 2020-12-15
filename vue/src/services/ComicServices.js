@@ -18,3 +18,4 @@ export default {
         return axios.get(`/collections/${collectionId}/comics/${comicId}`)
     }
 }
+
