@@ -52,6 +52,7 @@ export default {
   margin: auto;
   padding: 20px;
   border: white solid 6px;
+  font-kerning: none;
 }
 div.row {
   background-color:rgba(220, 207, 189, 0.94);
@@ -65,6 +66,7 @@ div.row {
   padding: 10px 10px 5px;
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-kerning: none;
 }
 .col-md-2{
   margin: 20px auto;
@@ -73,6 +75,7 @@ div.row {
   border: darkgrey solid 1px;
   text-align: center;
   font-family: AnimeAce;
+  font-kerning: none;
 }
 div p.row {
   width: 100%;
@@ -82,6 +85,7 @@ div p.row {
   padding: 5px;
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-kerning: none;
 }
 footer {
   text-align:center;

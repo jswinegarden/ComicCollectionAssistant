@@ -53,6 +53,7 @@ export default {
   margin: auto auto 10px;
   padding: 20px;
   border: white solid 6px;
+  font-kerning: none;
 }
 #container p{
   margin-top: 70px;
