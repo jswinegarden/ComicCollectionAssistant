@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,11 +48,7 @@ public class AccountController {
         this.comicDAO = comicDAO;
     }
 
-//    @RequestMapping( value = "/comics", method = RequestMethod.GET)
-//    public Long getComic(Principal principal) throws UsernameNotFoundException {
-//        Long userId = getCurrentUserId(principal);
-//        return accountDAO.getAccountsByUserId(userId);
-//    }
+
     @RequestMapping( value = "", method = RequestMethod.GET)
     public Account getAccount(Principal principal) throws UsernameNotFoundException {
         Long userId = getCurrentUserId(principal);
@@ -63,7 +60,13 @@ public class AccountController {
     	return accountDAO.getAccountsByUserId(getCurrentUserId(principal));
     }
     
-
+    
+    @RequestMapping(value = "/collections/{id}/comics", method = RequestMethod.GET)
+    public List<Account> ComicsInCollection (Principal principal, @PathVariable Long id) {
+    	Long userId = getCurrentUserId(principal);
+    	return accountDAO.getComicsByCollection(userId, id);
+    }
+    
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Account addAccount(@Valid @RequestBody NewAccountDTO accountDTO, NewComicDTO comicDTO, Principal principal) {
     	Account account = buildAccountFromAccountDTO(accountDTO);
