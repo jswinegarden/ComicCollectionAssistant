@@ -100,6 +100,18 @@ public class AccountSQLDAO implements AccountDAO{
 		
 	}
 	
+	@Override
+	public List <Account> getComicsByCollection(Long userId, Long collectionId) {
+		List<Account> accounts = new ArrayList<>();
+		String sql = "SELECT * FROM accounts WHERE user_id = ? AND collection_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, collectionId);
+		while (results.next()) {
+			Account account = mapRowToAccount(results);
+			accounts.add(account);
+		}
+		return accounts;
+	}
+	
 	private Account getAccountById(Long accountId) {
 		Account account = null;
 		String sql = "SELECT * FROM accounts WHERE account_id = ?";
