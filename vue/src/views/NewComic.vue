@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="box">
         <div class="jumbotron jumbotron-fluid">
             <h2>Add Comics</h2>
         </div>
@@ -19,6 +19,11 @@ export default {
 </script>
 
 <style scoped>
+.box{
+    height: 1080px;
+    background-attachment: local;
+    padding-bottom: 5px;
+}
 .jumbotron{
     width: 75%;
     margin: auto;

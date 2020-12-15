@@ -23,7 +23,6 @@ export default {
     name: "add-comic",
     data(){
         return{
-            index: '0',
             comicTitle: '',
             comics: {
                 data:{}

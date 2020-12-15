@@ -1,5 +1,5 @@
 <template>
- <div class="box">
+ <div>
    <div class="jumbotron jumbotron-fluid shadow">
      <h1>Account</h1>
      <p>Track your collection! Share with your friends!</p>
@@ -23,11 +23,7 @@ export default {
 </script>
  
 <style scoped>
-#mycollection{
- width: 100%;
- margin: auto;
- padding: 10px auto;
-}
+
 /* --------------------  header ---------------- */
 .jumbotron {
  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
