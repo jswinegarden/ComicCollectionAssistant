@@ -46,6 +46,7 @@ public class FriendsListController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public FriendsList createRequest(@Valid @RequestBody NewFriendRequestDTO friendRequestDTO, Principal principal) {
 		FriendsList friendsList = buildRequestFromRequestDTO(friendRequestDTO);
+		
 		friendsList = friendListDAO.newRequest(friendsList);
 		if(friendsList.isApproved()) {
 			return friendsList;
@@ -53,12 +54,20 @@ public class FriendsListController {
 		return friendsList;
 	}
 	
-	@RequestMapping(value = "/myFriends", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List <FriendsList> allCurrentUsersFriends(Principal principal){
 		List <FriendsList> allFriends = new ArrayList<>();
 		Long userId = getCurrentUserId(principal);
 		return friendListDAO.getApprovedRequestsForUser(userId);
 		
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	public List <FriendsList> allRequests (Principal principal){
+		List <FriendsList> allRequests = new ArrayList<>();
+		allRequests = friendListDAO.getAllRequests();
+		return allRequests;
 	}
 	
 	//Do we add an ID to the pathway to delete a certain friend request?
@@ -71,13 +80,12 @@ public class FriendsListController {
 	
 	
 	private FriendsList buildRequestFromRequestDTO(NewFriendRequestDTO friendRequestDTO) {
-		User userFrom = userDAO.getUserById(friendRequestDTO.getUserFrom());
-		User userTo = userDAO.getUserById(friendRequestDTO.getUserTo());
+		Long userFrom = friendRequestDTO.getUserFrom();
+		Long userTo = friendRequestDTO.getUserTo();
 		
-//		return new FriendsList(friendRequestDTO.getFriendListRequestType(),
-//									userFrom,
-//									userTo);
-		return null;
+		return new FriendsList(friendRequestDTO.getFriendListRequestType(),
+								userFrom,
+									userTo);
 	}
 	
 	private Long getCurrentUserId(Principal principal) {
