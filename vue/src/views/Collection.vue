@@ -1,12 +1,16 @@
 <template>
   <div class="box">
+    <div class="jumbotron jumbotron-fluid shadow">
+            <h1>{{this.$store.state.collection.collectionName}}</h1>
+            <h2>{{this.$store.state.collection.collectionDesc}}</h2>
+        </div>
       <div class="row shadow">
-          <div id=thisCollection>
-            <comics-list />
-            </div>
         <span> <router-link class="btn btn-success"
           v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link>
         </span>
+        <div id="thisCollection">
+          <comics-list />
+        </div>
       </div>
     </div>
 </template>
@@ -14,18 +18,13 @@
 <script>
 import ComicsList from '../components/ComicsList.vue';
 export default {
-  name: "Collection",
+  name: "collection",
   components: { ComicsList }
 };
 </script>
 <style scoped>
 .box{
   height: 1080px;
-}
-#mycollection{
- width: 100%;
- margin: auto;
- padding: 10px auto;
 }
 /* --------------------  header ---------------- */
 .jumbotron {
@@ -79,4 +78,15 @@ div p.row {
  border: none;
  padding: 5px;
  }
+ .btn-dark{
+    width: 200px;
+    padding: 20px 0;
+}
+.btn-dark:hover{
+  background-color: rgb(80, 80, 76);
+}
+.btn-success{
+    width: 200px;
+    padding: 20px 0;
+}
 </style>

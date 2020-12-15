@@ -1,7 +1,7 @@
 <template>
     <span class="row">
         <ul class="col-md-3" v-for="collection in collections" v-bind:key="collection.collectionId">
-           <li class="card" v-on:click="toCollection(collection.collectionName)"><!-- --------calls method to push router to collection.vue when card is clicked ------- -->
+           <li class="card" v-on:click="toCollection(collection.collectionName, collection.collectionDescription)"><!-- --------calls method to push router to collection.vue when card is clicked ------- -->
                 <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                 <p class="card-title">{{collection.collectionName}}</p>  
             </li>
@@ -20,8 +20,9 @@ export default {
         }
     },
     methods:{
-        toCollection(collectionName){
+        toCollection(collectionName, collectionDescription){
             this.$store.state.collection.collectionName = collectionName;
+            this.$store.state.collection.collectionDesc = collectionDescription;
             this.$router.push(`/collection`)/* routes to collection.vue when called by event */
             
         }
