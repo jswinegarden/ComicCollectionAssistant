@@ -45,7 +45,7 @@
     </div>
     <router-view/>
     <footer>
-      &copy;  Comic League Enterprises 2020 &copy;
+      &copy;  Comic League Enterprises 2020
     </footer>
   </div>
 </template>
@@ -62,7 +62,7 @@
   #app{
     background-image: url("../img/HERO COLLAGE.png");
     background-size: cover;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     background-attachment:fixed;
     padding-bottom: 10px;
   }
@@ -78,6 +78,7 @@
     background-color:black;
     font-family: CrashLanding;
     font-size: 25px;
+    font-kerning: none;
   }
   .nav-link:hover{
     color: rgb(226, 209, 75);
@@ -98,6 +99,7 @@
   font-weight: bold;
   font-size: 75px;
   color: black;
+  font-kerning: none;
 }
 div p{
   font-family: AnimeAce;
@@ -107,9 +109,11 @@ h2{
   text-align: center;
   color: black;
   font-size:75px;
+  font-kerning: none;
 }
 h3{
   color: black;
+  font-kerning: none;
 }
 footer {
   text-align:center;

@@ -6,6 +6,12 @@
     </div>
 
     <div class="row shadow">
+      <h4 class="col-md-12">My Collections:</h4>
+      <div id="mycollection">
+        <get-my-collections />
+      </div>
+    </div>
+    <div class="row shadow">
       <h4 class="col-md-12">Featured Collections:</h4>
       <div class="col-md-2 shadow">image representing collection
         <p class="row"> collection title </p>
@@ -42,13 +48,6 @@
         <p class="row"> collection title </p>
       </div>
     </div>
-
-    <div class="row shadow">
-      <h4 class="col-md-12">My Collections:</h4>
-      <div id="mycollection">
-        <get-my-collections />
-      </div>
-    </div>
   </div>
 </template>
 
@@ -75,6 +74,7 @@ export default {
   margin: auto;
   padding: 20px;
   border: white solid 6px;
+  font-kerning: none;
 }
 /* ------------------------ collection sections ------------- */
 div.row {
@@ -89,6 +89,7 @@ div.row {
   padding: 10px 10px 5px;
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-kerning: none;
 }
 /* ------------------ collection boxes ---------- */
 .col-md-2{
@@ -98,6 +99,7 @@ div.row {
   border: darkgrey solid 1px;
   text-align: center;
   font-family: AnimeAce;
+  font-kerning: none;
 }
 div p.row {
   width: 100%;
@@ -107,6 +109,7 @@ div p.row {
   padding: 5px;
   margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-kerning: none;
 }
 .col-md-12 .btn{
   margin: auto;
