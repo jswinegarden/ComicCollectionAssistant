@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div>
     <div class="jumbotron jumbotron-fluid shadow">
       <h1>Comic League!</h1>
       <p>Track your collection! Share with your friends!</p>
@@ -55,7 +55,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import GetMyCollections from '../components/GetMyCollections.vue'
 export default {
@@ -65,11 +64,7 @@ export default {
 </script>
 
 <style scoped>
-#mycollection{
-  width: 100%;
-  margin: auto;
-  padding: 10px auto;
-}
+
 /* --------------------  header ---------------- */
 .jumbotron {
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;

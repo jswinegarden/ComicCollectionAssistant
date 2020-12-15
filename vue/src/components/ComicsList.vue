@@ -29,7 +29,7 @@ export default {
     methods: {
         retrieveComics(collectionId) {
             ComicServices
-            .getComicsByCollectionId(this.collectionId)
+            .getComicsByCollectionId(collectionId)
             .then(response => {
                 this.title = response.data.title;
                 this.$store.commit("SET_COLLECTION_COMICS", response.data.comics);
@@ -45,7 +45,7 @@ export default {
         }
     },
     created() {
-        ComicsServices.getComicsByCollectionId(collectionId).then(response => {
+        ComicServices.getComicsByCollectionId(this.collectionId).then(response => {
             this.comoics = response.data
         })
     }

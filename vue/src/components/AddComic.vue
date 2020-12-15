@@ -1,24 +1,5 @@
 <template>
 <span>
-    <div class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
     <div class="row">
         <input v-model="comicTitle" type="search" class="form-control col-md-9" placeholder="Search by Issue Name" name="q">
         <button class="btn btn-dark col-md-2" v-on:click="searchComics(comicTitle)">Search</button>
@@ -28,7 +9,7 @@
             <li class="card">
                 <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                 <p class="card-title">{{comic.title}}</p>
-                <div class="btn btn-dark">add comic</div>
+                <div class="btn btn-dark" v-on:click="addComic(comic)">Select Comic</div>
             </li>
         </ul>
     </div>
@@ -46,6 +27,20 @@ export default {
             comics: {
                 data:{}
             },
+            account:{
+                userId:'',
+                comicId:'',
+                collectionId:'',
+                comicConditionId:'',
+                comicTradableStatusId:''
+            },
+            comic:{
+                comicId:'',
+                comicName:'',
+                comicCharacters:'',
+                authorName:'',
+                datePublished:''
+            }
         }
     },
     methods: {
@@ -54,6 +49,14 @@ export default {
                 this.comics = response.data;
                 this.comicTitle = '';
             })
+        },
+        addComic(comic){
+            this.comic.comicId = comic.id
+            this.comic.comicName = comic.title
+            this.comic.comicCharacters = comic.characters.items.name
+            this.comic.authorName = comic.creators.items.name
+            this.comic.datePublished = comic.dates.date
+            this.account.comicId = comic.id
         }
     }
 }
