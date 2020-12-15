@@ -53,7 +53,7 @@ public class ComicController {
 	}
 	
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	
 	@ResponseStatus(HttpStatus.CREATED)
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public Comic addComic(@Valid @RequestBody NewComicDTO comicDTO, Principal principal) {

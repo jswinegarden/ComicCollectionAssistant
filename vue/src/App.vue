@@ -61,9 +61,9 @@
   }
   #app{
     background-image: url("../img/HERO COLLAGE.png");
-    background-size: contain;
+    background-size: cover;
     background-repeat: repeat;
-    background-attachment:scroll;
+    background-attachment:fixed;
     padding-bottom: 10px;
   }
   .nav1{
