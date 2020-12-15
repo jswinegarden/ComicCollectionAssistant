@@ -7,8 +7,6 @@
             </li>
         </ul>
         <span class="contain"> 
-            <router-link class="btn btn-dark" v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
-            <router-link class="btn btn-success" v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link>
             <router-link class="btn btn-info" v-bind:to="{ name: 'account' }">view more</router-link> 
         </span>
   </span>

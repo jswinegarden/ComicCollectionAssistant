@@ -31,7 +31,6 @@ import CollectionService from "../services/CollectionService.js"
 
 export default {
     name: "add-collection",
-    
     data() {
         return {
             
