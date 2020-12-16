@@ -1,24 +1,37 @@
 <template>
-<span>
-    <span class="row">
-        <div class="form-check-inline" v-for="collection in collections" v-bind:key=" collection.collectionId">
-            <label class="form-check-label">
-            <input type="checkbox" class="form-check-input" value="">
-                {{collection.collectionName}} - {{collection.collectionId}}
-            </label>
-        </div>
-    </span> 
-
+<span> 
+    <div class="form-group" >
+        <label for="sel1">Select collection to add comic to:</label>
+        <select class="form-control">
+            <option v-for="collection in collections" v-bind:key="collection.collectionId" v-on:click="setColId(collection.collectionId)">{{collection.collectionName}}</option>
+        </select>
+    </div> 
+        
     <div class="row">
-        <input v-model="comicTitle" type="search" class="form-control col-md-9" placeholder="Search by Issue Name" name="q">
+        <input v-model="comicTitle" type="search" class="form-control col-md-9" placeholder="Search Comics by Issue Name..." name="q">
         <button class="btn btn-dark col-md-2" v-on:click="searchComics(comicTitle)">Search</button>
     </div>
+
     <div class="row">
         <ul class="col-md-4" v-for="comic in comics.data.results" v-bind:key="comic.title">
             <li class="card">
-                <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+                <img class="card-img-top" v-bind:src="comic.thumbnail.path + '.' + comic.thumbnail.extension">
                 <p class="card-title">{{comic.title}}</p>
-                <div class="btn btn-dark" v-on:click="addComic(comic)">Select Comic</div>
+
+                Comic Condition
+                <div class="radio">
+                    <label><input type="radio" name="optradio" v-model="comicCond" value="1" checked>Mint</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio" v-model="comicCond" value="2">Fair</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="optradio" v-model="comicCond" value="3">Poor</label>
+                </div> 
+
+                <div class="btn btn-success" v-on:click="trader()" v-if="trade != ''">Mark Tradable?</div>
+                <div class="btn btn-danger" v-on:click="trader()" v-else >Mark Untradable</div>
+                <div class="btn btn-dark" v-on:click="comicOptions(comic)">Select Comic</div>
             </li>
         </ul>
     </div>
@@ -33,8 +46,11 @@ export default {
     name: "add-comic",
     data(){
         return{
+            trade: 1,
             comicTitle: '',
-            colections: {
+            comicCond: {
+            },
+            collections:{
             },
             comics: {
                 data:{}
@@ -42,8 +58,8 @@ export default {
             account:{
                 comicId:'',
                 collectionId:'',    /*collection id comic condition and trade status all selected by user */
-                comicConditionId:'',
-                comicTradableStatusId:''
+                comicConditionId: '',
+                comicTradableStatusId: 2
             },
             comic:{
                 comicId:'',
@@ -55,29 +71,35 @@ export default {
         }
     },
     methods: {
+        trader(){
+            if(this.trade == ''){
+                this.account.comicTradableStatusId = 2;
+                this.trade = 1;
+            }else if(this.trade == 1){
+                this.account.comicTradableStatusId = 1
+                this.trade = '';
+            }
+        },
         searchComics(title) {
             ComicServices.getComicsByName(title).then(response => {
                 this.comics = response.data;
                 this.comicTitle = '';
             })
         },
-        addComic(comic){
+        comicOptions(comic){
             this.comic.comicId = comic.id;
             this.comic.comicName = comic.title;
             this.comic.comicCharacters = comic.characters.items[0].name;
             this.comic.authorName = comic.creators.items[0].name;
             this.comic.datePublished = comic.dates[0].date;
             this.account.comicId = comic.id;
-            this.account.comicConditionId = '';
-            this.account.comicTradableStatusId = '';
-            this.account.collectionId = '';
+            }
+        },
+        created(){
+            CollectionService.getCollectionByCurrentUser().then(response => {
+                this.collections = response.data;
+            });
         }
-    },
-    created(){
-        CollectionService.getCollectionByCurrentUser().then(response => {
-            this.collections = response.data;
-        })
-    }
 }
 </script>
 
