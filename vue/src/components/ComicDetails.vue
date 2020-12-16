@@ -20,8 +20,11 @@ export default {
 
         };
     },
-    methods: {
-        
+    created(){
+        ComicServices.getComicsByName(this.$store.state.comic.comicId).then(response => {
+            this.comics = response.data;
+            this.comicTitle = '';
+        })
     }
 }
 </script>

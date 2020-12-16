@@ -1,5 +1,14 @@
 <template>
 <span>
+    <span class="row">
+        <div class="form-check-inline" v-for="collection in collections" v-bind:key=" collection.collectionId">
+            <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" value="">
+                {{collection.collectionName}} - {{collection.collectionId}}
+            </label>
+        </div>
+    </span> 
+
     <div class="row">
         <input v-model="comicTitle" type="search" class="form-control col-md-9" placeholder="Search by Issue Name" name="q">
         <button class="btn btn-dark col-md-2" v-on:click="searchComics(comicTitle)">Search</button>
@@ -25,12 +34,14 @@ export default {
     data(){
         return{
             comicTitle: '',
+            colections: {
+            },
             comics: {
                 data:{}
             },
             account:{
                 comicId:'',
-                collectionId:'',
+                collectionId:'',    /*collection id comic condition and trade status all selected by user */
                 comicConditionId:'',
                 comicTradableStatusId:''
             },
@@ -59,18 +70,21 @@ export default {
             this.account.comicId = comic.id;
             this.account.comicConditionId = '';
             this.account.comicTradableStatusId = '';
-            this.account.colloectionId = '';
+            this.account.collectionId = '';
         }
     },
     created(){
         CollectionService.getCollectionByCurrentUser().then(response => {
-            this.collections = response.data
+            this.collections = response.data;
         })
     }
 }
 </script>
 
 <style scoped>
+.dropdown{
+    margin:50px;
+}
 span{
     width: 100%;
     margin: auto 2%;
