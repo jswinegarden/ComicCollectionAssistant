@@ -1,8 +1,6 @@
 <template>
   <div id="login" class="text-center">
-    <div class="nav1"></div>
     <div class="nav2"></div>
-    <div class="nav3"></div>
     <div class="container">
     <div class="row justify-content-center align-items-center h-40">
       <div class="col-md-5">
@@ -105,7 +103,7 @@ export default {
 
 .nav2{
   border: solid 3px white;
-  width:242px;
+  width:430px;
   left: 12.5%;
   top: 55px;
   position: absolute;
@@ -140,7 +138,11 @@ export default {
 .card-body{
   border-radius: 1rem;
   background-image: url("https://thumbs.dreamstime.com/b/comic-pop-art-background-lightning-blast-halftone-dots-cartoon-vector-illustration-orange-comic-background-151418372.jpg%22");
+<<<<<<< HEAD
   background-size: 105%;
+=======
+  background-size: cover;
+>>>>>>> ad4759a1f02e4cd1c47f0d84035c819e16fee28a
 }
 
 .form-signin {

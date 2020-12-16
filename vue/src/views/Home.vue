@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div>
     <div class="jumbotron jumbotron-fluid shadow">
       <h1>Comic League!</h1>
       <p>Track your collection! Share with your friends!</p>
@@ -7,7 +7,7 @@
 
     <div class="row shadow">
       <h4 class="col-md-12">My Collections:
-        <span class="container-fluid"> 
+        <span> 
             <router-link class="btn btn-dark" v-bind:to="{ name: 'newCollection' }" v-show="$store.state.token != ''">Create New Collection</router-link>
             <router-link class="btn btn-success" v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link>
         </span>
@@ -55,21 +55,17 @@
     </div>
   </div>
 </template>
-
 <script>
 import GetMyCollections from '../components/GetMyCollections.vue'
 export default {
   name: "home",
   components: { GetMyCollections },
+
 };
 </script>
 
 <style scoped>
-#mycollection{
-  width: 100%;
-  margin: auto;
-  padding: 10px auto;
-}
+
 /* --------------------  header ---------------- */
 .jumbotron {
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -91,10 +87,16 @@ div.row {
 }
 .col-md-12 {
   background-color: white;
-  padding: 10px 10px 5px;
-  margin: 0px;
   font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-kerning: none;
+  height:50px;
+  padding: 10px 0 0 15px;
+}
+.col-md-12 span{
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 /* ------------------ collection boxes ---------- */
 .col-md-2{
@@ -113,36 +115,23 @@ div p.row {
   border-top: darkgrey solid 1px;
   padding: 5px;
   margin: 0px;
-  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: AnimeAce, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-kerning: none;
 }
 .col-md-12 .btn{
- margin: 5px;
  background-color: none;
- border: none;
+ margin: 5px 5px 10px;
  padding: 5px;
- }
- .container-fluid {
-    display: inline-flex;
-    font-family: Helvetica, sans-serif;
-    width: 85%;
-    margin: auto;
-    padding: auto;
 }
 .btn-dark{
-    width: 100%;
+    width: 200px;
     padding: 20px 0;
 }
 .btn-dark:hover{
   background-color: rgb(80, 80, 76);
 }
 .btn-success{
-    width: 100%;
-    margin: 20px auto;
-    padding: 20px 0;
-}
-.btn-info{
-    width: 100%;
+    width: 200px;
     padding: 20px 0;
 }
 </style>

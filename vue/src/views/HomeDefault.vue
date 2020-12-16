@@ -24,16 +24,52 @@
                 <p class="row"> collection title </p>
              </div>
         </div>
-    </div>
+        <span>
+          <div class="row">
+            <h4 class= "col-md-12"> Comics: </h4>
+              <div class="comics row"> 
+                  <ul class="col-md-4" v-for="comic in comics.data.results" v-bind:key="comic.title">
+                    <li class="card">
+                      <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+                      <p class="card-title">{{comic.title}}</p>
+                      <div class="btn btn-dark">add comic</div>
+                    </li>
+                  </ul>
+              </div>
+            </div>
+        </span> 
+      </div>
 </template>
 
 <script>
+import ComicServices from '../services/ComicServices.js'
 export default {
     name: "viewer",
+  data(){
+        return{
+            comicTitle: '',
+            comics: {
+                data:{}
+            },
+        }
+    },
+  created() {
+       
+        ComicServices.getComicIssue().then(response => {
+      this.comics = response.data
+        });
+
+    },
+    
 }
 </script>
 
 <style scoped>
+.comics{
+  width: 100%;
+  margin: auto;
+  padding: 10px auto;
+}
 .box{
   height: 1080px;
 }
@@ -75,8 +111,14 @@ div p.row {
   border-top: darkgrey solid 1px;
   padding: 5px;
   margin: 0px;
-  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: AnimeAce, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-kerning: none;
 }
+.card{
+    margin:10px auto;
+    padding: 5px;
+   
+}
+
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="box">
         <div class="jumbotron jumbotron-fluid">
             <h2>Add Comics</h2>
         </div>
@@ -19,6 +19,22 @@ export default {
 </script>
 
 <style scoped>
+/* --------------------  header ---------------- */
+.jumbotron {
+ font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+ color: white;
+ background-color: rgba(220, 207, 189, 0.94);
+ width: 75%;
+ margin: auto;
+ padding: 20px;
+ border: white solid 6px;
+ font-kerning: none;
+}
+.box{
+    height: 1080px;
+    background-attachment: local;
+    padding-bottom: 5px;
+}
 .jumbotron{
     width: 75%;
     margin: auto;

@@ -1,13 +1,13 @@
 <template>
     <span class="row">
-        <ul class="col-md-3" v-for="collection in collections.slice(0,3)" v-bind:key="collection.collectionId">
-           <li class="card">
+        <ul class="col-md-3" v-for="collection in collections.slice(0,4)" v-bind:key="collection.collectionId">
+           <li class="card" v-on:click="toCollection(collection.collectionName)"><!-- --------calls method to push router to collection.vue when card is clicked ------- -->
                 <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                 <p class="card-title">{{collection.collectionName}}</p>
             </li>
         </ul>
         <span class="contain"> 
-            <router-link class="btn btn-info" v-bind:to="{ name: 'account' }">view more</router-link> 
+            <router-link class="btn btn-info" v-bind:to="{ name: 'account' }">View More</router-link> 
         </span>
   </span>
 </template>
@@ -20,6 +20,12 @@ export default {
         return{
             collections:{    
             },
+        }
+    },
+    methods:{
+        toCollection(collectionName){
+            this.$store.state.collection.collectionName = collectionName;
+            this.$router.push(`/collection`)/* routes to collection.vue when called by event */
         }
     },
     created(){
@@ -44,8 +50,8 @@ export default {
    margin: 10px auto;
 }
 .contain {
-    width: 20%;
-    margin: auto;
+    width: 100%;
+    margin:0 15px 5px;
 }
 .btn-dark{
     width: 100%;
@@ -60,7 +66,7 @@ export default {
     padding: 20px 0;
 }
 .btn-info{
+    display:block;
     width: 100%;
-    padding: 20px 0;
 }
 </style>

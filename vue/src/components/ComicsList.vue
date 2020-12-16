@@ -1,37 +1,41 @@
 <template>
-<span class="row">
-        <ul class="col-md-3" 
-        v-for="comics in collection" 
-        v-bind:key="comics.collectionId"
-        v-on:click="retrieveComics(collectionId)"
-        >
-           <li class="comic">
-                <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
-                <p class="comic-title">{{comic.comicTitle}}</p>
-            </li>
-        </ul>
-  </span>
+    <div id="collectionPage">
+        <span class="row">
+            <ul class="col-md-3" v-for="comic in comics" v-bind:key="comic.comicId">
+                <li class="comic" v-on:click="toComicDetails(comics.comicName)">
+                    <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+                    <p class="comic-title">{{comic.comicName}}</p>
+                </li>
+            </ul>
+    </span>
+  </div>
 </template>
 
 <script>
-import ComicServices from '../services/ComicServices';
-
+import CollectionService from '../services/CollectionService';
 export default {
     name: 'comics-list',
     data(){
         return{
-            comicTitle: '',
+            collectionName: '',
+            collectionDesc: '',
+            collection: {},
+            comicName: '',
             comics: {
                 data:{}
             },
         }
     },
     methods: {
+        toComicDetails(comicName){
+            this.$store.state.comic.comicName = comicName;
+            this.$router.push(`/comic/`)
+        },
         retrieveComics(collectionId) {
-            ComicServices
-            .getComicsByCollectionId(this.collectionId)
+            CollectionService
+            .getComicsByCollectionId(collectionId)
             .then(response => {
-                this.title = response.data.title;
+                this.name = response.data.name;
                 this.$store.commit("SET_COLLECTION_COMICS", response.data.comics);
             })
             .catch(error => {
@@ -45,8 +49,8 @@ export default {
         }
     },
     created() {
-        ComicsServices.getComicsByCollectionId(collectionId).then(response => {
-            this.comoics = response.data
+        CollectionService.getComicsByCollectionId(this.$store.state.collection.collectionId).then(response => {
+            this.comics = response.data
         })
     }
 };
