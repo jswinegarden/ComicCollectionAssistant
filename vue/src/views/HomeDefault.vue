@@ -33,7 +33,7 @@
                     <li class="card">
                         <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                         <p class="card-title">{{comic.title}}</p>
-                        <div class="btn btn-dark" v-on:click="viewComicDetails">View Comic Details</div>
+                        <div class="btn btn-dark" v-on:click="viewComicDetails(comic.id)">View Comic Details</div>
                     </li>
                 </ul>
               <button class="btn btn-success col-md-2 btn-lg" v-on:click="viewMoreComics"> View More </button>
@@ -69,8 +69,9 @@ export default {
                 this.comicTitle = '';
             })
         },
-        viewComicDetails(comic){
-          this.$router.push(`/comic/{id}`)
+        viewComicDetails(comicId){
+          this.$store.state.comic.comicId = comicId;
+          this.$router.push(`/comic`)
         },
         viewMoreComics(){
 
