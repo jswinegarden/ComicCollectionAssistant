@@ -1,8 +1,8 @@
 <template>
     <div id="collectionPage">
         <span class="row">
-            <ul class="col-md-3" v-for="comics in collection" v-bind:key="comics.collectionId">
-                <li class="comic" v-on:click="toComicDetails(comic.comicName)">
+            <ul class="col-md-3" v-for="comic in comics" v-bind:key="comic.comicId">
+                <li class="comic" v-on:click="toComicDetails(comics.comicName)">
                     <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                     <p class="comic-title">{{comic.comicName}}</p>
                 </li>
