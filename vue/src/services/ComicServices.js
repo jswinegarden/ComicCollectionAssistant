@@ -19,6 +19,9 @@ export default {
     },
     getNonCollectionComicDetails(comicId){
         return http.get(`comics/${comicId}?&apikey=9d96d996f4bfce42975b47820c47174a&hash=eadb34d00cfcc0a0b08ebf5d5b1123ff&ts=1`)
+    },
+    addNewComic(comic){
+        return axios.post(`/comics/`, comic)
     }
 }
 

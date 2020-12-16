@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import ComicServices from "@/services/ComicServices.js"
 import ComicDetails from '../components/ComicDetails.vue'
 export default {
   components: { ComicDetails },
