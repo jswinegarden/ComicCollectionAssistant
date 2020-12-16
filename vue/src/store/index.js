@@ -29,6 +29,9 @@ export default new Vuex.Store({
       comicId: '',
       comicName: '',
       comicDesc: '',
+      authorName: '',
+      comicCharacters: '',
+      datePublished: '',
     },
   },
   mutations: {

@@ -15,13 +15,21 @@
 <script>
 import comicService from '../services/ComicService';
 export default {
+    name: `comic-detail`,
     data() {
         return {
-
+            comic: {
+                data:{}
+            },
         };
     },
     methods: {
         
+    },
+    created(){
+        ComicServices.getNonCollectionComicDetails(this.comicId).then(response =>{
+            this.comic = response.data
+        })
     }
 }
 </script>

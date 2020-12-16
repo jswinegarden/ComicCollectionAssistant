@@ -16,6 +16,9 @@ export default {
     },
     getComicDetails(collectionId, comicId){
         return axios.get(`/collections/${collectionId}/comics/${comicId}`)
+    },
+    getNonCollectionComicDetails(comicId){
+        return http.get(`comic/${comicId}?&apikey=9d96d996f4bfce42975b47820c47174a&hash=eadb34d00cfcc0a0b08ebf5d5b1123ff&ts=1`)
     }
 }
 

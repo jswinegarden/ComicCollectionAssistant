@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import ComicServices from "@/services/ComicServices.js"
+
 export default {
 
 }
