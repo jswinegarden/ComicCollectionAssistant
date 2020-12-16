@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import CollectionService from '@/services/CollectionService.js'
 import ComicServices from "@/services/ComicServices.js"
 
 export default {
@@ -28,7 +29,6 @@ export default {
                 data:{}
             },
             account:{
-                userId:'',
                 comicId:'',
                 collectionId:'',
                 comicConditionId:'',
@@ -51,19 +51,26 @@ export default {
             })
         },
         addComic(comic){
-            this.comic.comicId = comic.id
-            this.comic.comicName = comic.title
-            this.comic.comicCharacters = comic.characters.items.obj(0).name
-            this.comic.authorName = comic.creators.items.array(0).name
-            this.comic.datePublished = comic.dates.array(0).date
-            this.account.comicId = comic.id
+            this.comic.comicId = comic.id;
+            this.comic.comicName = comic.title;
+            this.comic.comicCharacters = comic.characters.items[0].name;
+            this.comic.authorName = comic.creators.items[0].name;
+            this.comic.datePublished = comic.dates[0].date;
+            this.account.comicId = comic.id;
+            this.account.comicConditionId = '';
+            this.account.comicTradableStatusId = '';
+            this.account.colloectionId = '';
         }
+    },
+    created(){
+        CollectionService.getCollectionByCurrentUser().then(response => {
+            this.collections = response.data
+        })
     }
 }
 </script>
 
 <style scoped>
-
 span{
     width: 100%;
     margin: auto 2%;

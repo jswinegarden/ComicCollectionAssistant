@@ -6,12 +6,12 @@
         </div>
       <div class="row shadow">
         <span> <router-link class="btn btn-success"
-          v-bind:to="{ name: 'newComic' }" v-show="$store.state.token != ''">Add Comic</router-link>
+          v-bind:to="{ name: 'newComic' }">Add Comic</router-link>
         </span>
-        <div id="thisCollection">
+      </div>
+      <div class="row" id="thisCollection">
           <comics-list />
         </div>
-      </div>
     </div>
 </template>
 
