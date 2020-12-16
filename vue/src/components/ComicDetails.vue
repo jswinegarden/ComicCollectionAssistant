@@ -1,28 +1,37 @@
 <template>
-    <div class="header">
-        <h1>{{ title }}</h1>
-        <router-link :to="{ name: 'Comic', params: { id: comic.id } }"
-        class="comic"
-        v-for="comic in this.$store.state.comics"
-        v-bind:key="comic.id"
-        v-bind:style=" { 'background-color': comic.backgroundColor }"
-        >
-        {{ comic.title }}
-        </router-link>
+   <div>
+        <div v-for="details in comic.data.results" v-bind:key="details.comicId">
+            <div class="col-md shadow"> 
+                <img class="img-fluid" src= image>
+            </div>
+            <div class="col-md shadow"><h3> {{details.title}}</h3>
+                <h5 class="row"> {{details.description}}</h5>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-import comicService from '../services/ComicService';
+import ComicServices from '../services/ComicServices.js';
 export default {
+    name: "comic-detail",
     data() {
         return {
-
-        };
+            comic: {
+                data:{}
+            },
+            image: "",
+        }
     },
     methods: {
+        
+    },
+    created(){
+        ComicServices.getNonCollectionComicDetails(this.$store.state.comic.comicId).then(response =>{
+            this.comic = response.data
+        }),
+        this.image = this.comic.data.results.thumbnail.path + "." + this.comic.data.results.thumbnail.extension
         
     }
 }
 </script>
-/* references CardDetails from week19 lecture code */
