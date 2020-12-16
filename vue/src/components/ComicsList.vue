@@ -1,15 +1,10 @@
 <template>
     <div id="collectionPage">
         <span class="row">
-<<<<<<< HEAD
-            <ul class="col-md-3" v-for="comics in collection" v-bind:key="comics.comicName">
-                <li class="comic" v-on:click="toComicDetails(comic.comicName, comic.comicDescription)">
-=======
-            <ul class="col-md-3" v-for="comics in collection" v-bind:key="comics.collectionId">
-                <li class="comic" v-on:click="toComicDetails(comic.comicName)">
->>>>>>> 182916ec85ab12b958bb17664772ecf1316a2e78
+            <ul class="col-md-3" v-for="comic in comics" v-bind:key="comic.comicId">
+                <li class="comic" v-on:click="toComicDetails(comics.comicName)">
                     <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
-                    <p class="comic-title">{{comics.comicName}}</p>
+                    <p class="comic-title">{{comic.comicName}}</p>
                 </li>
             </ul>
     </span>
@@ -54,11 +49,7 @@ export default {
         }
     },
     created() {
-<<<<<<< HEAD
-        ComicServices.getComicsByCollectionId(this.$store.state.collection.collectionId).then(response => {
-=======
         CollectionService.getComicsByCollectionId(this.$store.state.collection.collectionId).then(response => {
->>>>>>> 182916ec85ab12b958bb17664772ecf1316a2e78
             this.comics = response.data
         })
     }
