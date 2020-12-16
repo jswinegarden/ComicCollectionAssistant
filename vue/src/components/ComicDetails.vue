@@ -23,20 +23,14 @@ export default {
             },
         };
     },
-<<<<<<< HEAD
-    created(){
-        ComicServices.getComicsByName(this.$store.state.comic.comicId).then(response => {
-            this.comics = response.data;
-            this.comicTitle = '';
-=======
     methods: {
         
     },
     created(){
         ComicServices.getNonCollectionComicDetails(this.comicId).then(response =>{
             this.comic = response.data
->>>>>>> 9a0e82b7c140a7fd2b2e70be0cfebd7e5e91631e
-        })
+        }),
+        image = ""
     }
 }
 </script>
