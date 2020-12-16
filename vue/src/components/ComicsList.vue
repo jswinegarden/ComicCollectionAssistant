@@ -13,6 +13,7 @@
 
 <script>
 import CollectionService from '../services/CollectionService';
+import AccountServices from '../services/AccountServices';
 export default {
     name: 'comics-list',
     data(){
@@ -21,9 +22,12 @@ export default {
             collectionDesc: '',
             collection: {},
             comicName: '',
-            comics: {
+            accounts: {
                 data:{}
             },
+            comics: {
+                data:{}
+            }
         }
     },
     methods: {
@@ -32,12 +36,14 @@ export default {
             this.$router.push(`/comic/`)
         },
         retrieveComics(collectionId) {
-            CollectionService
-            .getComicsByCollectionId(collectionId)
+            AccountServices
+            .getAccountsByCollectionId(collectionId)
             .then(response => {
-                this.name = response.data.name;
-                this.$store.commit("SET_COLLECTION_COMICS", response.data.comics);
+                
+                this.$store.commit("SET_ACCOUNTS", response.data.accounts);
             })
+            /*this.account.comicId;
+            this.account.colletionId;*/
             .catch(error => {
                 if (error.response && error.response.status === 404) {
                     alert(
@@ -50,10 +56,11 @@ export default {
         
     },
     created() {
-        CollectionService.getComicsByCollectionId(this.$store.state.collection.collectionId).then(response => {
-            this.comics = response.data
+        AccountServices.getAccountsByCollectionId(this.$store.state.accounts.collectionId).then(response => {
+            this.accounts = response.data
         })
-    }
+    },
+
 };
 </script>
 <style scoped>
