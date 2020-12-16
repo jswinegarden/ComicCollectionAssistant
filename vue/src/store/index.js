@@ -22,7 +22,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     collectionComics: {
       collectionId:{
-        
+        comics: [],
       }
     },
     collection:{

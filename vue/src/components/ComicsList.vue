@@ -46,7 +46,8 @@ export default {
                     this.$router.push("/");
                 }
             })
-        }
+        },
+        
     },
     created() {
         CollectionService.getComicsByCollectionId(this.$store.state.collection.collectionId).then(response => {
