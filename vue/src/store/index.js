@@ -20,13 +20,14 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    account: {
-      
-    },
+      account:{
+        collectionId: '',
+        comicId: '',
+      },
     collection:{
       collectionId: '',
       collectionName: '',
-      collectionDesc: ''
+      collectionDesc: '',
     },
     comic:{
       comicId: '',
@@ -60,7 +61,7 @@ export default new Vuex.Store({
     SET_COLLECTIONS(state, data) {
       state.collections = data;
     },
-    SET_ACCOUNTS(state, data) {
+    SET_ACCOUNT(state, data) {
       state.accounts = data;
     }
   }

@@ -17,5 +17,6 @@ export default {
         },
         getComicByComicId(comicId){
             return axios.get(`/comics/${comicId}`)
-        }
+        },
+        
 }

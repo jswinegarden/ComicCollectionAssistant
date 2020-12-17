@@ -4,7 +4,6 @@
             <ul class="col-md-3" v-for="comic in comics" v-bind:key="comic.comicId">
                 <li class="comic" v-on:click="toComicDetails(comics.comicName)">
                     <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
-                    <p class="comic-title">{{comic.comicName}}</p>
                 </li>
             </ul>
     </span>
@@ -22,11 +21,11 @@ export default {
             collectionDesc: '',
             collection: {},
             comicName: '',
-            accounts: {
-                data:{}
+            accounts: {           
             },
             comics: {
-                data:{}
+            },
+            collections: {
             }
         }
     },
@@ -35,15 +34,14 @@ export default {
             this.$store.state.comic.comicName = comicName;
             this.$router.push(`/comic/`)
         },
-        retrieveComics(collectionId) {
+        retrieveAccounts(collectionId) {
             AccountServices
-            .getAccountsByCollectionId(collectionId)
+            .getAccountsByCollectionId(this.collectionId)
             .then(response => {
-                
+                this.$store.state.accounts.collectionId = response.data.collectionId;
+                this.$store.state.accounts.comicId = response.data.comicId;
                 this.$store.commit("SET_ACCOUNTS", response.data.accounts);
             })
-            /*this.account.comicId;
-            this.account.colletionId;*/
             .catch(error => {
                 if (error.response && error.response.status === 404) {
                     alert(
@@ -53,14 +51,23 @@ export default {
                 }
             })
         },
-        
+        retrieveComics(comicId) {
+            CollectionService
+            .getComicByComicId(this.accounts.comicId)
+            .then(response => {
+                this.comicName = response.data.comicName;
+                this.$store.commit("SET_COMICS", response.data.comics);
+            })
+        }
     },
     created() {
-        AccountServices.getAccountsByCollectionId(this.$store.state.accounts.collectionId).then(response => {
+        AccountServices.getAccountsByCollectionId(this.$store.state.collection.collectionId).then(response => {
             this.accounts = response.data
         })
-    },
-
+        CollectionService.getCollectionByCurrentUser().then(response => {
+            this.collections = response.data
+        })
+    }
 };
 </script>
 <style scoped>
