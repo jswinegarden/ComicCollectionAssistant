@@ -48,6 +48,14 @@ public class AccountSQLDAO implements AccountDAO{
 		}
 		return account;
 	} 
+	
+	@Override
+	public Long getComicIdByAccountId(Long accountId) {
+		String sql = "SELECT comic_id FROM accounts WHERE account_id = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
+		Long comicId = results.getLong("comic_id");
+		return comicId;
+	}
 
 	@Override
 	public void updateComics(Account account) {

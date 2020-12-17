@@ -6,5 +6,8 @@ export default {
     },
     getAccountsByCollectionId(collectionId){
         return axios.get(`/account/collections/${collectionId}/comics`)
+    },
+    getComicByAccountId(accountId){
+        return axios.get(`/account/comics/${accountId}`)
     }
 }

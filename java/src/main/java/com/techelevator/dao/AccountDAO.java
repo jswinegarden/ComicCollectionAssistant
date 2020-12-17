@@ -18,5 +18,6 @@ public interface AccountDAO {
 	Long  getComicCountPerCollectionByUser (Long userId, Long collectionId);
 	Long getComicCountOverallByUser (Long userId);
 	List <Account> getComicsByCollection(Long userId, Long collectionId);
+	Long getComicIdByAccountId(Long accountId);
 	
 }

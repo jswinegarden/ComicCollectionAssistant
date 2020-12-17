@@ -1,9 +1,9 @@
 <template>
     <div id="collectionPage">
         <span class="row shadow">
-            <ul class="col-md-12" v-for="comic in comics" v-bind:key="comic.comicId">
-                <li class="comic" v-on:click="toComicDetails(comics.comicName)">
-                    <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+            <ul class="col-md-4" v-for="account in accounts" v-bind:key="account.accountId">
+                <li class="card"  v-on:click="toComicDetails(comics.comicName)">
+                    <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                 </li>
             </ul>
     </span>
@@ -30,8 +30,11 @@ export default {
         }
     },
     methods: {
-        toComicDetails(comicName){
+        toComicDetails(comicName){ 
             this.$store.state.comic.comicName = comicName;
+            AccountServices.getComicByAccountId(this.accountId).then(response => {
+                this.$store.state.accounts.comicId = response.data.comicId;
+            })
             this.$router.push(`/comic/`)
         },
         retrieveAccounts(collectionId) {
@@ -74,18 +77,21 @@ export default {
 };
 </script>
 <style scoped>
-.comic{
-  width: 100%;
-  margin: auto;
-  padding: 10px auto;
-}
-.comic:hover{
-    background-color: wheat;
-}
-.comic-title{
+.card-title{
     padding-top: 10px;
 }
 .row{
    margin: 10px auto;
+}
+.card{
+    margin:10px auto;
+    padding: 5px;
+}
+.card:hover{
+  background-color: wheat;
+}
+span{
+    width: 100%;
+    margin: auto 2%;
 }
 </style>
