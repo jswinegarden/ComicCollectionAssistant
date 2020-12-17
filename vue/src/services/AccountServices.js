@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export default {
-    addComicToAccount(){
-       return 
+    addComicToAccount(account){
+       return axios.post(`/account/`, account)
     }
 
 

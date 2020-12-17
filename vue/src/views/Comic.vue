@@ -5,25 +5,19 @@
   </div>
   <div class="row shadow">
       
-      <div class="col-md shadow"> 
-          <img class="img-fluid" src="https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/724077/724077._SX1600_QL80_TTD_.jpg">
-        
-      </div>
-       <div class="col-md shadow"><h3> Comic Book Title</h3>
-        <h5 class="row"> Comic Book Details Insert Here </h5>
-      </div>
+     
+       <comic-details />
       
     </div>
-    <footer>
-      &copy;  Comic League Enterprises 2020
-    </footer>
 </div>
 
   
 </template>
 
 <script>
+import ComicDetails from '../components/ComicDetails.vue'
 export default {
+  components: { ComicDetails },
 
 }
 </script>
