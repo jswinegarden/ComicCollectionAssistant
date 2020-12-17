@@ -17,21 +17,17 @@
             <li class="card">
                 <img class="card-img-top" v-bind:src="comic.thumbnail.path + '.' + comic.thumbnail.extension">
                 <p class="card-title">{{comic.title}}</p>
-
+    
                 Comic Condition
-                <div class="radio">
-                    <label><input type="radio" name="optradio" v-model="comicCond" value="1" checked>Mint</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="optradio" v-model="comicCond" value="2">Fair</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="optradio" v-model="comicCond" value="3">Poor</label>
-                </div> 
-
+                <select id="tag" class="form-control" v-model="condition">
+                    <option value="1" v-on:click="setCondition(condition)">Mint</option>
+                    <option value="2" v-on:click="setCondition(condition)">Fair</option>
+                    <option value="3" v-on:click="setCondition(condition)">Poor</option>
+                </select>
+   
                 <div class="btn btn-success" v-on:click="trader()" v-if="trade != ''">Mark Tradable?</div>
                 <div class="btn btn-danger" v-on:click="trader()" v-else >Mark Untradable</div>
-                <div class="btn btn-dark" v-on:click="comicOptions(comic)">Select Comic</div>
+                <div class="btn btn-dark" v-on:click="comicOptions(comic)">Add to Collection</div>
             </li>
         </ul>
     </div>
@@ -46,10 +42,9 @@ export default {
     name: "add-comic",
     data(){
         return{
+            condition: '',
             trade: 1,
             comicTitle: '',
-            comicCond: {
-            },
             collections:{
             },
             comics: {
@@ -71,6 +66,9 @@ export default {
         }
     },
     methods: {
+        setCondition(valueSet){
+            this.account.comicConditionId = valueSet;
+        },
         trader(){
             if(this.trade == ''){
                 this.account.comicTradableStatusId = 2;
