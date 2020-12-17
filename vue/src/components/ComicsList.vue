@@ -1,7 +1,7 @@
 <template>
     <div id="collectionPage">
-        <span class="row">
-            <ul class="col-md-3" v-for="comic in comics" v-bind:key="comic.comicId">
+        <span class="row shadow">
+            <ul class="col-md-12" v-for="comic in comics" v-bind:key="comic.comicId">
                 <li class="comic" v-on:click="toComicDetails(comics.comicName)">
                     <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                 </li>
@@ -53,7 +53,7 @@ export default {
         },
         retrieveComics(comicId) {
             CollectionService
-            .getComicByComicId(this.accounts.comicId)
+            .getComicByComicId(comicId)
             .then(response => {
                 this.comicName = response.data.comicName;
                 this.$store.commit("SET_COMICS", response.data.comics);
@@ -67,12 +67,17 @@ export default {
         CollectionService.getCollectionByCurrentUser().then(response => {
             this.collections = response.data
         })
+        CollectionService.getComicByComicId(this.$store.state.comic.comicId).then(response => {
+            this.comics = response.data
+        })
     }
 };
 </script>
 <style scoped>
 .comic{
-    padding:10px;
+  width: 100%;
+  margin: auto;
+  padding: 10px auto;
 }
 .comic:hover{
     background-color: wheat;
