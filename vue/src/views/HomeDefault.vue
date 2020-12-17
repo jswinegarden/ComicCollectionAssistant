@@ -60,6 +60,11 @@ export default {
         });
 
     },
+
+    methods: {
+      
+
+    }
     
 }
 </script>

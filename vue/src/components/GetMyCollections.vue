@@ -1,4 +1,5 @@
 <template>
+    <div>
     <span class="row">
         <ul class="col-md-3" v-for="collection in collections.slice(0,4)" v-bind:key="collection.collectionId">
            <li class="card" v-on:click="toCollection(collection.collectionName)"><!-- --------calls method to push router to collection.vue when card is clicked ------- -->
@@ -10,6 +11,7 @@
             <router-link class="btn btn-info" v-bind:to="{ name: 'account' }">View More</router-link> 
         </span>
   </span>
+    </div>
 </template>
 
 <script>
@@ -18,6 +20,7 @@ export default {
     name: 'get-my-collections',
     data(){
         return{
+
             collections:{    
             },
         }

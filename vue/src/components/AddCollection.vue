@@ -1,5 +1,6 @@
 <template>
     <div>
+        <loading-overlay :active="isLoading" :is-full-page="fullPage" :loader="loader" />
         <div class="row">
             <div class="col-md-8">
                 <input type="text" v-model="collection.collectionName" class="form-control" placeholder="Collection Title" name="Collection Title">
@@ -33,7 +34,9 @@ export default {
     name: "add-collection",
     data() {
         return {
-            
+            isLoading: false,
+            fullPage: false,
+            loader: "bars",
             fav: false,
             visibility: false,
             collection: {
@@ -51,6 +54,7 @@ export default {
             CollectionService.createCollection(collection).then(response =>{
                 if(response.status === 201){
                     this.$router.push(`/newComic`)
+
                 }
             });
         },
@@ -58,6 +62,7 @@ export default {
             CollectionService.createCollection(collection).then(response => {
                 if(response.status === 201){
                     this.$router.push(`/account`)
+
                 }
             });
         },

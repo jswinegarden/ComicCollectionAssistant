@@ -42,7 +42,7 @@
                       required
                     />
                     <router-link :to="{ name: 'register' }">Need an account?</router-link>
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" v-bind:to="{name: 'home'}" type="submit">Sign in</button>
                   </form>
                 </div>
               </div>
@@ -84,7 +84,6 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
-            this.$router.push("/home");
           }
         })
         .catch(error => {
@@ -138,11 +137,8 @@ export default {
 .card-body{
   border-radius: 1rem;
   background-image: url("https://thumbs.dreamstime.com/b/comic-pop-art-background-lightning-blast-halftone-dots-cartoon-vector-illustration-orange-comic-background-151418372.jpg%22");
-<<<<<<< HEAD
   background-size: 105%;
-=======
   background-size: cover;
->>>>>>> ad4759a1f02e4cd1c47f0d84035c819e16fee28a
 }
 
 .form-signin {

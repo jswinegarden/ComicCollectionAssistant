@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div id="collectionPage">
         <span class="row">
             <ul class="col-md-3" v-for="comic in comics" v-bind:key="comic.comicId">
@@ -9,6 +10,7 @@
             </ul>
     </span>
   </div>
+  </div>
 </template>
 
 <script>
@@ -17,6 +19,7 @@ export default {
     name: 'comics-list',
     data(){
         return{
+
             collectionName: '',
             collectionDesc: '',
             collection: {},

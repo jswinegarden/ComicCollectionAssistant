@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div class="header">
         <h1>{{ title }}</h1>
         <router-link :to="{ name: 'Comic', params: { id: comic.id } }"
@@ -10,6 +11,7 @@
         {{ comic.title }}
         </router-link>
     </div>
+    </div>
 </template>
 
 <script>
@@ -17,7 +19,6 @@ import comicService from '../services/ComicService';
 export default {
     data() {
         return {
-
         };
     },
     methods: {
