@@ -29,14 +29,16 @@
               <h4 class="col-md-12"> Comics: </h4>
               <input v-model="comicTitle" type="search" class="form-control col-md-9" placeholder="Search by Issue Name" name="q">
               <button class="btn btn-dark col-md-2" v-on:click="searchComics(comicTitle)">Search</button> 
-                <ul class="col-md-4" v-for="comic in comics.data.results" v-bind:key="comic.title">
+                <ul class="col-md-4" v-for="comic in comics.data.results.slice(0,comicsToShow)" v-bind:key="comic.title" >
                     <li class="card">
-                        <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+                        <img class="card-img-top"  v-bind:src="comic.thumbnail.path + '.' + comic.thumbnail.extension">
                         <p class="card-title">{{comic.title}}</p>
                         <div class="btn btn-dark" v-on:click="viewComicDetails(comic.id)">View Comic Details</div>
                     </li>
                 </ul>
-              <button class="btn btn-success col-md-2 btn-lg" v-on:click="viewMoreComics"> View More </button>
+                
+                <button class="btn btn-success col-md-2 btn-lg" v-on:click="showMore()" v-if="!readMore"> View More </button>
+                <button class="btn btn-success col-md-2 btn-lg" v-on:click="showLess()" v-if="readMore"> View Less </button>
             </div>
           </span>
       </div>
@@ -59,7 +61,9 @@ export default {
                 comicCharacters:'',
                 authorName:'',
                 datePublished:''
-            }
+            },
+            readMore: false,
+            comicsToShow: 12,
         }
     },
   methods: {
@@ -74,7 +78,15 @@ export default {
           this.$router.push(`/comic`)
         },
         viewMoreComics(){
-
+          
+        },
+        showMore(){
+          this.readMore = true;
+          this.comicsToShow +=39;
+        },
+        showLess(){
+         this.readMore = false;
+         this.comicsToShow -= 39;
         }
   },
   created() {

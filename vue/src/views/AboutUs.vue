@@ -7,7 +7,7 @@
         <p class="text-center mx-auto"> Have you found yourself wanting a way to visually keep track of what comics you have in your personal collection?
           If so, look no further! The Comic League provides just that! A way for users to keep track of their comics that they have in their collection 
           and access to a community that is part of the same culture! Just recently, we have introudced our brand new system that will allow users to add their friends on the site!
-          This allows you to see what vast collections they have! Our founder, Jacob Frey (pictured left), ....   
+          This allows you to see what vast collections they have! Our founder, Jacob Frey (pictured left), has had this vision in mind for years and is excited to share with the comic community!
         </p>
       </div>
       <h2> Meet the team </h2> 
