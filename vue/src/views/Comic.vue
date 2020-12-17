@@ -4,10 +4,7 @@
       <h1>Comic book</h1>
   </div>
   <div class="row shadow">
-      
-     
        <comic-details />
-      
     </div>
 </div>
 
