@@ -42,7 +42,9 @@
                       required
                     />
                     <router-link :to="{ name: 'register' }">Need an account?</router-link>
-                            <button class="btn btn-lg btn-primary btn-block text-uppercase" v-bind:to="{name: 'home'}" type="submit">Sign in</button>
+                    <router-link :to="{ name: '/' }">
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                    </router-link>
                   </form>
                 </div>
               </div>
