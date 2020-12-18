@@ -87,4 +87,8 @@ div p.row {
     width: 200px;
     padding: 20px 0;
 }
+div h2{
+  font-family: AnimeAce;
+  font-size: 15px;
+}
 </style>

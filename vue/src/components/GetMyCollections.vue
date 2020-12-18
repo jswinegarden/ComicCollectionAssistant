@@ -52,6 +52,8 @@ export default {
 .contain {
     width: 100%;
     margin:0 15px 5px;
+   text-align: center;
+   
 }
 .btn-dark{
     width: 100%;
@@ -65,8 +67,13 @@ export default {
     margin: 20px auto;
     padding: 20px 0;
 }
-.btn-info{
-    display:block;
-    width: 100%;
+.btn.btn-info{
+   display:flex;
+   justify-content: center;
+   align-items: center;
+   margin: 0 auto;
+   margin-left: auto;
+   margin-right: auto;
+   
 }
 </style>

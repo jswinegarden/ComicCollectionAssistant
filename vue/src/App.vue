@@ -29,10 +29,10 @@
           <router-link class="nav-link" 
           v-bind:to="{ name: 'trades' }"  v-show="$store.state.token != ''">Trades</router-link>
         </li> -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <router-link class="nav-link" 
           v-bind:to="{ name: 'leaderboard' }" >Leaderboards</router-link>
-        </li>
+        </li> -->
         <li class="nav-item">
           <router-link class="nav-link"
           v-bind:to="{name: 'aboutUs'}"> About Us </router-link>
