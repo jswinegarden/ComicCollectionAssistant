@@ -71,7 +71,7 @@ export default {
             this.collections = response.data
         })
         ComicServices.getComicByComicId(this.$store.state.comic.comicId).then(response => {
-            this.comics = response.data
+            this.comics = response.data;
         })
     }
 };

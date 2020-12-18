@@ -61,7 +61,7 @@ export default {
                 comicId:'',
                 collectionId:'',    /*collection id comic condition and trade status all selected by user */
                 comicConditionId: '',
-                comicTradableStatusId: 2,
+                comicTradableStatusId: 1,
                 accountTypeId: 2
             },
             comic:{
