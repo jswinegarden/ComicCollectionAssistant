@@ -15,8 +15,21 @@ public interface AccountDAO {
 	Account addComicForStandardAccount(Comic comic, Account account);
 	
 	Account addComicForPremiumAccount(Comic comic, Account account);
-	Long  getComicCountPerCollectionByUser (Long userId, Long collectionId);
-	Long getComicCountOverallByUser (Long userId);
+	
+	List<Account>  getComicCountPerCollectionByUser (Long userId, Long collectionId);
+	
+	List<Account> getComicCountOverallByUser (Long userId);
+	
+	List<Account> getCollectionCountOverallByUser (Long userId);
+	
+	List<Account> getMintComicCountByUser (Long userId);
+	
+	List<Account> getFairComicCountByUser (Long userId);
+	
+	List<Account> getPoorComicCountByUser (Long userId);
+	
 	List <Account> getComicsByCollection(Long userId, Long collectionId);
+	
+	Long getComicIdByAccountId(Long accountId);
 	
 }

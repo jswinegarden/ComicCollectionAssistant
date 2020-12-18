@@ -9,7 +9,7 @@
           v-bind:to="{ name: 'newComic' }">Add Comic</router-link>
         </span>
       </div>
-      <div class="row" id="thisCollection">
+      <div class="row">
           <comics-list />
         </div>
     </div>
@@ -23,9 +23,7 @@ export default {
 };
 </script>
 <style scoped>
-.box{
-  height: 1080px;
-}
+
 /* --------------------  header ---------------- */
 .jumbotron {
  font-family: CrashLanding, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;

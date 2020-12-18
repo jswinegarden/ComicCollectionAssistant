@@ -1,10 +1,9 @@
 <template>
     <div id="collectionPage">
-        <span class="row">
-            <ul class="col-md-3" v-for="comic in comics" v-bind:key="comic.comicId">
-                <li class="comic" v-on:click="toComicDetails(comics.comicName)">
-                    <img class="comic-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
-                    <p class="comic-title">{{comic.comicName}}</p>
+        <span class="row shadow">
+            <ul class="col-md-4" v-for="account in accounts" v-bind:key="account.accountId">
+                <li class="card"  v-on:click="toComicDetails(comics.comicId)">
+                    <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                 </li>
             </ul>
     </span>
@@ -13,6 +12,8 @@
 
 <script>
 import CollectionService from '../services/CollectionService';
+import AccountServices from '../services/AccountServices';
+import ComicServices from '../services/ComicServices';
 export default {
     name: 'comics-list',
     data(){
@@ -21,51 +22,76 @@ export default {
             collectionDesc: '',
             collection: {},
             comicName: '',
-            comics: {
-                data:{}
+            accounts: {           
             },
+            comics: {
+            },
+            collections: {
+            }
         }
     },
     methods: {
-        toComicDetails(comicName){
-            this.$store.state.comic.comicName = comicName;
+        toComicDetails(comicId){ 
+            ComicServices.getNonCollectionComicDetails(comicId).then(response => {
+                this.$store.state.accounts.comicId = response.data.comicId;
+            })
             this.$router.push(`/comic/`)
         },
-        retrieveComics(collectionId) {
-            CollectionService
-            .getComicsByCollectionId(collectionId)
+        // retrieveAccounts(collectionId) {
+        //     AccountServices
+        //     .getAccountsByCollectionId(this.collectionId)
+        //     .then(response => {
+        //         this.$store.state.accounts.collectionId = response.data.collectionId;
+        //         this.$store.state.accounts.comicId = response.data.comicId;
+        //         this.$store.commit("SET_ACCOUNTS", response.data.accounts);
+        //     })
+        //     .catch(error => {
+        //         if (error.response && error.response.status === 404) {
+        //             alert(
+        //                 "Comics not available. This collection may have been deleted or you have entered an invalid collection ID."
+        //             );
+        //             this.$router.push("/");
+        //         }
+        //     })
+        // },
+        retrieveComics(comicId) {
+            ComicServices
+            .getComicByComicId(comicId)
             .then(response => {
-                this.name = response.data.name;
-                this.$store.commit("SET_COLLECTION_COMICS", response.data.comics);
-            })
-            .catch(error => {
-                if (error.response && error.response.status === 404) {
-                    alert(
-                        "Comics not available. This collection may have been deleted or you have entered an invalid collection ID."
-                    );
-                    this.$router.push("/");
-                }
+                this.comicName = response.data.comicName;
+                this.$store.commit("SET_COMICS", response.data.comics);
             })
         }
     },
     created() {
-        CollectionService.getComicsByCollectionId(this.$store.state.collection.collectionId).then(response => {
+        AccountServices.getAccountsByCollectionId(this.$store.state.collection.collectionId).then(response => {
+            this.accounts = response.data
+        })
+        CollectionService.getCollectionByCurrentUser().then(response => {
+            this.collections = response.data
+        })
+        ComicServices.getComicByComicId(this.$store.state.comic.comicId).then(response => {
             this.comics = response.data
         })
     }
 };
 </script>
 <style scoped>
-.comic{
-    padding:10px;
-}
-.comic:hover{
-    background-color: wheat;
-}
-.comic-title{
+.card-title{
     padding-top: 10px;
 }
 .row{
    margin: 10px auto;
+}
+.card{
+    margin:10px auto;
+    padding: 5px;
+}
+.card:hover{
+  background-color: wheat;
+}
+span{
+    width: 100%;
+    margin: auto 2%;
 }
 </style>

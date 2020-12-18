@@ -67,6 +67,11 @@ public class AccountController {
     	return accountDAO.getComicsByCollection(userId, id);
     }
     
+    @RequestMapping(value = "comics/{id}", method = RequestMethod.GET)
+    public Long getComicIdByAccountId (@PathVariable Long id) {
+    	return accountDAO.getComicIdByAccountId(id);
+    }
+    
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Account addAccount(@Valid @RequestBody NewAccountDTO accountDTO, NewComicDTO comicDTO, Principal principal) {
     	Account account = buildAccountFromAccountDTO(accountDTO);

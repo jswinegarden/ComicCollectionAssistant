@@ -16,7 +16,7 @@
         <get-my-collections />
       </div>
     </div>
-    <div class="row shadow">
+    <!-- <div class="row shadow">
       <h4 class="col-md-12">Featured Collections:</h4>
       <div class="col-md-2 shadow">image representing collection
         <p class="row"> collection title </p>
@@ -52,7 +52,7 @@
       <div class="col-md-2 shadow"> image representing collection
         <p class="row"> collection title </p>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>

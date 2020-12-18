@@ -165,8 +165,8 @@ CREATE TABLE collections (
 CREATE TABLE comics (
         comic_id int DEFAULT nextval('seq_comic_id'::regclass) NOT NULL,
         comic_name varchar(500) NOT NULL,
-        author_name varchar(500) NOT NULL,
-        comic_characters varchar (1000) NOT NULL, 
+        author_name varchar(500) ,
+        comic_characters varchar (1000), 
         date_published date NOT NULL,
         CONSTRAINT PK_comic_id PRIMARY KEY (comic_id)
        

@@ -12,10 +12,9 @@ export default {
         getCollectionByCurrentUser(){
             return axios.get(`/collections/mycollections`)
         },
-        getComicsByCollectionId(collectionId){
-            return axios.get(`account/collections/${collectionId}/comics`)
-        },
         getComicDetails(collectionId, comicId){
             return axios.get(`/collections/${collectionId}/comics/${comicId}`)
-        }
+        },
+        
+        
 }
