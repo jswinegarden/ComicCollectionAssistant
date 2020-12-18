@@ -49,7 +49,6 @@ CREATE SEQUENCE seq_comic_condition_id
   CACHE 1;
   
 CREATE SEQUENCE seq_comic_tradable_status_id
-  INCREMENT BY 1
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
@@ -165,7 +164,7 @@ CREATE TABLE collections (
 CREATE TABLE comics (
         comic_id int DEFAULT nextval('seq_comic_id'::regclass) NOT NULL,
         comic_name varchar(500) NOT NULL,
-        author_name varchar(500) ,
+        author_name varchar(500),
         comic_characters varchar (1000), 
         date_published date NOT NULL,
         CONSTRAINT PK_comic_id PRIMARY KEY (comic_id)
@@ -275,8 +274,8 @@ INSERT INTO comic_conditions (comic_condition_desc) VALUES ('Fair');
 INSERT INTO comic_conditions (comic_condition_desc) VALUES ('Poor');
 
 
-INSERT INTO comic_tradable_statuses (comic_tradable_status_desc) VALUES ('Yes');
-INSERT INTO comic_tradable_statuses (comic_tradable_status_desc) VALUES ('No');
+INSERT INTO comic_tradable_statuses (comic_tradable_status_id, comic_tradable_status_desc) VALUES ('1', 'Yes');
+INSERT INTO comic_tradable_statuses (comic_tradable_status_id, comic_tradable_status_desc) VALUES ('2', 'No');
 
 
 INSERT INTO account_types (account_type_desc) VALUES ('Standard');
