@@ -34,7 +34,7 @@ import com.techelevator.dao.ComicDAO;
 @RestController
 @CrossOrigin
 @RequestMapping("/account")
-@PreAuthorize("isAuthenticated()")
+
 public class AccountController {
 	private AccountDAO accountDAO;
     private UserDAO userDAO;
@@ -48,30 +48,33 @@ public class AccountController {
         this.comicDAO = comicDAO;
     }
 
-
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping( value = "", method = RequestMethod.GET)
     public Account getAccount(Principal principal) throws UsernameNotFoundException {
         Long userId = getCurrentUserId(principal);
         return accountDAO.getAccountByUserId(userId);
     }
     
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/allaccounts", method = RequestMethod.GET)
     public List<Account> getAccountsByUser(Principal principal) {
     	return accountDAO.getAccountsByUserId(getCurrentUserId(principal));
     }
     
-    
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/collections/{id}/comics", method = RequestMethod.GET)
     public List<Account> ComicsInCollection (Principal principal, @PathVariable Long id) {
     	Long userId = getCurrentUserId(principal);
     	return accountDAO.getComicsByCollection(userId, id);
     }
     
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "comics/{id}", method = RequestMethod.GET)
     public Long getComicIdByAccountId (@PathVariable Long id) {
     	return accountDAO.getComicIdByAccountId(id);
     }
     
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Account addAccount(@Valid @RequestBody NewAccountDTO accountDTO, NewComicDTO comicDTO, Principal principal) {
     	Account account = buildAccountFromAccountDTO(accountDTO);
@@ -85,9 +88,36 @@ public class AccountController {
     	}
     	return account;
     }
+    
+    @PreAuthorize("isAuthenticated()")
     @RequestMapping(value = "/trades", method = RequestMethod.GET)
     public List<Trade> getTrades(Principal principal) {
         return tradeDAO.getTradesForUser(getCurrentUserId(principal));
+    }
+    
+    @RequestMapping(value = "/leaderboards/comicCount", method = RequestMethod.GET)
+    public List<Account> getStatisticsComicCount() {
+    	return accountDAO.getComicCountOverallByUser();
+    }
+    
+    @RequestMapping(value = "/leaderboards/collectionCount", method = RequestMethod.GET)
+    public List<Account> getStatisticsCollectionCount() {
+    	return accountDAO.getCollectionCountOverallByUser();
+    }
+    
+    @RequestMapping(value = "/leaderboards/mint", method = RequestMethod.GET)
+    public List<Account> getStatisticsMint() {
+    	return accountDAO.getMintComicCountByUser();
+    }
+    
+    @RequestMapping(value = "/leaderboards/fair", method = RequestMethod.GET)
+    public List<Account> getStatisticsFair() {
+    	return accountDAO.getFairComicCountByUser();
+    }
+    
+    @RequestMapping(value = "/leaderboards/poor", method = RequestMethod.GET)
+    public List<Account> getStatisticsPoor() {
+    	return accountDAO.getPoorComicCountByUser();
     }
     
     private Long getCurrentUserId(Principal principal) {

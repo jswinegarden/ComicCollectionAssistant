@@ -108,29 +108,76 @@ public class AccountSQLDAO implements AccountDAO{
 		return accounts;
 	}
 	
+<<<<<<< HEAD
+=======
+	@Override
+	public List<Account> getComicCountOverallByUser () {
+		List<Account> accounts = new ArrayList<>();
+		String sql = "SELECT COUNT (*), username FROM accounts INNER JOIN users USING (user_id) GROUP BY users.username ORDER BY COUNT (comic_id) DESC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			Account account = mapRowToAccount(results);
+			accounts.add(account);
+		}
+		return accounts;
+		
+	}
+	
+	@Override
+	public List<Account> getComicCountPerCollectionByUser (Long userId, Long collection_id){
+		List<Account> accounts = new ArrayList<>();
+		
+		return null;
+		
+	}
+>>>>>>> e92e3158aee885ec6fe8c84025a3cb2fa84268b2
 
 	@Override
-	public List<Account> getCollectionCountOverallByUser(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Account> getCollectionCountOverallByUser() {
+		List<Account> accounts = new ArrayList<>();
+		String sql = "SELECT COUNT (*), username FROM accounts INNER JOIN users USING (user_id) GROUP BY users.username ORDER BY COUNT (collection_id) DESC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			Account account = mapRowToAccount(results);
+			accounts.add(account);
+		}
+		return accounts;
 	}
 
 	@Override
-	public List<Account> getMintComicCountByUser(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Account> getMintComicCountByUser() {
+		List<Account> accounts = new ArrayList<>();
+		String sql = "SELECT COUNT (*), username FROM accounts INNER JOIN users USING (user_id) WHERE comic_condition_id = 1 GROUP BY users.username ORDER BY COUNT (comic_id) DESC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			Account account = mapRowToAccount(results);
+			accounts.add(account);
+		}
+		return accounts;
 	}
 
 	@Override
-	public List<Account> getFairComicCountByUser(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Account> getFairComicCountByUser() {
+		List<Account> accounts = new ArrayList<>();
+		String sql = "SELECT COUNT (*), username FROM accounts INNER JOIN users USING (user_id) WHERE comic_condition_id = 2 GROUP BY users.username ORDER BY COUNT (comic_id) DESC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			Account account = mapRowToAccount(results);
+			accounts.add(account);
+		}
+		return accounts;
 	}
 
 	@Override
-	public List<Account> getPoorComicCountByUser(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Account> getPoorComicCountByUser() {
+		List<Account> accounts = new ArrayList<>();
+		String sql = "SELECT COUNT (*), username FROM accounts INNER JOIN users USING (user_id) WHERE comic_condition_id = 3 GROUP BY users.username ORDER BY COUNT (comic_id) DESC";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+		while (results.next()) {
+			Account account = mapRowToAccount(results);
+			accounts.add(account);
+		}
+		return accounts;
 	}
 	
 	private Account getAccountById(Long accountId) {

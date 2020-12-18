@@ -8,21 +8,12 @@
 
         <div class="row shadow">
              <h4 class="col-md-12">Featured Collections:</h4>
-             <div class="col-md-2 shadow"> image representing collection
-                <p class="row"> collection title </p>
-             </div>
-             <div class="col-md-2 shadow"> image representing collection
-                <p class="row"> collection title </p>
-             </div>
-             <div class="col-md-2 shadow"> image representing collection
-                <p class="row"> collection title </p>
-             </div>
-             <div class="col-md-2 shadow"> image representing collection
-                <p class="row"> collection title </p>
-             </div>
-             <div class="col-md-2 shadow"> image representing collection
-                <p class="row"> collection title </p>
-             </div>
+                <ul class="col-md-3" v-for="collection in collections" v-bind:key="collection.collectionId">
+           <li class="card" v-on:click="toCollection(collection.collectionName, collection.collectionDescription, collection.collectionId)"><!-- --------calls method to push router to collection.vue when card is clicked ------- -->
+                <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+                <p class="card-title">{{collection.collectionName}}</p>  
+            </li>
+        </ul>
         </div>
           <span>
             <div class="row">
@@ -46,6 +37,7 @@
 
 <script>
 import ComicServices from '../services/ComicServices.js'
+import CollectionService from '../services/CollectionService'
 
 export default {
     name: "viewer",
@@ -94,7 +86,9 @@ export default {
         ComicServices.getComicIssue().then(response => {
       this.comics = response.data
         });
-
+        CollectionService.getAllCollections().then(response => {
+          this.collections = response.data
+        });
     },
     
 }
