@@ -2,7 +2,7 @@
     <div id="collectionPage">
         <span class="row shadow">
             <ul class="col-md-4" v-for="account in accounts" v-bind:key="account.accountId">
-                <li class="card"  v-on:click="toComicDetails(comics.comicName)">
+                <li class="card"  v-on:click="toComicDetails(comics.comicId)">
                     <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                 </li>
             </ul>
@@ -13,6 +13,7 @@
 <script>
 import CollectionService from '../services/CollectionService';
 import AccountServices from '../services/AccountServices';
+import ComicServices from '../services/ComicServices';
 export default {
     name: 'comics-list',
     data(){
@@ -30,9 +31,8 @@ export default {
         }
     },
     methods: {
-        toComicDetails(comicName){ 
-            this.$store.state.comic.comicName = comicName;
-            AccountServices.getComicByAccountId(this.accountId).then(response => {
+        toComicDetails(comicId){ 
+            ComicServices.getNonCollectionComicDetails(comicId).then(response => {
                 this.$store.state.accounts.comicId = response.data.comicId;
             })
             this.$router.push(`/comic/`)
@@ -55,7 +55,7 @@ export default {
             })
         },
         retrieveComics(comicId) {
-            CollectionService
+            ComicServices
             .getComicByComicId(comicId)
             .then(response => {
                 this.comicName = response.data.comicName;
@@ -70,7 +70,7 @@ export default {
         CollectionService.getCollectionByCurrentUser().then(response => {
             this.collections = response.data
         })
-        CollectionService.getComicByComicId(this.$store.state.comic.comicId).then(response => {
+        ComicServices.getComicByComicId(this.$store.state.comic.comicId).then(response => {
             this.comics = response.data
         })
     }

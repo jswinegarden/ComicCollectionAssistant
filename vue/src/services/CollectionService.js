@@ -15,8 +15,6 @@ export default {
         getComicDetails(collectionId, comicId){
             return axios.get(`/collections/${collectionId}/comics/${comicId}`)
         },
-        getComicByComicId(comicId){
-            return axios.get(`/comics/${comicId}`)
-        },
+        
         
 }

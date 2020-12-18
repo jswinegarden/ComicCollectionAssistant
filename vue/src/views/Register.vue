@@ -195,6 +195,11 @@ border: solid black 2px;
   border-radius: .25rem;
   transition: all .1s ease-in-out;
 }
+.form-label-group select {
+  color: #737678;
+  height: auto;
+  border-radius: 2rem;
+}
 
 
 </style>

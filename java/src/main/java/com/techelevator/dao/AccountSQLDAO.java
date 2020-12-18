@@ -95,20 +95,6 @@ public class AccountSQLDAO implements AccountDAO{
 	}
 	
 	@Override
-	public Long getComicCountOverallByUser (Long userId) {
-		String sql = "";
-		return null;
-		
-	}
-	
-	@Override
-	public Long getComicCountPerCollectionByUser (Long userId, Long collection_id){
-		String sql = "SELECT COUNT (*) AS COMICS FROM accounts WEHRE user_id = ? AND collection_id = ?";
-		return null;
-		
-	}
-	
-	@Override
 	public List <Account> getComicsByCollection(Long userId, Long collectionId) {
 		List<Account> accounts = new ArrayList<>();
 		String sql = "SELECT * FROM accounts WHERE user_id = ? AND collection_id = ?";
@@ -118,6 +104,56 @@ public class AccountSQLDAO implements AccountDAO{
 			accounts.add(account);
 		}
 		return accounts;
+	}
+	
+	@Override
+	public List<Account> getComicCountOverallByUser (Long userId) {
+		String sql = "";
+		return null;
+		
+	}
+	
+	@Override
+	public List<Account> getComicCountPerCollectionByUser (Long userId, Long collection_id){
+		String sql = "SELECT COUNT (*) AS COMICS FROM accounts WEHRE user_id = ? AND collection_id = ?";
+		return null;
+		
+	}
+	
+	@Override
+	public List<Account> getComicCountPerCollectionByUser(Long userId, Long collectionId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Account> getComicCountOverallByUser(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Account> getCollectionCountOverallByUser(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Account> getMintComicCountByUser(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Account> getFairComicCountByUser(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Account> getPoorComicCountByUser(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	private Account getAccountById(Long accountId) {
@@ -148,5 +184,4 @@ public class AccountSQLDAO implements AccountDAO{
 				rs.getLong("account_type_id"))
 				;
 	}
-
 }
