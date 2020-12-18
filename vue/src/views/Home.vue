@@ -16,6 +16,13 @@
         <get-my-collections />
       </div>
     </div>
+
+        <div class="row shadow">
+             <h4 class="col-md-12">Featured Collections:</h4>
+        <div id="featuredcollection">
+          <collections-list />
+        </div>
+      </div>
     <!-- <div class="row shadow">
       <h4 class="col-md-12">Featured Collections:</h4>
       <div class="col-md-2 shadow">image representing collection
@@ -57,9 +64,16 @@
 </template>
 <script>
 import GetMyCollections from '../components/GetMyCollections.vue'
+import CollectionService from '../services/CollectionService'
+import CollectionsList from '../components/CollectionsList.vue'
 export default {
   name: "home",
-  components: { GetMyCollections },
+  components: { GetMyCollections, CollectionsList },
+  created(){
+    CollectionService.getAllCollections().then(response => {
+          this.collections = response.data
+        });
+  }
 
 };
 </script>
