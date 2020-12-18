@@ -31,7 +31,6 @@ export default {
  font-kerning: none;
 }
 .box{
-    height: 1080px;
     background-attachment: local;
     padding-bottom: 5px;
 }
