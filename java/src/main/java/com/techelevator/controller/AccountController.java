@@ -77,7 +77,7 @@ public class AccountController {
     	Account account = buildAccountFromAccountDTO(accountDTO);
     	Comic comic = buildComicFromComicDTO(comicDTO);
     	Long accountTypeId = account.getAccountTypeId();
-    	//validateAuthorizationToCreate(principal, account);
+    	validateAuthorizationToCreate(principal, account);
     	if(Account.STANDARD_USER_ACCOUNT.equals(accountTypeId)) {
     		addAccountForStandardAccount(comic, account);
     	} else if(Account.PREMIUM_USER_ACCOUNT.equals(accountTypeId)) {
@@ -138,11 +138,11 @@ public class AccountController {
 //        }
 //	}
 //	
-//	private void validateAuthorizationToCreate(Principal principal, Account account) {
-//		AccountAuthorization auth = new AccountAuthorization(principal, account);
-//        if(!auth.isAllowedToCreate()) {
-//        	throw new AuthorizationException();
-//        }
-//	}
+	private void validateAuthorizationToCreate(Principal principal, Account account) {
+		AccountAuthorization auth = new AccountAuthorization(principal, account);
+        if(!auth.isAllowedToCreate()) {
+        	throw new AuthorizationException();
+        }
+	}
 	
 }

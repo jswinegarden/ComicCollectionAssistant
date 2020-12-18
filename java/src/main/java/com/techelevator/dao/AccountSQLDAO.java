@@ -106,31 +106,6 @@ public class AccountSQLDAO implements AccountDAO{
 		return accounts;
 	}
 	
-	@Override
-	public List<Account> getComicCountOverallByUser (Long userId) {
-		String sql = "";
-		return null;
-		
-	}
-	
-	@Override
-	public List<Account> getComicCountPerCollectionByUser (Long userId, Long collection_id){
-		String sql = "SELECT COUNT (*) AS COMICS FROM accounts WEHRE user_id = ? AND collection_id = ?";
-		return null;
-		
-	}
-	
-	@Override
-	public List<Account> getComicCountPerCollectionByUser(Long userId, Long collectionId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Account> getComicCountOverallByUser(Long userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Account> getCollectionCountOverallByUser(Long userId) {
@@ -183,5 +158,17 @@ public class AccountSQLDAO implements AccountDAO{
 				rs.getLong("collection_id"),
 				rs.getLong("account_type_id"))
 				;
+	}
+
+	@Override
+	public List<Account> getComicCountPerCollectionByUser(Long userId, Long collectionId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Account> getComicCountOverallByUser(Long userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
