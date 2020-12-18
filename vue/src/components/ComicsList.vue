@@ -37,23 +37,23 @@ export default {
             })
             this.$router.push(`/comic/`)
         },
-        retrieveAccounts(collectionId) {
-            AccountServices
-            .getAccountsByCollectionId(this.collectionId)
-            .then(response => {
-                this.$store.state.accounts.collectionId = response.data.collectionId;
-                this.$store.state.accounts.comicId = response.data.comicId;
-                this.$store.commit("SET_ACCOUNTS", response.data.accounts);
-            })
-            .catch(error => {
-                if (error.response && error.response.status === 404) {
-                    alert(
-                        "Comics not available. This collection may have been deleted or you have entered an invalid collection ID."
-                    );
-                    this.$router.push("/");
-                }
-            })
-        },
+        // retrieveAccounts(collectionId) {
+        //     AccountServices
+        //     .getAccountsByCollectionId(this.collectionId)
+        //     .then(response => {
+        //         this.$store.state.accounts.collectionId = response.data.collectionId;
+        //         this.$store.state.accounts.comicId = response.data.comicId;
+        //         this.$store.commit("SET_ACCOUNTS", response.data.accounts);
+        //     })
+        //     .catch(error => {
+        //         if (error.response && error.response.status === 404) {
+        //             alert(
+        //                 "Comics not available. This collection may have been deleted or you have entered an invalid collection ID."
+        //             );
+        //             this.$router.push("/");
+        //         }
+        //     })
+        // },
         retrieveComics(comicId) {
             ComicServices
             .getComicByComicId(comicId)

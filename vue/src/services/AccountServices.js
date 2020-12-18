@@ -9,5 +9,8 @@ export default {
     },
     getComicByAccountId(accountId){
         return axios.get(`/account/comics/${accountId}`)
+    },
+    getAccount(){
+        return axios.get(`/account`)
     }
 }
