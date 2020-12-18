@@ -122,7 +122,10 @@ CREATE SEQUENCE seq_collection_id
   CACHE 1;
   
 CREATE SEQUENCE seq_comic_id
+<<<<<<< HEAD
   
+=======
+>>>>>>> 82fedd4549cca02f9e909626e1b11f24ba952864
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
@@ -305,8 +308,13 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 --DUMMY DATA--
 INSERT INTO collections (collection_id, user_id, collection_name, collection_desc, favorite_status_id, collection_visibility_id) VALUES (DEFAULT, '1', 'DUMMY', 'SOME DESCRIPTION', '1', '1');
 INSERT INTO collections (collection_id, user_id, collection_name, collection_desc, favorite_status_id, collection_visibility_id) VALUES (DEFAULT, '2', 'MY COLLECTION', 'SOME DESCRIPTION', '2', '2');
+<<<<<<< HEAD
 INSERT INTO comics (comic_id, comic_name, author_name, comic_characters, date_published) VALUES ('1', 'DUMMY MAN', 'SPARVEL',  'DUMMY MAN, CAPTAIN GENIUS', '12-10-2020');
 INSERT INTO comics (comic_id, comic_name, author_name, comic_characters, date_published) VALUES ('2', 'RONA MAN', 'CDC COMICS', 'RONA MAN, DOCTOR VACCINE', '12-10-2020');
+=======
+INSERT INTO comics (comic_id, comic_name, author_name, comic_characters, date_published) VALUES (1, 'DUMMY MAN', 'SPARVEL',  'DUMMY MAN, CAPTAIN GENIUS', '12-10-2020');
+INSERT INTO comics (comic_id, comic_name, author_name, comic_characters, date_published) VALUES (2, 'RONA MAN', 'CDC COMICS', 'RONA MAN, DOCTOR VACCINE', '12-10-2020');
+>>>>>>> 82fedd4549cca02f9e909626e1b11f24ba952864
 INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradable_status_id, collection_id, account_type_id) VALUES (DEFAULT, '2', '1', '1', '1', '1', '1');
 INSERT INTO accounts (account_id, user_id, comic_id, comic_condition_id, comic_tradable_status_id, collection_id, account_type_id) VALUES (DEFAULT, '2', '2', '2', '1', '2','2');
 INSERT INTO trades (trade_id, trade_type_id, trade_status_id, account_from, account_to, comic_id) VALUES (DEFAULT, '1', '2', '1', '2', '1');

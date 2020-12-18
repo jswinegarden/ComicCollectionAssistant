@@ -17,21 +17,17 @@
             <li class="card">
                 <img class="card-img-top" v-bind:src="comic.thumbnail.path + '.' + comic.thumbnail.extension">
                 <p class="card-title">{{comic.title}}</p>
-
+    
                 Comic Condition
-                <div class="radio">
-                    <label><input type="radio" name="optradio" v-model="comicCond" value="1" checked>Mint</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="optradio" v-model="comicCond" value="2">Fair</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" name="optradio" v-model="comicCond" value="3">Poor</label>
-                </div> 
-
+                <select id="tag" class="form-control" v-model="condition">
+                    <option value="1" v-on:click="setCondition(condition)">Mint</option>
+                    <option value="2" v-on:click="setCondition(condition)">Fair</option>
+                    <option value="3" v-on:click="setCondition(condition)">Poor</option>
+                </select>
+   
                 <div class="btn btn-success" v-on:click="trader()" v-if="trade != ''">Mark Tradable?</div>
                 <div class="btn btn-danger" v-on:click="trader()" v-else >Mark Untradable</div>
-                <div class="btn btn-dark" v-on:click="comicOptions(comic)">Select Comic</div>
+                <div class="btn btn-dark" v-on:click="setAndSend(comic)">Add to Collection</div>
             </li>
         </ul>
         <button class="btn btn-success col-md-2 btn-lg" id="viewComicsButton" v-on:click="showMore()" v-if="!readMore"> View More </button>
@@ -43,15 +39,16 @@
 <script>
 import CollectionService from '@/services/CollectionService.js'
 import ComicServices from "@/services/ComicServices.js"
+import AccountServices from "@/services/AccountServices.js"
 
 export default {
     name: "add-comic",
     data(){
         return{
+            currentAccount: {},
+            condition: '',
             trade: 1,
             comicTitle: '',
-            comicCond: {
-            },
             collections:{
             },
             comics: {
@@ -60,10 +57,12 @@ export default {
                 }
             },
             account:{
+                userId:'',
                 comicId:'',
                 collectionId:'',    /*collection id comic condition and trade status all selected by user */
                 comicConditionId: '',
-                comicTradableStatusId: 2
+                comicTradableStatusId: 2,
+                accountTypeId: 2
             },
             comic:{
                 comicId:'',
@@ -77,6 +76,12 @@ export default {
         }
     },
     methods: {
+        setCondition(valueSet){
+            this.account.comicConditionId = valueSet;
+        },
+        setColId(id){
+            this.account.collectionId = id;
+        },
         trader(){
             if(this.trade == ''){
                 this.account.comicTradableStatusId = 2;
@@ -92,13 +97,16 @@ export default {
                 this.comicTitle = '';
             })
         },
-        comicOptions(comic){
+        setAndSend(comic){
+            this.account.userId = this.currentAccount.userId;
             this.comic.comicId = comic.id;
             this.comic.comicName = comic.title;
             this.comic.comicCharacters = comic.characters.items[0].name;
             this.comic.authorName = comic.creators.items[0].name;
             this.comic.datePublished = comic.dates[0].date;
             this.account.comicId = comic.id;
+            ComicServices.addNewComic(this.comic);
+            AccountServices.addComicToAccount(this.account);
             },
         showMore(){
           this.readMore = true;
@@ -112,6 +120,9 @@ export default {
     created(){
         CollectionService.getCollectionByCurrentUser().then(response => {
             this.collections = response.data;
+            });
+            AccountServices.getAccount().then(response => {
+                this.currentAccount = response.data;
             });
         }
 }
