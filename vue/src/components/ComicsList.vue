@@ -2,7 +2,7 @@
     <div id="collectionPage">
         <span class="row shadow">
             <ul class="col-md-4" v-for="account in accounts" v-bind:key="account.accountId">
-                <li class="card"  v-on:click="toComicDetails(comics.comicId)">
+                <li class="card"  v-on:click="toComicDetails(comics.slice(2).comicId)">
                     <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
                 </li>
             </ul>
@@ -71,7 +71,7 @@ export default {
             this.collections = response.data
         })
         ComicServices.getComicByComicId(this.$store.state.comic.comicId).then(response => {
-            this.comics = response.data
+            this.comics = response.data;
         })
     }
 };
