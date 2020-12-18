@@ -83,14 +83,16 @@ public class AccountSQLDAO implements AccountDAO{
 	
 	@Override
 	public Account addComicForPremiumAccount(Comic comic, Account account) {
-		String sql = "INSERT INTO accounts (account_id, user_id, comic_id, collection_id, account_type) VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO accounts (account_id, user_id, comic_id, collection_id, comic_condition_id, comic_tradable_status_id, account_type_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		Long newAccountId = getNextAccountId();
 		Long userId = account.getUserId();
 		Long comicId = account.getComicId();
 		Long collectionId = account.getCollectionId();
-		Long accountType = account.getAccountTypeId();
+		Long accountTypeId = account.getAccountTypeId();
+		Long comicConditionId = account.getComicConditionId();
+		Long comicTradableStatusId = account.getComicTradableStatusId();
 		
-		jdbcTemplate.update(sql, newAccountId, userId, comicId, collectionId, accountType);
+		jdbcTemplate.update(sql, newAccountId, userId, comicId, comicConditionId, comicTradableStatusId, collectionId, accountTypeId);
 		return getAccountById(newAccountId);
 	}
 	
