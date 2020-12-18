@@ -13,7 +13,7 @@
     </div>
 
     <div class="row">
-        <ul class="col-md-4" v-for="comic in comics.data.results" v-bind:key="comic.title">
+        <ul class="col-md-4" v-for="comic in comics.data.results.slice(0,comicsToShow)" v-bind:key="comic.title">
             <li class="card">
                 <img class="card-img-top" v-bind:src="comic.thumbnail.path + '.' + comic.thumbnail.extension">
                 <p class="card-title">{{comic.title}}</p>
@@ -34,6 +34,8 @@
                 <div class="btn btn-dark" v-on:click="comicOptions(comic)">Select Comic</div>
             </li>
         </ul>
+        <button class="btn btn-success col-md-2 btn-lg" id="viewComicsButton" v-on:click="showMore()" v-if="!readMore"> View More </button>
+        <button class="btn btn-success col-md-2 btn-lg" id="viewComicsButton" v-on:click="showLess()" v-if="readMore"> View Less </button>
     </div>
 </span>
 </template>
@@ -53,7 +55,9 @@ export default {
             collections:{
             },
             comics: {
-                data:{}
+                data:{
+                    results:[]
+                }
             },
             account:{
                 comicId:'',
@@ -67,7 +71,9 @@ export default {
                 comicCharacters:'',
                 authorName:'',
                 datePublished:''
-            }
+            },
+            comicsToShow: 12,
+            readMore: false,
         }
     },
     methods: {
@@ -93,11 +99,19 @@ export default {
             this.comic.authorName = comic.creators.items[0].name;
             this.comic.datePublished = comic.dates[0].date;
             this.account.comicId = comic.id;
+            },
+        showMore(){
+          this.readMore = true;
+          this.comicsToShow +=39;
+        },
+        showLess(){
+         this.readMore = false;
+         this.comicsToShow -= 39;
             }
         },
-        created(){
-            CollectionService.getCollectionByCurrentUser().then(response => {
-                this.collections = response.data;
+    created(){
+        CollectionService.getCollectionByCurrentUser().then(response => {
+            this.collections = response.data;
             });
         }
 }
@@ -110,6 +124,7 @@ export default {
 span{
     width: 100%;
     margin: auto 2%;
+    
 }
 input{
     margin:auto;
@@ -124,5 +139,10 @@ button{
 ul{
    list-style-type: none; 
 }
+#viewComicsButton{
+    margin-top: 10px;
+}
+    
+
 
 </style>

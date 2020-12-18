@@ -31,7 +31,7 @@ export default {
  font-kerning: none;
 }
 .box{
-    height: 1080px;
+    
     background-attachment: local;
     padding-bottom: 5px;
 }
@@ -45,7 +45,7 @@ export default {
     width: 75%;
     margin: 10px auto;
     padding: 15px 5px 15px 5px;
-    background-color: rgba(215, 214, 198, 0.94);
+    background-color: rgba(220, 207, 189, 0.94);
     border: white solid 6px;
 }
 </style>
