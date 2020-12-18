@@ -22,6 +22,9 @@ export default {
     },
     addNewComic(comic){
         return axios.post(`/comics/`, comic)
-    }
+    },
+    getComicByComicId(comicId){
+        return axios.get(`/comics/${comicId}`)
+    },
 }
 
