@@ -3,7 +3,7 @@
         <span class="row shadow">
             <ul class="col-md-4" v-for="account in accounts" v-bind:key="account.accountId">
                 <li class="card"  v-on:click="toComicDetails(comics.comicId)">
-                    <img class="card-img-top" src="http://i.annihil.us/u/prod/marvel/i/mg/3/40/4bb4680432f73.jpg">
+                    <img class="card-img-top" id="comicImage" v-bind:src="details.thumbnail.path + '.' + details.thumbnail.extension">
                 </li>
             </ul>
     </span>
